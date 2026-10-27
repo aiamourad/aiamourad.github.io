@@ -1,248 +1,1544 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html lang="en" dir="ltr">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Aya Mourad — Publications</title>
-<meta name="description" content="Aya Mourad — PhD researcher in NLP & Arabic NLP at Sorbonne Université. Publications, papers and code." />
-
-<link rel="preconnect" href="https://fonts.googleapis.com" />
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Newsreader:opsz,wght@6..72,400;6..72,500&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
-
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#1E1D4A">
+<title>Aya Mourad · NLP Researcher</title>
+<meta name="description" content="Aya Mourad: PhD researcher and Marie Skłodowska-Curie Fellow at Sorbonne Université, working on information extraction, Arabic and low-resource NLP, and compute-efficient long-context methods. Available for consulting.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%233F3D9E'/%3E%3Ctext x='32' y='42' font-family='Helvetica,Arial,sans-serif' font-size='26' font-weight='700' fill='%23fff' text-anchor='middle'%3EAM%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600;700&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,500;1,8..60,400&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=Noto+Naskh+Arabic:wght@400;500&family=Noto+Kufi+Arabic:wght@600;700&display=swap" rel="stylesheet">
 <style>
-  :root{
-    --paper:#eef1f6; --card:#ffffff; --ink:#161a22; --soft:#5a6172;
-    --accent:#2347c5; --accent2:#0f7a6e; --line:#dde2ec;
-    --display:"Fraunces",Georgia,serif; --body:"Newsreader",Georgia,serif; --mono:"IBM Plex Mono",monospace;
+:root{
+  --bg:#FFFFFF; --surface:#FFFFFF; --ink:#17162B; --muted:#55546B; --line:#E1E0EC;
+  --accent:#3F3D9E; --accent-ink:#FFFFFF; --accent-soft:#ECEBFA;
+  --kg-per:#3F3D9E; --kg-place:#0E7C6B; --kg-org:#B0541C; --kg-work:#A02F74; --kg-date:#5F6478;
+  --band:#1E1D4A; --band-ink:#EFEFFB; --band-muted:#B7B6DC; --band-line:#33326A; --band-accent:#ABA8F0; --band-accent-ink:#14133A;
+  --oral-bg:#F5B83D; --oral-ink:#3A2400; --oral-line:#E0A12A;
+  --sans:"Schibsted Grotesk", "Helvetica Neue", Arial, system-ui, sans-serif;
+  --serif:"Source Serif 4", Georgia, "Times New Roman", serif;
+  --ar-sans:"IBM Plex Sans Arabic", "Geeza Pro", "Segoe UI", Tahoma, sans-serif;
+  --ar-serif:"Noto Naskh Arabic", "Geeza Pro", "Traditional Arabic", serif;
+  --ar-display:"Noto Kufi Arabic", "IBM Plex Sans Arabic", "Geeza Pro", sans-serif;
+  --max:1120px;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top, 0px);
+  padding-bottom:env(safe-area-inset-bottom, 0px);
+  color-scheme:light;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0F0F1A; --surface:#171725; --ink:#ECECF6; --muted:#ABAAC6; --line:#2A2A40;
+    --accent:#ABA8F0; --accent-ink:#14133A; --accent-soft:#22213D;
+    --kg-per:#ABA8F0; --kg-place:#6CCFBE; --kg-org:#EFA06B; --kg-work:#E58AC2; --kg-date:#A9ADC0;
+    --band:#18183A; --band-ink:#EFEFFB; --band-muted:#B7B6DC; --band-line:#2E2D5C; --band-accent:#ABA8F0; --band-accent-ink:#14133A;
+    --oral-bg:#EDB042; --oral-ink:#241600; --oral-line:#EDB042;
+    color-scheme:dark;
   }
-  *{box-sizing:border-box;}
-  html{scroll-behavior:smooth;}
-  body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--body);font-size:18px;line-height:1.55;}
-  a{color:var(--accent);text-decoration:none;}
-  .wrap{max-width:840px;margin:0 auto;padding:0 24px;}
+}
+:root[data-theme="dark"]{
+  --bg:#0F0F1A; --surface:#171725; --ink:#ECECF6; --muted:#ABAAC6; --line:#2A2A40;
+  --accent:#ABA8F0; --accent-ink:#14133A; --accent-soft:#22213D;
+  --kg-per:#ABA8F0; --kg-place:#6CCFBE; --kg-org:#EFA06B; --kg-work:#E58AC2; --kg-date:#A9ADC0;
+  --band:#18183A; --band-ink:#EFEFFB; --band-muted:#B7B6DC; --band-line:#2E2D5C; --band-accent:#ABA8F0; --band-accent-ink:#14133A;
+  --oral-bg:#EDB042; --oral-ink:#241600; --oral-line:#EDB042;
+  color-scheme:dark;
+}
+*,*::before,*::after{box-sizing:inherit}
+body,header.top,.interest,.btn,.tag,.chips span{transition:background-color .5s, color .5s, border-color .5s}
+html{font-size:93.75%;scroll-behavior:smooth;scroll-padding-top:calc(env(safe-area-inset-top, 0px) + 84px);-webkit-text-size-adjust:100%}
+@media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:1rem;line-height:1.6;-webkit-font-smoothing:antialiased}
+.view[hidden]{display:none}
+.view[lang="ar"]{font-family:var(--ar-sans);font-size:1.02rem;line-height:1.8}
+.view[lang="ar"] h1,.view[lang="ar"] h2,.view[lang="ar"] h3,.view[lang="ar"] .brand{letter-spacing:0 !important}
+[lang="en"],[lang="fr"]{font-family:inherit}
+.view[lang="ar"] [lang="en"]{font-family:var(--sans)}
+img{max-width:100%;display:block}
+a{color:var(--accent);text-underline-offset:3px;text-decoration-thickness:1px}
+a:hover{text-decoration-thickness:2px}
+:focus-visible{outline:3px solid var(--accent);outline-offset:3px;border-radius:4px}
+.wrap{max-width:var(--max);margin:0 auto;padding:0 clamp(1.25rem, 4vw, 2.5rem)}
+.skip{position:absolute;top:0;inset-inline-start:0;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+.skip:focus{width:auto;height:auto;clip-path:none;top:1rem;inset-inline-start:1rem;z-index:100;background:var(--surface);padding:.6rem 1rem;border-radius:8px}
 
-  /* HEADER */
-  header{padding:64px 0 40px;text-align:center;border-bottom:1px solid var(--line);}
-  .eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--accent);margin-bottom:14px;}
-  h1{font-family:var(--display);font-weight:600;font-size:clamp(40px,7vw,64px);letter-spacing:-.02em;margin:0 0 12px;}
-  .role{color:var(--soft);max-width:560px;margin:0 auto 22px;font-size:18px;}
-  .role strong{color:var(--ink);font-weight:500;}
-  .links{display:flex;justify-content:center;flex-wrap:wrap;gap:9px;font-family:var(--mono);font-size:13px;}
-  .links a{padding:9px 15px;border:1px solid var(--line);border-radius:999px;color:var(--ink);background:var(--card);transition:.18s;}
-  .links a:hover{border-color:var(--accent);color:var(--accent);transform:translateY(-2px);}
+/* Header */
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top, 0px);z-index:30;background:var(--bg)}
+header.top{position:sticky;top:env(safe-area-inset-top, 0px);z-index:20;background:color-mix(in srgb, var(--bg) 86%, transparent);backdrop-filter:saturate(1.4) blur(12px);-webkit-backdrop-filter:saturate(1.4) blur(12px);border-bottom:1px solid transparent;transition:border-color .2s}
+body.scrolled header.top{border-bottom-color:var(--line)}
+.top .wrap{display:flex;align-items:center;gap:1.1rem;min-height:68px}
+.brand{display:flex;align-items:center;gap:.6rem;font-weight:700;color:var(--ink);text-decoration:none;letter-spacing:-.01em;white-space:nowrap}
+.brand .mark{width:34px;height:34px;border-radius:9px;background:var(--accent);color:var(--accent-ink);display:grid;place-items:center;font-family:var(--sans);font-size:.85rem;font-weight:700;letter-spacing:.02em}
+nav.main{margin-inline-start:auto;display:flex;gap:.1rem;overflow-x:auto;scrollbar-width:none}
+nav.main::-webkit-scrollbar{display:none}
+nav.main a{color:var(--muted);text-decoration:none;font-size:.95rem;font-weight:500;padding:.55rem .7rem;border-radius:8px;white-space:nowrap;min-height:44px;display:inline-flex;align-items:center}
+nav.main a:hover,nav.main a.active{color:var(--ink);background:var(--accent-soft)}
+.langs{display:inline-flex;border:1px solid var(--line);border-radius:10px;padding:2px;background:var(--surface);flex:none}
+.langs button{font:inherit;font-size:.85rem;font-weight:600;min-width:44px;min-height:38px;padding:0 .55rem;border:0;border-radius:8px;background:transparent;color:var(--muted);cursor:pointer}
+.langs button[lang="ar"]{font-family:var(--ar-sans)}
+.langs button:hover{color:var(--ink)}
+.langs button[aria-pressed="true"]{background:var(--accent);color:var(--accent-ink)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:.5rem;min-height:46px;padding:.65rem 1.2rem;border-radius:11px;font:inherit;font-weight:600;font-size:.97rem;text-decoration:none;border:1px solid var(--line);color:var(--ink);background:var(--surface);transition:border-color .15s, background .15s}
+.btn:hover{border-color:var(--accent)}
+.btn.primary{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
+.btn.primary:hover{filter:brightness(1.08)}
+.btn svg{width:18px;height:18px;flex:none}
+.btn.icon{padding:0;width:46px}
+.top .btn{min-height:42px;padding:.45rem 1rem;font-size:.92rem}
+@media (max-width: 900px){
+  .top .wrap{flex-wrap:wrap;gap:0 .6rem;padding-top:.45rem}
+  .langs{margin-inline-start:auto}
+  nav.main{order:3;width:100%;margin-inline-start:-.7rem}
+  .hdr-btn{display:none}
+}
 
-  /* SECTION TITLE */
-  .title{font-family:var(--display);font-weight:600;font-size:30px;margin:54px 0 8px;}
-  .title-sub{font-family:var(--mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--soft);margin-bottom:30px;}
+/* Hero */
+.hero-top{position:relative;overflow:hidden;padding:clamp(2rem, 5vw, 3.75rem) 0 clamp(1rem, 3vw, 2rem)}
+.hero-bg{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;
+  -webkit-mask-image:linear-gradient(to right, transparent 0%, rgba(0,0,0,.2) 40%, #000 56%);
+          mask-image:linear-gradient(to right, transparent 0%, rgba(0,0,0,.2) 40%, #000 56%)}
+.view[dir="rtl"] .hero-bg{
+  -webkit-mask-image:linear-gradient(to left, transparent 0%, rgba(0,0,0,.2) 40%, #000 56%);
+          mask-image:linear-gradient(to left, transparent 0%, rgba(0,0,0,.2) 40%, #000 56%)}
+.hero-grid{position:relative;z-index:1;display:grid;grid-template-columns:minmax(0, 36rem);gap:1.5rem;align-items:start}
+.hero h1{margin:0;font-size:clamp(2.4rem, 6vw, 4.4rem);line-height:.98;letter-spacing:-.04em;font-weight:700}
+.view[lang="ar"] .hero h1{font-family:var(--ar-display);font-size:clamp(2.1rem, 5.2vw, 3.8rem);line-height:1.35}
+.alt-name{display:block;width:fit-content;max-width:100%;font-family:var(--ar-display);font-weight:600;color:var(--accent);font-size:clamp(1.4rem, 3.2vw, 2.1rem);line-height:1.5;margin-top:.4rem}
+.view[lang="ar"] .alt-name{font-family:var(--sans);font-weight:600;letter-spacing:-.02em;line-height:1.2;margin-top:.2rem}
+.hero .role{margin:1.2rem 0 0;font-size:clamp(1rem, 1.6vw, 1.1rem);font-weight:600}
+.hero .role span{color:var(--muted);font-weight:400}
+.statement{font-family:var(--serif);font-size:clamp(1.12rem, 1.9vw, 1.35rem);line-height:1.45;max-width:36ch;margin:1.1rem 0 2rem}
+.view[lang="ar"] .statement{font-family:var(--ar-serif);line-height:1.85;max-width:40ch}
+.cta-row{display:flex;flex-wrap:wrap;gap:.6rem}
 
-  .about{max-width:680px;margin:0 0 16px;}
-  .tags{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0 8px;}
-  .tag{font-family:var(--mono);font-size:12px;padding:6px 13px;background:var(--card);border:1px solid var(--line);border-radius:5px;color:var(--soft);}
+.portrait{position:relative;margin:0;justify-self:start;width:124px;order:-1}
+.portrait::before{content:"";position:absolute;inset:-6px;border-radius:50%;border:2px solid var(--accent-soft);z-index:0}
+.portrait .frame{position:relative;z-index:1;aspect-ratio:1/1;border-radius:50%;overflow:hidden;background:var(--accent);display:grid;place-items:center}
+.portrait .frame img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .4s}
+.portrait .frame img.loaded{opacity:1}
+.portrait .initials{color:var(--accent-ink);font-family:var(--sans);font-size:2.4rem;font-weight:700;letter-spacing:-.03em}
+@media (max-width: 780px){
+  .hero-grid{grid-template-columns:1fr}
+  .portrait{width:88px}
+  .portrait::before{inset:-4px}
+  .portrait .initials{font-size:1.8rem}
+  .hero-bg,.view[dir="rtl"] .hero-bg{
+    -webkit-mask-image:linear-gradient(to bottom, #000 0%, rgba(0,0,0,.35) 45%, transparent 85%);
+            mask-image:linear-gradient(to bottom, #000 0%, rgba(0,0,0,.35) 45%, transparent 85%)}
+}
 
-  /* PUBLICATION CARD */
-  .pub{
-    display:grid;grid-template-columns:200px 1fr;gap:26px;
-    background:var(--card);border:1px solid var(--line);border-radius:14px;
-    padding:20px;margin-bottom:22px;transition:.2s;
-  }
-  .pub:hover{transform:translateY(-3px);box-shadow:0 14px 34px rgba(28,26,23,.10);border-color:#d4ccba;}
+.status{list-style:none;margin:clamp(1.5rem, 4vw, 2.5rem) 0 0;padding:1.1rem 0;display:flex;flex-wrap:wrap;gap:.6rem 2.2rem;border-top:1px solid var(--line);border-bottom:1px solid var(--line);font-size:.97rem}
+.status li{display:flex;align-items:center;gap:.6rem;color:var(--muted)}
+.status li b{color:var(--ink);font-weight:600}
+.dot{width:9px;height:9px;border-radius:50%;background:var(--accent);flex:none;box-shadow:0 0 0 4px var(--accent-soft)}
 
-  .thumb{
-    position:relative;width:100%;aspect-ratio:4/3;border-radius:9px;overflow:hidden;
-    background:linear-gradient(135deg,#e3e9f5,#d6deee);border:1px solid var(--line);
-  }
-  .thumb img{width:100%;height:100%;object-fit:cover;display:block;}
-  .thumb .ph{
-    position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;
-    font-family:var(--mono);font-size:11px;letter-spacing:.1em;color:var(--soft);text-align:center;padding:10px;
-  }
-  .thumb .ph svg{width:30px;height:30px;opacity:.5;margin-bottom:8px;}
 
-  .body .year{font-family:var(--mono);font-size:12px;color:var(--accent);letter-spacing:.1em;}
-  .body h2{font-family:var(--display);font-weight:500;font-size:21px;line-height:1.25;margin:5px 0 8px;}
-  .body h2 a{color:var(--ink);}
-  .body h2 a:hover{color:var(--accent);}
-  .authors{font-size:15.5px;color:var(--soft);margin:0 0 3px;}
-  .authors .me{color:var(--ink);font-weight:500;border-bottom:2px solid var(--accent);}
-  .venue{font-style:italic;font-size:15px;color:var(--soft);margin:0 0 6px;}
-  .badge{font-family:var(--mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;padding:3px 8px;border-radius:3px;margin-left:8px;vertical-align:2px;}
-  .badge.new{background:var(--accent);color:#fff;}
-  .badge.cite{background:#e7ecf7;color:var(--accent2);}
+/* Sections */
+section.block{padding:clamp(2.75rem, 6vw, 4.25rem) 0 0}
+.sec-head{display:grid;grid-template-columns:minmax(0, 15rem) minmax(0, 1fr);gap:.75rem 3rem;align-items:baseline;margin-bottom:1.6rem}
+.sec-head h2{margin:0;font-size:clamp(1.45rem, 2.6vw, 1.85rem);letter-spacing:-.03em;line-height:1.15}
+.view[lang="ar"] .sec-head h2,.view[lang="ar"] .foot h2{font-family:var(--ar-display);font-weight:700}
+.sec-head p{margin:0;color:var(--muted);max-width:60ch}
+.indent{margin-inline-start:calc(15rem + 3rem)}
+@media (max-width: 900px){.sec-head{grid-template-columns:1fr}.indent{margin-inline-start:0}}
+/* Wide screens: each heading sits beside its section rather than above it */
+@media (min-width: 901px){
+  section.block{display:grid;grid-template-columns:minmax(0, 12rem) minmax(0, 1fr);column-gap:3rem;align-items:start}
+  section.block > .sec-head{display:block;margin:0}
+  section.block > .indent{margin-inline-start:0}
+}
 
-  .btns{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px;}
-  .btns a{
-    font-family:var(--mono);font-size:12px;display:inline-flex;align-items:center;gap:6px;
-    padding:7px 13px;border:1px solid var(--accent);border-radius:7px;color:var(--accent);transition:.16s;
-  }
-  .btns a:hover{background:var(--accent);color:#fff;}
-  .btns a.muted{border-color:var(--line);color:var(--soft);}
-  .btns a.muted:hover{background:var(--soft);color:#fff;border-color:var(--soft);}
+.interests{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.interest{padding:1.4rem 1.5rem;border-radius:16px;background:var(--surface);border:1px solid var(--line)}
+.interest svg{width:26px;height:26px;color:var(--accent);margin-bottom:.8rem;display:block}
+.interest h3{margin:0 0 .35rem;font-size:1.08rem;letter-spacing:-.01em}
+.interest p{margin:0;color:var(--muted);font-size:.98rem}
+@media (max-width: 640px){.interests{grid-template-columns:1fr}}
 
-  footer{text-align:center;padding:46px 0 64px;border-top:1px solid var(--line);margin-top:50px;}
-  footer .nm{font-family:var(--display);font-size:20px;}
-  footer .sm{font-family:var(--mono);font-size:12px;color:var(--soft);margin-top:8px;}
+.pubs{list-style:none;margin:0;padding:0}
+.pubs li{padding:1.3rem 0;border-top:1px solid var(--line)}
+.pubs li:last-child{border-bottom:1px solid var(--line)}
+.pub-meta{display:flex;flex-wrap:wrap;gap:.45rem;margin-bottom:.7rem}
+.tag{font-size:.84rem;font-weight:500;padding:.22rem .65rem;border-radius:999px;background:var(--accent-soft);color:var(--ink)}
+.tag.award{background:var(--accent);color:var(--accent-ink)}
+.tag.oral{background:var(--oral-bg);color:var(--oral-ink);box-shadow:inset 0 0 0 1px var(--oral-line);font-weight:600}
+.pub-title{font-family:var(--serif);font-size:clamp(1.08rem, 1.8vw, 1.22rem);line-height:1.35;margin:0 0 .45rem;font-weight:500}
+.view[lang="ar"] .pub-title [lang="en"]{font-family:var(--serif)}
+.pub-authors{margin:0;color:var(--muted);font-size:.97rem}
+.pub-authors b{color:var(--ink);font-weight:600}
+.pub-venue{margin:.15rem 0 0;font-size:.97rem;color:var(--muted)}
+.pub-venue em{font-family:var(--serif);color:var(--ink)}
 
-  @media(max-width:620px){
-    .pub{grid-template-columns:1fr;}
-    .thumb{aspect-ratio:16/9;}
-  }
+.timeline{list-style:none;margin:0;padding:0;position:relative}
+.timeline::before{content:"";position:absolute;inset-inline-start:10.6rem;top:.6rem;bottom:.6rem;width:1px;background:var(--line)}
+.tl{display:grid;grid-template-columns:9.6rem minmax(0, 1fr);gap:0 2.2rem;padding:0 0 1.7rem;position:relative}
+.tl::before{content:"";position:absolute;inset-inline-start:calc(10.6rem - 5px);top:.55rem;width:11px;height:11px;border-radius:50%;background:var(--bg);border:2px solid var(--accent)}
+.tl.now::before{background:var(--accent)}
+.tl .when{color:var(--muted);font-size:.92rem;font-variant-numeric:tabular-nums;text-align:end;padding-top:.1rem}
+.tl h3{margin:0;font-size:1.06rem;letter-spacing:-.01em;line-height:1.45}
+.tl .org{color:var(--accent);font-weight:500}
+.tl p{margin:.2rem 0 0;color:var(--muted);font-size:.98rem}
+@media (max-width: 640px){
+  .timeline::before{inset-inline-start:5px}
+  .tl{grid-template-columns:1fr;padding-inline-start:1.7rem}
+  .tl::before{inset-inline-start:0}
+  .tl .when{text-align:start}
+}
+
+.services{display:grid;grid-template-columns:repeat(2, minmax(0, 1fr));gap:0 3rem}
+.service{padding:1.5rem 0;border-top:1px solid var(--band-line)}
+.service h3{margin:0 0 .35rem;font-size:1.14rem;letter-spacing:-.01em}
+.service p{margin:0;color:var(--band-muted);font-size:1rem}
+.service .proof{margin-top:.7rem;color:var(--band-ink);font-size:.95rem;display:flex;gap:.55rem;align-items:flex-start}
+.service .proof svg{width:18px;height:18px;flex:none;color:var(--band-accent);margin-top:.25rem}
+@media (max-width: 760px){.services{grid-template-columns:1fr}}
+
+.duo{display:grid;grid-template-columns:1fr 1fr;gap:2.5rem}
+@media (max-width: 760px){.duo{grid-template-columns:1fr}}
+.duo h3.sub{font-size:1.1rem;margin:0 0 .5rem;letter-spacing:-.01em}
+.duo .rows + h3.sub{margin-top:1.8rem}
+.rows{list-style:none;margin:0;padding:0}
+.rows li{padding:.95rem 0;border-top:1px solid var(--line)}
+.rows b{display:block;font-weight:600}
+.rows span{color:var(--muted);font-size:.97rem}
+.chips{display:flex;flex-wrap:wrap;gap:.45rem;margin:0 0 1.4rem}
+.chips span{font-size:.9rem;padding:.3rem .7rem;border-radius:8px;border:1px solid var(--line);background:var(--surface)}
+
+footer{margin-top:clamp(2.75rem, 6vw, 4.25rem);padding:2.5rem 0 2.75rem;border-top:1px solid var(--line)}
+.foot{display:grid;grid-template-columns:1.1fr 1fr;gap:2.5rem;align-items:start}
+.foot h2{margin:0;font-size:clamp(1.6rem, 3.2vw, 2.1rem);letter-spacing:-.035em;line-height:1.1}
+.foot p{color:var(--muted);margin:.8rem 0 1.4rem;max-width:40ch}
+.contact-list{list-style:none;margin:0;padding:0}
+.contact-list li{display:flex;justify-content:space-between;align-items:center;gap:1rem;padding:.8rem 0;border-top:1px solid var(--line);flex-wrap:wrap}
+.contact-list li:last-child{border-bottom:1px solid var(--line)}
+.contact-list .k{color:var(--muted)}
+.contact-list a{font-weight:600;word-break:break-word}
+.copy{font:inherit;font-size:.85rem;font-weight:500;border:1px solid var(--line);background:transparent;color:var(--muted);border-radius:8px;padding:.25rem .65rem;cursor:pointer;margin-inline-start:.5rem;min-height:34px}
+.copy:hover{color:var(--ink);border-color:var(--accent)}
+.fineprint{margin-top:2.5rem;color:var(--muted);font-size:.88rem}
+@media (max-width: 760px){.foot{grid-template-columns:1fr}}
+
+@media print{
+  header.top,.cta-row,.copy,.hero-bg{display:none !important}
+  body{background:#fff;color:#000;font-size:11pt}
+  .service p,.service .proof{color:#333}
+  section.block{padding-top:1.5rem}
+  .tl,.pubs li,.service{break-inside:avoid}
+}
+
+/* Paper links */
+.interest-links{display:flex;flex-wrap:wrap;gap:.4rem 1.1rem;margin:.9rem 0 0 !important}
+.interest-links a,.pub-links a{display:inline-flex;align-items:center;gap:.35rem;font-weight:600;font-size:.93rem;text-decoration:none}
+.interest-links a svg,.pub-links svg{width:15px;height:15px;flex:none}
+.interest-links a:hover{text-decoration:underline}
+.pub-links{display:flex;flex-wrap:wrap;gap:.5rem;margin:.9rem 0 0}
+.pub-links a{font:inherit;font-size:.9rem;font-weight:600;color:var(--accent);background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:.35rem .75rem;min-height:38px;cursor:pointer;transition:border-color .15s}
+.pub-links a:hover{border-color:var(--accent)}
+.pub.has-poster{display:grid;grid-template-columns:minmax(0,1fr) 150px;gap:1.5rem 2rem;align-items:start}
+.poster-thumb{display:block;border:1px solid var(--line);border-radius:10px;overflow:hidden;background:var(--accent-soft);box-shadow:0 10px 24px -14px rgba(23,22,43,.45);transition:transform .2s, border-color .2s}
+.poster-thumb:hover{transform:translateY(-2px);border-color:var(--accent)}
+.thumb-img{display:block;width:100%;height:auto}
+@media (max-width: 640px){.pub.has-poster{grid-template-columns:1fr}.poster-thumb{width:140px}}
+
+/* Teaching list on the light background */
+section.block .service{border-top-color:var(--line)}
+section.block .service p{color:var(--muted)}
+section.block .service .proof{color:var(--ink)}
+section.block .service .proof svg{color:var(--accent)}
+@media (max-width: 1080px){nav.main a{padding:.55rem .55rem}}
 </style>
 </head>
 <body>
+<a class="skip" href="#research">Skip to content</a>
 
-<header>
+<div class="view" data-view="en" lang="en" dir="ltr">
+<header class="top">
   <div class="wrap">
-    <div class="eyebrow">PhD Researcher · NLP</div>
-    <h1>Aya Mourad</h1>
-    <p class="role">PhD student at <strong>Sorbonne Université</strong> (ISIR — MLIA). Large language models, information extraction &amp; Arabic NLP.</p>
-    <nav class="links">
-      <a href="mailto:aya.mourad@sorbonne-universite.fr">✉ Email</a>
-      <a href="https://scholar.google.com/citations?user=mmVpZUsAAAAJ" target="_blank" rel="noopener">Google Scholar</a>
-      <a href="https://github.com/aiamourad" target="_blank" rel="noopener">GitHub</a>
-      <a href="documents/Aya_Mourad_resume.pdf" target="_blank" rel="noopener">CV</a>
+    <a class="brand" href="#top"><span class="mark" aria-hidden="true">AM</span>Aya Mourad</a>
+    <nav class="main" aria-label="Sections">
+      <a href="#research" data-key="research">Research</a>
+      <a href="#publications" data-key="publications">Publications</a>
+      <a href="#experience" data-key="experience">Experience</a>
+      <a href="#teaching" data-key="teaching">Teaching</a>
+      <a href="#contact" data-key="contact">Contact</a>
     </nav>
+    <div class="langs" role="group" aria-label="Language / Langue / اللغة">
+      <button type="button" data-set-lang="en" lang="en" aria-pressed="true">EN</button>
+      <button type="button" data-set-lang="fr" lang="fr" aria-pressed="false">FR</button>
+      <button type="button" data-set-lang="ar" lang="ar" aria-pressed="false">عربي</button>
+    </div>
+    <a class="btn primary hdr-btn" href="mailto:aya.mourad@sorbonne-universite.fr">Email me</a>
   </div>
 </header>
 
-<main class="wrap">
-  <h2 class="title">About</h2>
-  <div class="title-sub">Research focus</div>
-  <p class="about">
-    I am a PhD researcher at the Institut des Systèmes Intelligents et de Robotique (ISIR),
-    Sorbonne Université, within the MLIA team, funded by a Marie Skłodowska-Curie COFUND
-    Fellowship (SOUND.AI). My work sits at the intersection of large language models and
-    low-resource languages, with a focus on Arabic NLP — benchmarking model knowledge,
-    retrieval-augmented generation, bias detection, and information extraction.
-  </p>
-  <p class="about">
-    Previously, I was a research and teaching assistant at the American University of Beirut
-    and its AI Hub, where I built evaluation benchmarks, taught graduate-level LLM modules,
-    and led AI education programmes for students.
-  </p>
-  <div class="tags">
-    <span class="tag">Large Language Models</span>
-    <span class="tag">Arabic NLP</span>
-    <span class="tag">Information Extraction</span>
-    <span class="tag">Retrieval-Augmented Generation</span>
-    <span class="tag">Bias &amp; Fairness</span>
+<main id="top">
+  <section class="hero" aria-labelledby="name">
+    <div class="hero-top">
+      <canvas class="hero-bg" aria-hidden="true"></canvas>
+      <div class="wrap hero-grid">
+        <div>
+          <h1 id="name" lang="en">Aya Mourad</h1>
+          <span class="alt-name" lang="ar" dir="rtl">آية مراد</span>
+          <p class="role">NLP Researcher <span>in information extraction and low-resource languages, Paris</span></p>
+          <p class="statement">I build methods and datasets that make language technology work for low-resource languages like Arabic, without heavy compute or large training corpora.</p>
+          <div class="cta-row">
+            <a class="btn primary" href="mailto:aya.mourad@sorbonne-universite.fr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3.5 6.5 8.5 6 8.5-6"/></svg>Email me</a>
+            <a class="btn" href="https://scholar.google.com/citations?hl=en&amp;user=mmVpZUsAAAAJ" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 9.5 12 4l10 5.5-10 5.5z"/><path d="M6 11.7V16c0 1.6 2.7 3 6 3s6-1.4 6-3v-4.3"/></svg>Google Scholar</a>
+            <a class="btn icon" href="https://github.com/aiamourad" target="_blank" rel="noopener" aria-label="GitHub"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 19c-4.3 1.4-4.3-2.5-6-3m12 5v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6 0 0 0-1.3-3.2 4.2 4.2 0 0 0-.1-3.2s-1.1-.3-3.5 1.3a12.3 12.3 0 0 0-6.2 0C6.5 2.8 5.4 3.1 5.4 3.1a4.2 4.2 0 0 0-.1 3.2A4.6 4.6 0 0 0 4 9.5c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V21"/></svg></a>
+          </div>
+        </div>
+        <figure class="portrait">
+          <div class="frame">
+            <span class="initials" aria-hidden="true">AM</span>
+            <img class="photo" src="./img/photo.png" alt="Aya Mourad" width="640" height="800" decoding="async">
+          </div>
+        </figure>
+      </div>
+    </div>
+    <div class="wrap">
+      <ul class="status" aria-label="Current status">
+        <li><span class="dot" aria-hidden="true"></span><span><b>PhD researcher</b> at Sorbonne Université, ISIR</span></li>
+        <li><span class="dot" aria-hidden="true"></span><span><b>Open</b> to consulting in Arabic NLP</span></li>
+        <li><span><b>Fully funded</b> by a Marie Skłodowska-Curie fellowship, SOUND.AI</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <div class="wrap">
+    <section class="block" id="research" data-key="research" aria-labelledby="research-h">
+      <div class="sec-head"><h2 id="research-h">Research</h2></div>
+      <div class="interests">
+        <div class="interest"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 4H4v16h3M17 4h3v16h-3"/><path d="M9 8h6M9 12h6M9 16h3"/></svg><h3>Arabic information extraction</h3><p>Nested named entities, coreference, relation extraction and event detection, built as one pipeline for Arabic text.</p></div>
+        <div class="interest"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 3h8l4 4v12a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2z"/><path d="M16 3v4h4M9.5 11h7M9.5 14.5h7M9.5 18h4"/><path d="M3 7v12a2 2 0 0 0 2 2"/></svg><h3>Long-context extraction under compute constraints</h3><p>Document-level extraction past the 512-token encoder window, on book-length inputs and modest compute.</p></div>
+        <div class="interest"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><ellipse cx="12" cy="5.5" rx="7" ry="2.5"/><path d="M5 5.5v13c0 1.4 3.1 2.5 7 2.5s7-1.1 7-2.5v-13M5 12c0 1.4 3.1 2.5 7 2.5s7-1.1 7-2.5"/></svg><h3>Datasets and benchmarks</h3><p>Resources that make Arabic measurable: AdabNER for nested entities in literary books, and AraSTEM for LLM knowledge in science and engineering.</p></div>
+        <div class="interest"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20h16M7 16V9M12 16V5M17 16v-4"/></svg><h3>What language models know</h3><p>What instruction tuning costs a model in factual recall (AKBC 2026), and how gender bias settles into Arabic word embeddings (PLoS One 2025).</p></div>
+      </div>
+    </section>
+
+    <section class="block" id="publications" data-key="publications" aria-labelledby="pubs-h">
+      <div class="sec-head"><h2 id="pubs-h">Publications</h2></div>
+      <ol class="pubs indent">
+        <li class="pub has-poster">
+          <div>
+            <div class="pub-meta"><span class="tag award">3rd place, LM-KBC 2026</span><span class="tag oral">Oral presentation</span></div>
+            <p class="pub-title"><span lang="en" dir="ltr">The Instruction Tax on Factual Recall: Base Models Can Beat Their Instruction-Tuned Counterparts</span></p>
+            <p class="pub-authors"><span lang="en" dir="ltr">Khalil, C.* and <b>Mourad, A.</b>* (2026)</span> · <span>* equal contribution</span></p>
+            <p class="pub-venue"><em>AKBC 2026</em>, co-located with EMNLP 2026, pp. 518–526</p>
+            <p class="pub-links"><a href="https://aclanthology.org/2026.akbc-1.40/" target="_blank" rel="noopener">Paper<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></svg></a><a href="https://aclanthology.org/2026.akbc-1.40.pdf" target="_blank" rel="noopener">PDF<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></svg></a><a href="https://github.com/aiamourad/lm-kbc-2026" target="_blank" rel="noopener">Code<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></svg></a><a href="./img/lmkbc-poster.png" target="_blank" rel="noopener" data-poster-link><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 8h8M8 12h8M8 16h5"/></svg>View poster</a></p>
+          </div>
+          <a class="poster-thumb" href="./img/lmkbc-poster.png" target="_blank" rel="noopener" data-poster-link aria-label="View poster"><img class="thumb-img" src="./img/lmkbc-poster-thumb.jpg" alt="" width="452" height="640" loading="lazy" decoding="async"></a>
+        </li>
+        <li class="pub has-poster">
+          <div>
+            <div class="pub-meta"><span class="tag ">ACL 2026 Main Conference</span><span class="tag ">First author</span></div>
+            <p class="pub-title"><span lang="en" dir="ltr">AdabNER: Arabic Digital Archive Books with Nested Entity Recognition</span></p>
+            <p class="pub-authors"><span lang="en" dir="ltr"><b>Mourad, A.</b> and Jarrar, M. (2026)</span></p>
+            <p class="pub-venue"><em>Proceedings of the 64th Annual Meeting of the ACL</em> (Volume 1: Long Papers), pp. 33382–33396</p>
+            <p class="pub-links"><a href="https://aclanthology.org/2026.acl-long.1541/" target="_blank" rel="noopener">Paper<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></svg></a><a href="https://aclanthology.org/2026.acl-long.1541.pdf" target="_blank" rel="noopener">PDF<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></svg></a><a href="https://doi.org/10.5281/zenodo.19468385" target="_blank" rel="noopener">Dataset<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></svg></a><a href="https://github.com/aiamourad/AdabNER" target="_blank" rel="noopener">Code<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></svg></a><a href="./img/AdabNER-poster.png" target="_blank" rel="noopener" data-poster-link><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 8h8M8 12h8M8 16h5"/></svg>View poster</a></p>
+          </div>
+          <a class="poster-thumb" href="./img/AdabNER-poster.png" target="_blank" rel="noopener" data-poster-link aria-label="View poster"><img class="thumb-img" src="./img/AdabNER-poster-thumb.jpg" alt="" width="452" height="640" loading="lazy" decoding="async"></a>
+        </li>
+        <li class="pub">
+          <div>
+            <div class="pub-meta"><span class="tag ">Journal</span><span class="tag ">First author</span></div>
+            <p class="pub-title"><span lang="en" dir="ltr">Detecting Gender Bias in Arabic Text through Word Embeddings</span></p>
+            <p class="pub-authors"><span lang="en" dir="ltr"><b>Mourad, A.</b>, Abu Salem, F. K., and Elbassuoni, S. (2025)</span></p>
+            <p class="pub-venue"><em>PLoS One</em>, 20(3), e0319301</p>
+            <p class="pub-links"><a href="https://doi.org/10.1371/journal.pone.0319301" target="_blank" rel="noopener">Article<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></svg></a><a href="https://github.com/aiamourad/AraGenderBias" target="_blank" rel="noopener">Code<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></svg></a></p>
+          </div>
+        </li>
+        <li class="pub">
+          <div>
+            <div class="pub-meta"><span class="tag ">Pre-print</span><span class="tag ">Benchmark</span></div>
+            <p class="pub-title"><span lang="en" dir="ltr">AraSTEM: A Native Arabic Multiple-Choice Question Benchmark for Evaluating LLMs Knowledge in STEM Subjects</span></p>
+            <p class="pub-authors"><span lang="en" dir="ltr">Mustapha, A., Al-Khansa, H., Al-Mubasher, H., <b>Mourad, A.</b>, et al. (2024)</span></p>
+            <p class="pub-venue">arXiv:2501.00559</p>
+            <p class="pub-links"><a href="https://arxiv.org/abs/2501.00559" target="_blank" rel="noopener">Pre-print<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></svg></a><a href="https://data.mendeley.com/datasets/rn4zbzg8z2" target="_blank" rel="noopener">Dataset<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></svg></a></p>
+          </div>
+        </li>
+        <li class="pub">
+          <div>
+            <div class="pub-meta"><span class="tag ">Journal</span></div>
+            <p class="pub-title"><span lang="en" dir="ltr">Capturing Children Food Exposure Using Wearable Cameras and Deep Learning</span></p>
+            <p class="pub-authors"><span lang="en" dir="ltr">Elbassuoni, S., Ghattas, H., El Ati, J., et al., including <b>Mourad, A.</b> (2023)</span></p>
+            <p class="pub-venue"><em>PLOS Digital Health</em>, 2(3), e0000211</p>
+            <p class="pub-links"><a href="https://doi.org/10.1371/journal.pdig.0000211" target="_blank" rel="noopener">Article<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></svg></a><a href="https://github.com/ZoulfikarShmayssani/Food-Exposure-Models" target="_blank" rel="noopener">Code<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></svg></a></p>
+          </div>
+        </li>
+        <li class="pub">
+          <div>
+            <div class="pub-meta"><span class="tag ">Journal</span><span class="tag ">First author</span></div>
+            <p class="pub-title"><span lang="en" dir="ltr">A Large-Scale Analysis of COVID-19 Tweets in the Arab Region</span></p>
+            <p class="pub-authors"><span lang="en" dir="ltr"><b>Mourad, A.</b> and Elbassuoni, S. (2022)</span></p>
+            <p class="pub-venue"><em>Social Network Analysis and Mining</em>, 12(1), 71</p>
+            <p class="pub-links"><a href="https://doi.org/10.1007/s13278-022-00902-y" target="_blank" rel="noopener">Article<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></svg></a></p>
+          </div>
+        </li>
+      </ol>
+    </section>
+
+    <section class="block" id="experience" data-key="experience" aria-labelledby="exp-h">
+      <div class="sec-head"><h2 id="exp-h">Experience</h2></div>
+      <ol class="timeline">
+        <li class="tl now">
+          <div class="when">2024 – now</div>
+          <div><h3>PhD Researcher <span class="org">Sorbonne Université, ISIR</span></h3></div>
+        </li>
+        <li class="tl">
+          <div class="when">2024 – 2025</div>
+          <div><h3>Research Assistant <span class="org">AUB AI Hub</span></h3></div>
+        </li>
+        <li class="tl">
+          <div class="when">2022 – 2024</div>
+          <div><h3>Research and Teaching Assistant <span class="org">AUB, Computer Science</span></h3></div>
+        </li>
+        <li class="tl">
+          <div class="when">2021</div>
+          <div><h3>Graduate Research Assistant <span class="org">American University of Beirut</span></h3></div>
+        </li>
+        <li class="tl">
+          <div class="when">2017 – 2020</div>
+          <div><h3>Developer and Data Analyst <span class="org">AUB, Faculty of Health Sciences</span></h3></div>
+        </li>
+      </ol>
+    </section>
+
+    <section class="block" id="teaching" data-key="teaching" aria-labelledby="teach-h">
+      <div class="sec-head"><h2 id="teach-h">Teaching</h2></div>
+      <div class="services indent">
+        <div class="service"><h3>Graduate course on large language models</h3><p>Designed four modules for AUB’s graduate LLM course: embeddings, tokenization, prompt engineering and AI ethics.</p></div>
+        <div class="service"><h3>Summer AI Academy 2024</h3><p>Organised a summer programme on AI fundamentals and machine learning for high-school students.</p></div>
+        <div class="service"><h3>Teaching assistant, 2018–2024</h3><p>Machine learning, AI, web programming and networks at AUB.</p></div>
+      </div>
+    </section>
+    <section class="block" id="education" aria-labelledby="edu-h">
+      <div class="sec-head"><h2 id="edu-h">Education and skills</h2></div>
+      <div class="duo indent">
+        <div>
+          <h3 class="sub">Education</h3>
+          <ul class="rows">
+            <li><b>PhD in Computer Science, Sorbonne Université</b><span>2024–2027, ISIR · Marie Skłodowska-Curie Fellow</span></li>
+            <li><b>M.Sc. Computer Science, American University of Beirut</b><span>2019–2022, GPA 4.0</span></li>
+            <li><b>B.Sc. Computer Science, American University of Beirut</b><span>2012–2016</span></li>
+          </ul>
+          <h3 class="sub">Schools and awards</h3>
+          <ul class="rows">
+            <li><b>Deep Learning School 2025</b><span>EFELIA Côte d’Azur, Sophia Antipolis, June–July 2025</span></li>
+            <li><b>Google Cloud Research Credits</b><span>Compute award for Vertex AI experiments</span></li>
+            <li><b>AUB Graduate Assistant Fellowship</b><span>Merit-based, covering 100% of tuition</span></li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="sub">Skills</h3>
+          <div class="chips"><span dir="auto">Python</span><span dir="auto">PyTorch</span><span dir="auto">Hugging Face Transformers</span><span dir="auto">PEFT</span><span dir="auto">vLLM</span><span dir="auto">LangChain</span><span dir="auto">TensorFlow</span><span dir="auto">OpenCV</span><span dir="auto">RAG</span><span dir="auto">Distributed training</span><span dir="auto">Vertex AI</span><span dir="auto">Google Cloud</span><span dir="auto">HPC / GPU clusters</span><span dir="auto">R</span><span dir="auto">C#</span><span dir="auto">SQL</span><span dir="auto">LaTeX</span></div>
+          <h3 class="sub">Languages</h3>
+          <div class="chips"><span>Arabic, native</span><span>English, full professional</span></div>
+        </div>
+      </div>
+    </section>
   </div>
-
-  <h2 class="title">Publications</h2>
-  <div class="title-sub">Papers · code · datasets</div>
-
-  <!-- AdabNER — ACL 2026 -->
-  <article class="pub">
-    <div class="thumb">
-      <img src="images/adabner.png" alt="AdabNER" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
-      <div class="ph" style="display:none;">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
-        images/adabner.png
-      </div>
-    </div>
-    <div class="body">
-      <div class="year">2026</div>
-      <h2><a href="https://aclanthology.org/2026.acl-long.1541" target="_blank" rel="noopener">AdabNER: Arabic Digital Archive Books with Nested Entity Recognition</a> <span class="badge new">ACL 2026</span></h2>
-      <p class="authors"><span class="me">A. Mourad</span>, M. Jarrar</p>
-      <p class="venue">Proceedings of ACL 2026 (Volume 1: Long Papers), pp. 33382–33396</p>
-      <div class="btns">
-        <a href="https://aclanthology.org/2026.acl-long.1541.pdf" target="_blank" rel="noopener">📄 Paper</a>
-        <a href="https://github.com/aiamourad/AdabNER" target="_blank" rel="noopener" class="muted">💻 Code</a>
-        <a href="https://doi.org/10.5281/zenodo.19468385" target="_blank" rel="noopener" class="muted">🗂 Dataset</a>
-      </div>
-    </div>
-  </article>
-
-  <!-- Gender bias -->
-  <article class="pub">
-    <div class="thumb">
-      <img src="images/genderbias.png" alt="Gender bias in Arabic" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
-      <div class="ph" style="display:none;">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
-        images/genderbias.png
-      </div>
-    </div>
-    <div class="body">
-      <div class="year">2025</div>
-      <h2><a href="https://doi.org/10.1371/journal.pone.0319301" target="_blank" rel="noopener">Detecting gender bias in Arabic text through word embeddings</a></h2>
-      <p class="authors"><span class="me">A. Mourad</span>, F. K. Abu Salem, S. Elbassuoni</p>
-      <p class="venue">PLOS ONE 20(3), e0319301</p>
-      <div class="btns">
-        <a href="https://doi.org/10.1371/journal.pone.0319301" target="_blank" rel="noopener">📄 Paper</a>
-        <a href="https://github.com/aiamourad/AraGenderBias" target="_blank" rel="noopener" class="muted">💻 Code</a>
-      </div>
-    </div>
-  </article>
-
-  <!-- AraSTEM -->
-  <article class="pub">
-    <div class="thumb">
-      <img src="images/arastem.png" alt="AraSTEM benchmark" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
-      <div class="ph" style="display:none;">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
-        images/arastem.png
-      </div>
-    </div>
-    <div class="body">
-      <div class="year">2024</div>
-      <h2><a href="https://arxiv.org/abs/2501.00559" target="_blank" rel="noopener">AraSTEM: A native Arabic multiple-choice benchmark for evaluating LLMs in STEM</a></h2>
-      <p class="authors">A. Mustapha, H. Al-Khansa, H. Al-Mubasher, <span class="me">A. Mourad</span>, R. Hamoud, et al.</p>
-      <p class="venue">arXiv:2501.00559</p>
-      <div class="btns">
-        <a href="https://arxiv.org/abs/2501.00559" target="_blank" rel="noopener">📄 Paper</a>
-      </div>
-    </div>
-  </article>
-
-  <!-- Children food exposure -->
-  <article class="pub">
-    <div class="thumb">
-      <img src="images/foodexposure.png" alt="Children food exposure" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
-      <div class="ph" style="display:none;">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
-        images/foodexposure.png
-      </div>
-    </div>
-    <div class="body">
-      <div class="year">2023</div>
-      <h2><a href="https://doi.org/10.1371/journal.pdig.0000211" target="_blank" rel="noopener">Capturing children's food exposure using wearable cameras and deep learning</a></h2>
-      <p class="authors">S. Elbassuoni, H. Ghattas, J. El Ati, <span class="me">et al.</span></p>
-      <p class="venue">PLOS Digital Health 2(3), e0000211</p>
-      <div class="btns">
-        <a href="https://doi.org/10.1371/journal.pdig.0000211" target="_blank" rel="noopener">📄 Paper</a>
-      </div>
-    </div>
-  </article>
-
-  <!-- COVID tweets -->
-  <article class="pub">
-    <div class="thumb">
-      <img src="images/covid19.png" alt="COVID-19 tweets analysis" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
-      <div class="ph" style="display:none;">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
-        images/covid.png
-      </div>
-    </div>
-    <div class="body">
-      <div class="year">2022</div>
-      <h2><a href="https://link.springer.com/article/10.1007/s13278-022-00902-y" target="_blank" rel="noopener">A large-scale analysis of COVID-19 tweets in the Arab region</a></h2>
-      <p class="authors"><span class="me">A. Mourad</span>, S. Elbassuoni</p>
-      <p class="venue">Social Network Analysis and Mining 12(1), 71</p>
-      <div class="btns">
-        <a href="https://link.springer.com/article/10.1007/s13278-022-00902-y" target="_blank" rel="noopener">📄 Paper</a>
-      </div>
-    </div>
-  </article>
-
 </main>
 
-<footer>
+<footer id="contact" data-key="contact">
   <div class="wrap">
-    <div class="nm">Aya Mourad</div>
-    <div class="sm">Paris, France · aya.mourad@sorbonne-universite.fr</div>
-    <div class="sm">© 2026 · GitHub Pages</div>
+    <div class="foot">
+      <div>
+        <h2>Let’s talk.</h2>
+        <p>For research collaborations, talks or consulting, email is the fastest way to reach me.</p>
+        <a class="btn primary" href="mailto:aya.mourad@sorbonne-universite.fr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3.5 6.5 8.5 6 8.5-6"/></svg>Email me</a>
+      </div>
+      <ul class="contact-list">
+        <li><span class="k">Email</span><span><a href="mailto:aya.mourad@sorbonne-universite.fr" dir="ltr">aya.mourad@sorbonne-universite.fr</a><button class="copy" type="button" aria-label="Copy email address" data-copy="Copy" data-copied="Copied">Copy</button></span></li>
+        <li><span class="k">Phone</span><a href="tel:+33688254253" dir="ltr">+33 6 88 25 42 53</a></li>
+        <li><span class="k">Google Scholar</span><a href="https://scholar.google.com/citations?hl=en&amp;user=mmVpZUsAAAAJ" target="_blank" rel="noopener" dir="ltr">Aya Mourad</a></li>
+        <li><span class="k">GitHub</span><a href="https://github.com/aiamourad" target="_blank" rel="noopener" dir="ltr">aiamourad</a></li>
+        <li><span class="k">Based in</span><span>Paris, France</span></li>
+      </ul>
+    </div>
+    <p class="fineprint">Updated October 2026.</p>
   </div>
 </footer>
+</div>
 
+<div class="view" data-view="fr" lang="fr" dir="ltr" hidden>
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="#fr-top"><span class="mark" aria-hidden="true">AM</span>Aya Mourad</a>
+    <nav class="main" aria-label="Sections">
+      <a href="#fr-research" data-key="research">Recherche</a>
+      <a href="#fr-publications" data-key="publications">Publications</a>
+      <a href="#fr-experience" data-key="experience">Parcours</a>
+      <a href="#fr-teaching" data-key="teaching">Enseignement</a>
+      <a href="#fr-contact" data-key="contact">Contact</a>
+    </nav>
+    <div class="langs" role="group" aria-label="Language / Langue / اللغة">
+      <button type="button" data-set-lang="en" lang="en" aria-pressed="false">EN</button>
+      <button type="button" data-set-lang="fr" lang="fr" aria-pressed="true">FR</button>
+      <button type="button" data-set-lang="ar" lang="ar" aria-pressed="false">عربي</button>
+    </div>
+    <a class="btn primary hdr-btn" href="mailto:aya.mourad@sorbonne-universite.fr">M’écrire</a>
+  </div>
+</header>
+
+<main id="fr-top">
+  <section class="hero" aria-labelledby="fr-name">
+    <div class="hero-top">
+      <canvas class="hero-bg" aria-hidden="true"></canvas>
+      <div class="wrap hero-grid">
+        <div>
+          <h1 id="fr-name" lang="fr">Aya Mourad</h1>
+          <span class="alt-name" lang="ar" dir="rtl">آية مراد</span>
+          <p class="role">Chercheuse en TAL <span>spécialisée en extraction d’information et langues peu dotées, Paris</span></p>
+          <p class="statement">Je conçois des méthodes et des jeux de données pour que les technologies du langage fonctionnent aussi pour les langues peu dotées comme l’arabe, sans calcul lourd ni grands corpus d’entraînement.</p>
+          <div class="cta-row">
+            <a class="btn primary" href="mailto:aya.mourad@sorbonne-universite.fr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3.5 6.5 8.5 6 8.5-6"/></svg>M’écrire</a>
+            <a class="btn" href="https://scholar.google.com/citations?hl=en&amp;user=mmVpZUsAAAAJ" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 9.5 12 4l10 5.5-10 5.5z"/><path d="M6 11.7V16c0 1.6 2.7 3 6 3s6-1.4 6-3v-4.3"/></svg>Google Scholar</a>
+            <a class="btn icon" href="https://github.com/aiamourad" target="_blank" rel="noopener" aria-label="GitHub"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 19c-4.3 1.4-4.3-2.5-6-3m12 5v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6 0 0 0-1.3-3.2 4.2 4.2 0 0 0-.1-3.2s-1.1-.3-3.5 1.3a12.3 12.3 0 0 0-6.2 0C6.5 2.8 5.4 3.1 5.4 3.1a4.2 4.2 0 0 0-.1 3.2A4.6 4.6 0 0 0 4 9.5c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V21"/></svg></a>
+          </div>
+        </div>
+        <figure class="portrait">
+          <div class="frame">
+            <span class="initials" aria-hidden="true">AM</span>
+            <img class="photo" src="./img/photo.png" alt="Aya Mourad" width="640" height="800" decoding="async">
+          </div>
+        </figure>
+      </div>
+    </div>
+    <div class="wrap">
+      <ul class="status" aria-label="Situation actuelle">
+        <li><span class="dot" aria-hidden="true"></span><span><b>Doctorante</b> à Sorbonne Université, ISIR</span></li>
+        <li><span class="dot" aria-hidden="true"></span><span><b>Ouverte</b> aux missions de conseil en TAL arabe</span></li>
+        <li><span><b>Entièrement financée</b> par une bourse Marie Skłodowska-Curie, SOUND.AI</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <div class="wrap">
+    <section class="block" id="fr-research" data-key="research" aria-labelledby="fr-research-h">
+      <div class="sec-head"><h2 id="fr-research-h">Recherche</h2></div>
+      <div class="interests">
+        <div class="interest"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 4H4v16h3M17 4h3v16h-3"/><path d="M9 8h6M9 12h6M9 16h3"/></svg><h3>Extraction d’information en arabe</h3><p>Entités nommées imbriquées, coréférence, extraction de relations et détection d’événements, réunies dans une même chaîne de traitement pour l’arabe.</p></div>
+        <div class="interest"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 3h8l4 4v12a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2z"/><path d="M16 3v4h4M9.5 11h7M9.5 14.5h7M9.5 18h4"/><path d="M3 7v12a2 2 0 0 0 2 2"/></svg><h3>Extraction en contexte long à calcul contraint</h3><p>Extraction au niveau du document au-delà de la fenêtre de 512&nbsp;tokens des encodeurs, sur des livres entiers et avec peu de calcul.</p></div>
+        <div class="interest"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><ellipse cx="12" cy="5.5" rx="7" ry="2.5"/><path d="M5 5.5v13c0 1.4 3.1 2.5 7 2.5s7-1.1 7-2.5v-13M5 12c0 1.4 3.1 2.5 7 2.5s7-1.1 7-2.5"/></svg><h3>Jeux de données et benchmarks</h3><p>Des ressources pour mesurer l’arabe&nbsp;: AdabNER pour les entités imbriquées dans les livres littéraires, et AraSTEM pour les connaissances scientifiques des LLM.</p></div>
+        <div class="interest"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20h16M7 16V9M12 16V5M17 16v-4"/></svg><h3>Ce que savent les modèles de langue</h3><p>Ce que l’ajustement aux instructions coûte en rappel factuel (AKBC 2026), et comment les biais de genre s’installent dans les plongements lexicaux arabes (PLoS One 2025).</p></div>
+      </div>
+    </section>
+
+    <section class="block" id="fr-publications" data-key="publications" aria-labelledby="fr-pubs-h">
+      <div class="sec-head"><h2 id="fr-pubs-h">Publications</h2></div>
+      <ol class="pubs indent">
+        <li class="pub has-poster">
+          <div>
+            <div class="pub-meta"><span class="tag award">3<sup>e</sup> place, LM-KBC 2026</span><span class="tag oral">Présentation orale</span></div>
+            <p class="pub-title"><span lang="en" dir="ltr">The Instruction Tax on Factual Recall: Base Models Can Beat Their Instruction-Tuned Counterparts</span></p>
+            <p class="pub-authors"><span lang="en" dir="ltr">Khalil, C.* and <b>Mourad, A.</b>* (2026)</span> · <span>* contribution égale</span></p>
+            <p class="pub-venue"><em>AKBC 2026</em>, organisé avec EMNLP 2026, p.&nbsp;518–526</p>
+            <p class="pub-links"><a href="https://aclanthology.org/2026.akbc-1.40/" target="_blank" rel="noopener">Article<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></svg></a><a href="https://aclanthology.org/2026.akbc-1.40.pdf" target="_blank" rel="noopener">PDF<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></svg></a><a href="https://github.com/aiamourad/lm-kbc-2026" target="_blank" rel="noopener">Code<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></svg></a><a href="./img/lmkbc-poster.png" target="_blank" rel="noopener" data-poster-link><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 8h8M8 12h8M8 16h5"/></svg>Voir le poster</a></p>
+          </div>
+          <a class="poster-thumb" href="./img/lmkbc-poster.png" target="_blank" rel="noopener" data-poster-link aria-label="Voir le poster"><img class="thumb-img" src="./img/lmkbc-poster-thumb.jpg" alt="" width="452" height="640" loading="lazy" decoding="async"></a>
+        </li>
+        <li class="pub has-poster">
+          <div>
+            <div class="pub-meta"><span class="tag ">ACL 2026, conférence principale</span><span class="tag ">Première autrice</span></div>
+            <p class="pub-title"><span lang="en" dir="ltr">AdabNER: Arabic Digital Archive Books with Nested Entity Recognition</span></p>
+            <p class="pub-authors"><span lang="en" dir="ltr"><b>Mourad, A.</b> and Jarrar, M. (2026)</span></p>
+            <p class="pub-venue"><em>Proceedings of the 64th Annual Meeting of the ACL</em> (volume&nbsp;1, articles longs), p.&nbsp;33382–33396</p>
+            <p class="pub-links"><a href="https://aclanthology.org/2026.acl-long.1541/" target="_blank" rel="noopener">Article<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></svg></a><a href="https://aclanthology.org/2026.acl-long.1541.pdf" target="_blank" rel="noopener">PDF<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></svg></a><a href="https://doi.org/10.5281/zenodo.19468385" target="_blank" rel="noopener">Jeu de données<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></svg></a><a href="https://github.com/aiamourad/AdabNER" target="_blank" rel="noopener">Code<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></svg></a><a href="./img/AdabNER-poster.png" target="_blank" rel="noopener" data-poster-link><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 8h8M8 12h8M8 16h5"/></svg>Voir le poster</a></p>
+          </div>
+          <a class="poster-thumb" href="./img/AdabNER-poster.png" target="_blank" rel="noopener" data-poster-link aria-label="Voir le poster"><img class="thumb-img" src="./img/AdabNER-poster-thumb.jpg" alt="" width="452" height="640" loading="lazy" decoding="async"></a>
+        </li>
+        <li class="pub">
+          <div>
+            <div class="pub-meta"><span class="tag ">Revue</span><span class="tag ">Première autrice</span></div>
+            <p class="pub-title"><span lang="en" dir="ltr">Detecting Gender Bias in Arabic Text through Word Embeddings</span></p>
+            <p class="pub-authors"><span lang="en" dir="ltr"><b>Mourad, A.</b>, Abu Salem, F. K., and Elbassuoni, S. (2025)</span></p>
+            <p class="pub-venue"><em>PLoS One</em>, 20(3), e0319301</p>
+            <p class="pub-links"><a href="https://doi.org/10.1371/journal.pone.0319301" target="_blank" rel="noopener">Article<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></svg></a><a href="https://github.com/aiamourad/AraGenderBias" target="_blank" rel="noopener">Code<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></svg></a></p>
+          </div>
+        </li>
+        <li class="pub">
+          <div>
+            <div class="pub-meta"><span class="tag ">Prépublication</span><span class="tag ">Benchmark</span></div>
+            <p class="pub-title"><span lang="en" dir="ltr">AraSTEM: A Native Arabic Multiple-Choice Question Benchmark for Evaluating LLMs Knowledge in STEM Subjects</span></p>
+            <p class="pub-authors"><span lang="en" dir="ltr">Mustapha, A., Al-Khansa, H., Al-Mubasher, H., <b>Mourad, A.</b>, et al. (2024)</span></p>
+            <p class="pub-venue">arXiv:2501.00559</p>
+            <p class="pub-links"><a href="https://arxiv.org/abs/2501.00559" target="_blank" rel="noopener">Prépublication<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></svg></a><a href="https://data.mendeley.com/datasets/rn4zbzg8z2" target="_blank" rel="noopener">Jeu de données<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></svg></a></p>
+          </div>
+        </li>
+        <li class="pub">
+          <div>
+            <div class="pub-meta"><span class="tag ">Revue</span></div>
+            <p class="pub-title"><span lang="en" dir="ltr">Capturing Children Food Exposure Using Wearable Cameras and Deep Learning</span></p>
+            <p class="pub-authors"><span lang="en" dir="ltr">Elbassuoni, S., Ghattas, H., El Ati, J., et al., including <b>Mourad, A.</b> (2023)</span></p>
+            <p class="pub-venue"><em>PLOS Digital Health</em>, 2(3), e0000211</p>
+            <p class="pub-links"><a href="https://doi.org/10.1371/journal.pdig.0000211" target="_blank" rel="noopener">Article<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></svg></a><a href="https://github.com/ZoulfikarShmayssani/Food-Exposure-Models" target="_blank" rel="noopener">Code<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></svg></a></p>
+          </div>
+        </li>
+        <li class="pub">
+          <div>
+            <div class="pub-meta"><span class="tag ">Revue</span><span class="tag ">Première autrice</span></div>
+            <p class="pub-title"><span lang="en" dir="ltr">A Large-Scale Analysis of COVID-19 Tweets in the Arab Region</span></p>
+            <p class="pub-authors"><span lang="en" dir="ltr"><b>Mourad, A.</b> and Elbassuoni, S. (2022)</span></p>
+            <p class="pub-venue"><em>Social Network Analysis and Mining</em>, 12(1), 71</p>
+            <p class="pub-links"><a href="https://doi.org/10.1007/s13278-022-00902-y" target="_blank" rel="noopener">Article<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></svg></a></p>
+          </div>
+        </li>
+      </ol>
+    </section>
+
+    <section class="block" id="fr-experience" data-key="experience" aria-labelledby="fr-exp-h">
+      <div class="sec-head"><h2 id="fr-exp-h">Parcours</h2></div>
+      <ol class="timeline">
+        <li class="tl now">
+          <div class="when">2024 – auj.</div>
+          <div><h3>Doctorante <span class="org">Sorbonne Université, ISIR</span></h3></div>
+        </li>
+        <li class="tl">
+          <div class="when">2024 – 2025</div>
+          <div><h3>Assistante de recherche <span class="org">AI Hub de l’AUB</span></h3></div>
+        </li>
+        <li class="tl">
+          <div class="when">2022 – 2024</div>
+          <div><h3>Assistante de recherche et d’enseignement <span class="org">AUB, informatique</span></h3></div>
+        </li>
+        <li class="tl">
+          <div class="when">2021</div>
+          <div><h3>Assistante de recherche en master <span class="org">Université américaine de Beyrouth</span></h3></div>
+        </li>
+        <li class="tl">
+          <div class="when">2017 – 2020</div>
+          <div><h3>Développeuse et analyste de données <span class="org">AUB, Faculté des sciences de la santé</span></h3></div>
+        </li>
+      </ol>
+    </section>
+
+    <section class="block" id="fr-teaching" data-key="teaching" aria-labelledby="fr-teach-h">
+      <div class="sec-head"><h2 id="fr-teach-h">Enseignement</h2></div>
+      <div class="services indent">
+        <div class="service"><h3>Cours de master sur les grands modèles de langue</h3><p>Conception de quatre modules pour le cours de master sur les LLM de l’AUB&nbsp;: plongements, tokenisation, ingénierie des prompts et éthique de l’IA.</p></div>
+        <div class="service"><h3>Summer AI Academy 2024</h3><p>Organisation d’un programme d’été sur les fondamentaux de l’IA et l’apprentissage automatique pour des lycéens.</p></div>
+        <div class="service"><h3>Assistante d’enseignement, 2018–2024</h3><p>Apprentissage automatique, IA, programmation web et réseaux à l’AUB.</p></div>
+      </div>
+    </section>
+    <section class="block" id="fr-education" aria-labelledby="fr-edu-h">
+      <div class="sec-head"><h2 id="fr-edu-h">Formation et compétences</h2></div>
+      <div class="duo indent">
+        <div>
+          <h3 class="sub">Formation</h3>
+          <ul class="rows">
+            <li><b>Doctorat en informatique, Sorbonne Université</b><span>2024–2027, ISIR · boursière Marie Skłodowska-Curie</span></li>
+            <li><b>Master en informatique, Université américaine de Beyrouth</b><span>2019–2022, moyenne 4,0/4,0</span></li>
+            <li><b>Licence en informatique, Université américaine de Beyrouth</b><span>2012–2016</span></li>
+          </ul>
+          <h3 class="sub">Écoles et distinctions</h3>
+          <ul class="rows">
+            <li><b>Deep Learning School 2025</b><span>EFELIA Côte d’Azur, Sophia Antipolis, juin–juillet 2025</span></li>
+            <li><b>Crédits de recherche Google Cloud</b><span>Allocation de calcul pour des expériences sur Vertex AI</span></li>
+            <li><b>Bourse d’assistanat de l’AUB</b><span>Attribuée au mérite, 100&nbsp;% des frais de scolarité</span></li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="sub">Compétences</h3>
+          <div class="chips"><span dir="auto">Python</span><span dir="auto">PyTorch</span><span dir="auto">Hugging Face Transformers</span><span dir="auto">PEFT</span><span dir="auto">vLLM</span><span dir="auto">LangChain</span><span dir="auto">TensorFlow</span><span dir="auto">OpenCV</span><span dir="auto">RAG</span><span dir="auto">Entraînement distribué</span><span dir="auto">Vertex AI</span><span dir="auto">Google Cloud</span><span dir="auto">Clusters HPC / GPU</span><span dir="auto">R</span><span dir="auto">C#</span><span dir="auto">SQL</span><span dir="auto">LaTeX</span></div>
+          <h3 class="sub">Langues</h3>
+          <div class="chips"><span>Arabe, langue maternelle</span><span>Anglais, courant professionnel</span></div>
+        </div>
+      </div>
+    </section>
+  </div>
+</main>
+
+<footer id="fr-contact" data-key="contact">
+  <div class="wrap">
+    <div class="foot">
+      <div>
+        <h2>Parlons-en.</h2>
+        <p>Pour une collaboration de recherche, une intervention ou une mission de conseil, le courriel est le moyen le plus rapide de me joindre.</p>
+        <a class="btn primary" href="mailto:aya.mourad@sorbonne-universite.fr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3.5 6.5 8.5 6 8.5-6"/></svg>M’écrire</a>
+      </div>
+      <ul class="contact-list">
+        <li><span class="k">Courriel</span><span><a href="mailto:aya.mourad@sorbonne-universite.fr" dir="ltr">aya.mourad@sorbonne-universite.fr</a><button class="copy" type="button" aria-label="Copier l’adresse courriel" data-copy="Copier" data-copied="Copié">Copier</button></span></li>
+        <li><span class="k">Téléphone</span><a href="tel:+33688254253" dir="ltr">+33 6 88 25 42 53</a></li>
+        <li><span class="k">Google Scholar</span><a href="https://scholar.google.com/citations?hl=en&amp;user=mmVpZUsAAAAJ" target="_blank" rel="noopener" dir="ltr">Aya Mourad</a></li>
+        <li><span class="k">GitHub</span><a href="https://github.com/aiamourad" target="_blank" rel="noopener" dir="ltr">aiamourad</a></li>
+        <li><span class="k">Basée à</span><span>Paris, France</span></li>
+      </ul>
+    </div>
+    <p class="fineprint">Mis à jour en octobre 2026.</p>
+  </div>
+</footer>
+</div>
+
+<div class="view" data-view="ar" lang="ar" dir="rtl" hidden>
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="#ar-top"><span class="mark" aria-hidden="true">AM</span>آية مراد</a>
+    <nav class="main" aria-label="الأقسام">
+      <a href="#ar-research" data-key="research">البحث</a>
+      <a href="#ar-publications" data-key="publications">المنشورات</a>
+      <a href="#ar-experience" data-key="experience">الخبرات</a>
+      <a href="#ar-teaching" data-key="teaching">التدريس</a>
+      <a href="#ar-contact" data-key="contact">تواصل</a>
+    </nav>
+    <div class="langs" role="group" aria-label="Language / Langue / اللغة">
+      <button type="button" data-set-lang="en" lang="en" aria-pressed="false">EN</button>
+      <button type="button" data-set-lang="fr" lang="fr" aria-pressed="false">FR</button>
+      <button type="button" data-set-lang="ar" lang="ar" aria-pressed="true">عربي</button>
+    </div>
+    <a class="btn primary hdr-btn" href="mailto:aya.mourad@sorbonne-universite.fr">راسليني</a>
+  </div>
+</header>
+
+<main id="ar-top">
+  <section class="hero" aria-labelledby="ar-name">
+    <div class="hero-top">
+      <canvas class="hero-bg" aria-hidden="true"></canvas>
+      <div class="wrap hero-grid">
+        <div>
+          <h1 id="ar-name" lang="ar">آية مراد</h1>
+          <span class="alt-name" lang="en" dir="ltr">Aya Mourad</span>
+          <p class="role">باحثة في معالجة اللغات الطبيعية <span>متخصصة في استخراج المعلومات واللغات منخفضة الموارد، باريس</span></p>
+          <p class="statement">أطوّر أساليب ومجموعات بيانات تجعل تقنيات اللغة تعمل للغات منخفضة الموارد كالعربية، من دون حوسبة ثقيلة أو مدوّنات تدريب ضخمة.</p>
+          <div class="cta-row">
+            <a class="btn primary" href="mailto:aya.mourad@sorbonne-universite.fr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3.5 6.5 8.5 6 8.5-6"/></svg>راسليني</a>
+            <a class="btn" href="https://scholar.google.com/citations?hl=en&amp;user=mmVpZUsAAAAJ" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 9.5 12 4l10 5.5-10 5.5z"/><path d="M6 11.7V16c0 1.6 2.7 3 6 3s6-1.4 6-3v-4.3"/></svg>Google Scholar</a>
+            <a class="btn icon" href="https://github.com/aiamourad" target="_blank" rel="noopener" aria-label="GitHub"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 19c-4.3 1.4-4.3-2.5-6-3m12 5v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6 0 0 0-1.3-3.2 4.2 4.2 0 0 0-.1-3.2s-1.1-.3-3.5 1.3a12.3 12.3 0 0 0-6.2 0C6.5 2.8 5.4 3.1 5.4 3.1a4.2 4.2 0 0 0-.1 3.2A4.6 4.6 0 0 0 4 9.5c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V21"/></svg></a>
+          </div>
+        </div>
+        <figure class="portrait">
+          <div class="frame">
+            <span class="initials" aria-hidden="true">AM</span>
+            <img class="photo" src="./img/photo.png" alt="آية مراد" width="640" height="800" decoding="async">
+          </div>
+        </figure>
+      </div>
+    </div>
+    <div class="wrap">
+      <ul class="status" aria-label="الوضع الحالي">
+        <li><span class="dot" aria-hidden="true"></span><span><b>باحثة دكتوراه</b> في جامعة السوربون، معهد ISIR</span></li>
+        <li><span class="dot" aria-hidden="true"></span><span><b>متاحة</b> للاستشارات في معالجة العربية</span></li>
+        <li><span><b>ممولة بالكامل</b> بزمالة ماري سكوودوفسكا-كوري، برنامج SOUND.AI</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <div class="wrap">
+    <section class="block" id="ar-research" data-key="research" aria-labelledby="ar-research-h">
+      <div class="sec-head"><h2 id="ar-research-h">البحث</h2></div>
+      <div class="interests">
+        <div class="interest"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 4H4v16h3M17 4h3v16h-3"/><path d="M9 8h6M9 12h6M9 16h3"/></svg><h3>استخراج المعلومات من النص العربي</h3><p>التعرّف على الكيانات المسمّاة المتداخلة، وحلّ الإحالة، واستخراج العلاقات، وكشف الأحداث، ضمن منظومة واحدة للنصوص العربية.</p></div>
+        <div class="interest"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 3h8l4 4v12a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2z"/><path d="M16 3v4h4M9.5 11h7M9.5 14.5h7M9.5 18h4"/><path d="M3 7v12a2 2 0 0 0 2 2"/></svg><h3>استخراج المعلومات من السياقات الطويلة بحوسبة محدودة</h3><p>استخراج على مستوى الوثيقة يتجاوز نافذة الـ512 رمزًا في المُرمِّزات، على نصوص بطول كتاب وبحوسبة محدودة.</p></div>
+        <div class="interest"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><ellipse cx="12" cy="5.5" rx="7" ry="2.5"/><path d="M5 5.5v13c0 1.4 3.1 2.5 7 2.5s7-1.1 7-2.5v-13M5 12c0 1.4 3.1 2.5 7 2.5s7-1.1 7-2.5"/></svg><h3>مجموعات البيانات ومعايير القياس</h3><p>موارد تجعل العربية قابلة للقياس: AdabNER للكيانات المتداخلة في الكتب الأدبية، وAraSTEM لمعرفة النماذج اللغوية في العلوم والهندسة.</p></div>
+        <div class="interest"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20h16M7 16V9M12 16V5M17 16v-4"/></svg><h3>ما تعرفه النماذج اللغوية</h3><p>ما الذي يكلّفه الضبط بالتعليمات من قدرة النموذج على استرجاع الحقائق (AKBC 2026)، وكيف يستقرّ الانحياز الجندري في تمثيلات الكلمات العربية (PLoS One 2025).</p></div>
+      </div>
+    </section>
+
+    <section class="block" id="ar-publications" data-key="publications" aria-labelledby="ar-pubs-h">
+      <div class="sec-head"><h2 id="ar-pubs-h">المنشورات</h2></div>
+      <ol class="pubs indent">
+        <li class="pub has-poster">
+          <div>
+            <div class="pub-meta"><span class="tag award">المركز الثالث، LM-KBC 2026</span><span class="tag oral">عرض شفهي</span></div>
+            <p class="pub-title"><span lang="en" dir="ltr">The Instruction Tax on Factual Recall: Base Models Can Beat Their Instruction-Tuned Counterparts</span></p>
+            <p class="pub-authors"><span lang="en" dir="ltr">Khalil, C.* and <b>Mourad, A.</b>* (2026)</span> · <span>* مساهمة متساوية</span></p>
+            <p class="pub-venue"><em>AKBC 2026</em>، بالتزامن مع EMNLP 2026، ص 518–526</p>
+            <p class="pub-links"><a href="https://aclanthology.org/2026.akbc-1.40/" target="_blank" rel="noopener">الورقة<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></svg></a><a href="https://aclanthology.org/2026.akbc-1.40.pdf" target="_blank" rel="noopener">PDF<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></svg></a><a href="https://github.com/aiamourad/lm-kbc-2026" target="_blank" rel="noopener">الشيفرة<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></svg></a><a href="./img/lmkbc-poster.png" target="_blank" rel="noopener" data-poster-link><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 8h8M8 12h8M8 16h5"/></svg>عرض الملصق</a></p>
+          </div>
+          <a class="poster-thumb" href="./img/lmkbc-poster.png" target="_blank" rel="noopener" data-poster-link aria-label="عرض الملصق"><img class="thumb-img" src="./img/lmkbc-poster-thumb.jpg" alt="" width="452" height="640" loading="lazy" decoding="async"></a>
+        </li>
+        <li class="pub has-poster">
+          <div>
+            <div class="pub-meta"><span class="tag ">المؤتمر الرئيسي ACL 2026</span><span class="tag ">المؤلفة الأولى</span></div>
+            <p class="pub-title"><span lang="en" dir="ltr">AdabNER: Arabic Digital Archive Books with Nested Entity Recognition</span></p>
+            <p class="pub-authors"><span lang="en" dir="ltr"><b>Mourad, A.</b> and Jarrar, M. (2026)</span></p>
+            <p class="pub-venue"><em>Proceedings of the 64th Annual Meeting of the ACL</em>، المجلد 1 (أوراق طويلة)، ص 33382–33396</p>
+            <p class="pub-links"><a href="https://aclanthology.org/2026.acl-long.1541/" target="_blank" rel="noopener">الورقة<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></svg></a><a href="https://aclanthology.org/2026.acl-long.1541.pdf" target="_blank" rel="noopener">PDF<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></svg></a><a href="https://doi.org/10.5281/zenodo.19468385" target="_blank" rel="noopener">مجموعة البيانات<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></svg></a><a href="https://github.com/aiamourad/AdabNER" target="_blank" rel="noopener">الشيفرة<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></svg></a><a href="./img/AdabNER-poster.png" target="_blank" rel="noopener" data-poster-link><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 8h8M8 12h8M8 16h5"/></svg>عرض الملصق</a></p>
+          </div>
+          <a class="poster-thumb" href="./img/AdabNER-poster.png" target="_blank" rel="noopener" data-poster-link aria-label="عرض الملصق"><img class="thumb-img" src="./img/AdabNER-poster-thumb.jpg" alt="" width="452" height="640" loading="lazy" decoding="async"></a>
+        </li>
+        <li class="pub">
+          <div>
+            <div class="pub-meta"><span class="tag ">مجلة علمية</span><span class="tag ">المؤلفة الأولى</span></div>
+            <p class="pub-title"><span lang="en" dir="ltr">Detecting Gender Bias in Arabic Text through Word Embeddings</span></p>
+            <p class="pub-authors"><span lang="en" dir="ltr"><b>Mourad, A.</b>, Abu Salem, F. K., and Elbassuoni, S. (2025)</span></p>
+            <p class="pub-venue"><em>PLoS One</em>, 20(3), e0319301</p>
+            <p class="pub-links"><a href="https://doi.org/10.1371/journal.pone.0319301" target="_blank" rel="noopener">المقالة<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></svg></a><a href="https://github.com/aiamourad/AraGenderBias" target="_blank" rel="noopener">الشيفرة<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></svg></a></p>
+          </div>
+        </li>
+        <li class="pub">
+          <div>
+            <div class="pub-meta"><span class="tag ">نسخة أولية</span><span class="tag ">معيار قياس</span></div>
+            <p class="pub-title"><span lang="en" dir="ltr">AraSTEM: A Native Arabic Multiple-Choice Question Benchmark for Evaluating LLMs Knowledge in STEM Subjects</span></p>
+            <p class="pub-authors"><span lang="en" dir="ltr">Mustapha, A., Al-Khansa, H., Al-Mubasher, H., <b>Mourad, A.</b>, et al. (2024)</span></p>
+            <p class="pub-venue">arXiv:2501.00559</p>
+            <p class="pub-links"><a href="https://arxiv.org/abs/2501.00559" target="_blank" rel="noopener">النسخة الأولية<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></svg></a><a href="https://data.mendeley.com/datasets/rn4zbzg8z2" target="_blank" rel="noopener">مجموعة البيانات<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></svg></a></p>
+          </div>
+        </li>
+        <li class="pub">
+          <div>
+            <div class="pub-meta"><span class="tag ">مجلة علمية</span></div>
+            <p class="pub-title"><span lang="en" dir="ltr">Capturing Children Food Exposure Using Wearable Cameras and Deep Learning</span></p>
+            <p class="pub-authors"><span lang="en" dir="ltr">Elbassuoni, S., Ghattas, H., El Ati, J., et al., including <b>Mourad, A.</b> (2023)</span></p>
+            <p class="pub-venue"><em>PLOS Digital Health</em>, 2(3), e0000211</p>
+            <p class="pub-links"><a href="https://doi.org/10.1371/journal.pdig.0000211" target="_blank" rel="noopener">المقالة<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></svg></a><a href="https://github.com/ZoulfikarShmayssani/Food-Exposure-Models" target="_blank" rel="noopener">الشيفرة<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></svg></a></p>
+          </div>
+        </li>
+        <li class="pub">
+          <div>
+            <div class="pub-meta"><span class="tag ">مجلة علمية</span><span class="tag ">المؤلفة الأولى</span></div>
+            <p class="pub-title"><span lang="en" dir="ltr">A Large-Scale Analysis of COVID-19 Tweets in the Arab Region</span></p>
+            <p class="pub-authors"><span lang="en" dir="ltr"><b>Mourad, A.</b> and Elbassuoni, S. (2022)</span></p>
+            <p class="pub-venue"><em>Social Network Analysis and Mining</em>, 12(1), 71</p>
+            <p class="pub-links"><a href="https://doi.org/10.1007/s13278-022-00902-y" target="_blank" rel="noopener">المقالة<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></svg></a></p>
+          </div>
+        </li>
+      </ol>
+    </section>
+
+    <section class="block" id="ar-experience" data-key="experience" aria-labelledby="ar-exp-h">
+      <div class="sec-head"><h2 id="ar-exp-h">الخبرات</h2></div>
+      <ol class="timeline">
+        <li class="tl now">
+          <div class="when">2024 – الآن</div>
+          <div><h3>باحثة دكتوراه <span class="org">جامعة السوربون، معهد ISIR</span></h3></div>
+        </li>
+        <li class="tl">
+          <div class="when">2024 – 2025</div>
+          <div><h3>مساعدة باحثة <span class="org">مركز الذكاء الاصطناعي في الجامعة الأميركية في بيروت</span></h3></div>
+        </li>
+        <li class="tl">
+          <div class="when">2022 – 2024</div>
+          <div><h3>مساعدة باحثة ومدرّسة <span class="org">الجامعة الأميركية في بيروت، علوم الحاسوب</span></h3></div>
+        </li>
+        <li class="tl">
+          <div class="when">2021</div>
+          <div><h3>مساعدة باحثة في الدراسات العليا <span class="org">الجامعة الأميركية في بيروت</span></h3></div>
+        </li>
+        <li class="tl">
+          <div class="when">2017 – 2020</div>
+          <div><h3>مطوّرة ومحلّلة بيانات <span class="org">كلية العلوم الصحية، الجامعة الأميركية في بيروت</span></h3></div>
+        </li>
+      </ol>
+    </section>
+
+    <section class="block" id="ar-teaching" data-key="teaching" aria-labelledby="ar-teach-h">
+      <div class="sec-head"><h2 id="ar-teach-h">التدريس</h2></div>
+      <div class="services indent">
+        <div class="service"><h3>مقرّر دراسات عليا في النماذج اللغوية الكبيرة</h3><p>صمّمت أربع وحدات لمقرّر النماذج اللغوية الكبيرة في الجامعة الأميركية في بيروت: التمثيلات المتجهية، والتقطيع إلى رموز، وهندسة التعليمات، وأخلاقيات الذكاء الاصطناعي.</p></div>
+        <div class="service"><h3>أكاديمية الذكاء الاصطناعي الصيفية 2024</h3><p>نظّمت برنامجًا صيفيًا في أساسيات الذكاء الاصطناعي وتعلّم الآلة لطلاب المدارس الثانوية.</p></div>
+        <div class="service"><h3>مساعدة تدريس، 2018–2024</h3><p>تعلّم الآلة والذكاء الاصطناعي وبرمجة الويب والشبكات في الجامعة الأميركية في بيروت.</p></div>
+      </div>
+    </section>
+    <section class="block" id="ar-education" aria-labelledby="ar-edu-h">
+      <div class="sec-head"><h2 id="ar-edu-h">التعليم والمهارات</h2></div>
+      <div class="duo indent">
+        <div>
+          <h3 class="sub">التعليم</h3>
+          <ul class="rows">
+            <li><b>دكتوراه في علوم الحاسوب، جامعة السوربون</b><span>2024–2027، معهد ISIR · زمالة ماري سكوودوفسكا-كوري</span></li>
+            <li><b>ماجستير في علوم الحاسوب، الجامعة الأميركية في بيروت</b><span>2019–2022، معدّل 4.0</span></li>
+            <li><b>بكالوريوس في علوم الحاسوب، الجامعة الأميركية في بيروت</b><span>2012–2016</span></li>
+          </ul>
+          <h3 class="sub">المدارس والجوائز</h3>
+          <ul class="rows">
+            <li><b>مدرسة التعلّم العميق 2025</b><span>EFELIA Côte d’Azur، صوفيا أنتيبوليس، حزيران–تموز 2025</span></li>
+            <li><b>أرصدة Google Cloud للبحث</b><span>منحة حوسبة لتجارب Vertex AI</span></li>
+            <li><b>زمالة مساعد دراسات عليا من الجامعة الأميركية في بيروت</b><span>على أساس الجدارة، تغطي كامل الرسوم الدراسية</span></li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="sub">المهارات</h3>
+          <div class="chips"><span dir="auto">Python</span><span dir="auto">PyTorch</span><span dir="auto">Hugging Face Transformers</span><span dir="auto">PEFT</span><span dir="auto">vLLM</span><span dir="auto">LangChain</span><span dir="auto">TensorFlow</span><span dir="auto">OpenCV</span><span dir="auto">RAG</span><span dir="auto">التدريب الموزّع</span><span dir="auto">Vertex AI</span><span dir="auto">Google Cloud</span><span dir="auto">عناقيد HPC / GPU</span><span dir="auto">R</span><span dir="auto">C#</span><span dir="auto">SQL</span><span dir="auto">LaTeX</span></div>
+          <h3 class="sub">اللغات</h3>
+          <div class="chips"><span>العربية، اللغة الأم</span><span>الإنجليزية، إتقان مهني كامل</span></div>
+        </div>
+      </div>
+    </section>
+  </div>
+</main>
+
+<footer id="ar-contact" data-key="contact">
+  <div class="wrap">
+    <div class="foot">
+      <div>
+        <h2>لنتحدّث.</h2>
+        <p>للتعاون البحثي أو المحاضرات أو الاستشارات، البريد الإلكتروني هو أسرع وسيلة للتواصل معي.</p>
+        <a class="btn primary" href="mailto:aya.mourad@sorbonne-universite.fr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3.5 6.5 8.5 6 8.5-6"/></svg>راسليني</a>
+      </div>
+      <ul class="contact-list">
+        <li><span class="k">البريد الإلكتروني</span><span><a href="mailto:aya.mourad@sorbonne-universite.fr" dir="ltr">aya.mourad@sorbonne-universite.fr</a><button class="copy" type="button" aria-label="نسخ عنوان البريد الإلكتروني" data-copy="نسخ" data-copied="تم النسخ">نسخ</button></span></li>
+        <li><span class="k">الهاتف</span><a href="tel:+33688254253" dir="ltr">+33 6 88 25 42 53</a></li>
+        <li><span class="k">Google Scholar</span><a href="https://scholar.google.com/citations?hl=en&amp;user=mmVpZUsAAAAJ" target="_blank" rel="noopener" dir="ltr">Aya Mourad</a></li>
+        <li><span class="k">GitHub</span><a href="https://github.com/aiamourad" target="_blank" rel="noopener" dir="ltr">aiamourad</a></li>
+        <li><span class="k">المقر</span><span>باريس، فرنسا</span></li>
+      </ul>
+    </div>
+    <p class="fineprint">آخر تحديث: تشرين الأول/أكتوبر 2026.</p>
+  </div>
+</footer>
+</div>
+<script>
+(function(){
+  var VALID = ['en','fr','ar'];
+  var EMAIL = 'aya.mourad@sorbonne-universite.fr';
+  var TITLES = {
+    en: 'Aya Mourad · NLP Researcher',
+    fr: 'Aya Mourad · Chercheuse en TAL',
+    ar: 'آية مراد · باحثة في معالجة اللغات الطبيعية'
+  };
+  var views = {};
+  Array.prototype.forEach.call(document.querySelectorAll('.view'), function(v){ views[v.getAttribute('data-view')] = v; });
+  var activeKey = null;
+  var fields = [];
+
+  function store(k, v){ try { localStorage.setItem(k, v); } catch(e){} }
+  function read(k){ try { return localStorage.getItem(k); } catch(e){ return null; } }
+  function prefix(l){ return l === 'en' ? '' : l + '-'; }
+
+  function langFromHash(){
+    var h = (location.hash || '').slice(1);
+    if (!h) return null;
+    if (VALID.indexOf(h) > -1) return h;
+    var m = h.match(/^(fr|ar)-/);
+    if (m) return m[1];
+    if (document.getElementById(h)) return 'en';
+    return null;
+  }
+
+  function setLang(l, opts){
+    opts = opts || {};
+    if (!views[l]) l = 'en';
+    var key = activeKey;
+    Object.keys(views).forEach(function(k){ views[k].hidden = (k !== l); });
+    document.documentElement.lang = l;
+    document.documentElement.dir = (l === 'ar') ? 'rtl' : 'ltr';
+    document.title = TITLES[l];
+    Array.prototype.forEach.call(document.querySelectorAll('[data-set-lang]'), function(b){
+      b.setAttribute('aria-pressed', b.getAttribute('data-set-lang') === l ? 'true' : 'false');
+    });
+    if (opts.save) store('am-lang', l);
+    fields.forEach(function(f){ f.refresh(); });
+    if (opts.keepSection) {
+      if (key && window.scrollY > 200) {
+        var el = document.getElementById(prefix(l) + key);
+        if (el) el.scrollIntoView({behavior:'auto'});
+      } else { window.scrollTo(0, 0); }
+    }
+  }
+
+  Array.prototype.forEach.call(document.querySelectorAll('[data-set-lang]'), function(b){
+    b.addEventListener('click', function(){ setLang(b.getAttribute('data-set-lang'), {save:true, keepSection:true}); });
+  });
+
+  function onScroll(){ document.body.classList.toggle('scrolled', window.scrollY > 8); }
+  window.addEventListener('scroll', onScroll, {passive:true}); onScroll();
+
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if (!e.isIntersecting) return;
+        var key = e.target.getAttribute('data-key');
+        var view = e.target.closest('.view');
+        activeKey = key;
+        Array.prototype.forEach.call(view.querySelectorAll('nav.main a'), function(a){
+          a.classList.toggle('active', a.getAttribute('data-key') === key);
+        });
+      });
+    }, {rootMargin:'-40% 0px -55% 0px'});
+    Array.prototype.forEach.call(document.querySelectorAll('[data-key]:not(a)'), function(s){ io.observe(s); });
+  }
+
+  Array.prototype.forEach.call(document.querySelectorAll('.copy'), function(btn){
+    btn.addEventListener('click', function(){
+      var label = btn.getAttribute('data-copy'), done = btn.getAttribute('data-copied');
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(EMAIL).then(function(){
+          btn.textContent = done; setTimeout(function(){ btn.textContent = label; }, 1800);
+        }, function(){});
+      }
+    });
+  });
+
+  /* Hero background: a knowledge graph of modern Arabic literature. Entities are typed nodes, relations are
+     directed edges, and every few seconds one triple (head, relation, tail) is extracted and lights up */
+  var KG_NODES = [
+    // id, type, English, French, Arabic
+    ['mahfouz','PER','Naguib Mahfouz','Naguib Mahfouz','نجيب محفوظ'],
+    ['hussein','PER','Taha Hussein','Taha Hussein','طه حسين'],
+    ['hakim','PER','Tawfiq al-Hakim','Tawfiq al-Hakim','توفيق الحكيم'],
+    ['shawqi','PER','Ahmed Shawqi','Ahmed Chawqi','أحمد شوقي'],
+    ['gibran','PER','Khalil Gibran','Khalil Gibran','جبران خليل جبران'],
+    ['naimy','PER','Mikhail Naimy','Mikhaïl Naïmy','ميخائيل نعيمة'],
+    ['ziadeh','PER','May Ziadeh','May Ziadé','مي زيادة'],
+    ['darwish','PER','Mahmoud Darwish','Mahmoud Darwich','محمود درويش'],
+    ['kanafani','PER','Ghassan Kanafani','Ghassan Kanafani','غسان كنفاني'],
+    ['qabbani','PER','Nizar Qabbani','Nizar Qabbani','نزار قباني'],
+    ['adonis','PER','Adonis','Adonis','أدونيس'],
+    ['trilogy','WORK','Cairo Trilogy','Trilogie du Caire','الثلاثية'],
+    ['days','WORK','The Days','Le Livre des jours','الأيام'],
+    ['spirit','WORK','Return of the Spirit','L’Âme retrouvée','عودة الروح'],
+    ['prophet','WORK','The Prophet','Le Prophète','النبي'],
+    ['memory','WORK','Memory for Forgetfulness','Une mémoire pour l’oubli','ذاكرة للنسيان'],
+    ['men','WORK','Men in the Sun','Des hommes dans le soleil','رجال في الشمس'],
+    ['cu','ORG','Cairo University','Université du Caire','جامعة القاهرة'],
+    ['azhar','ORG','Al-Azhar','Al-Azhar','الأزهر'],
+    ['sorbonne','ORG','Sorbonne','Sorbonne','السوربون'],
+    ['pen','ORG','Pen League','Ligue de la plume','الرابطة القلمية'],
+    ['cairo','GPE','Cairo','Le Caire','القاهرة'],
+    ['alexandria','GPE','Alexandria','Alexandrie','الإسكندرية'],
+    ['minya','GPE','Minya','Minya','المنيا'],
+    ['egypt','GPE','Egypt','Égypte','مصر'],
+    ['beirut','GPE','Beirut','Beyrouth','بيروت'],
+    ['bsharri','GPE','Bsharri','Bcharré','بشري'],
+    ['baskinta','GPE','Baskinta','Baskinta','بسكنتا'],
+    ['lebanon','GPE','Lebanon','Liban','لبنان'],
+    ['damascus','GPE','Damascus','Damas','دمشق'],
+    ['syria','GPE','Syria','Syrie','سوريا'],
+    ['paris','GPE','Paris','Paris','باريس'],
+    ['france','GPE','France','France','فرنسا'],
+    ['newyork','GPE','New York','New York','نيويورك'],
+    ['nazareth','GPE','Nazareth','Nazareth','الناصرة'],
+    ['acre','GPE','Acre','Saint-Jean-d’Acre','عكا'],
+    ['birwa','GPE','al-Birwa','al-Birwa','البروة'],
+    ['galilee','LOC','Galilee','Galilée','الجليل'],
+    ['d1911','DATE','1911','1911','1911'],
+    ['d1923','DATE','1923','1923','1923'],
+    ['d1941','DATE','1941','1941','1941']
+  ];
+  var KG_EDGES = [
+    // head, tail, English, French, Arabic
+    ['mahfouz','cairo','born in','né à','وُلد في'],
+    ['mahfouz','d1911','born','né en','وُلد عام'],
+    ['mahfouz','trilogy','wrote','a écrit','كتب'],
+    ['mahfouz','cu','studied at','a étudié à','درس في'],
+    ['hussein','minya','born in','né à','وُلد في'],
+    ['hussein','azhar','studied at','a étudié à','درس في'],
+    ['hussein','cu','studied at','a étudié à','درس في'],
+    ['hussein','sorbonne','studied at','a étudié à','درس في'],
+    ['hussein','days','wrote','a écrit','كتب'],
+    ['hakim','alexandria','born in','né à','وُلد في'],
+    ['hakim','paris','studied in','a étudié à','درس في'],
+    ['hakim','spirit','wrote','a écrit','كتب'],
+    ['shawqi','cairo','born in','né à','وُلد في'],
+    ['shawqi','france','studied in','a étudié en','درس في'],
+    ['gibran','bsharri','born in','né à','وُلد في'],
+    ['gibran','prophet','wrote','a écrit','كتب'],
+    ['gibran','newyork','lived in','a vécu à','عاش في'],
+    ['gibran','pen','member of','membre de','عضو في'],
+    ['naimy','pen','member of','membre de','عضو في'],
+    ['naimy','baskinta','born in','né à','وُلد في'],
+    ['ziadeh','nazareth','born in','née à','وُلدت في'],
+    ['ziadeh','gibran','corresponded with','correspondait avec','راسلت'],
+    ['ziadeh','cairo','lived in','a vécu au','عاشت في'],
+    ['darwish','birwa','born in','né à','وُلد في'],
+    ['darwish','d1941','born','né en','وُلد عام'],
+    ['darwish','memory','wrote','a écrit','كتب'],
+    ['darwish','beirut','lived in','a vécu à','عاش في'],
+    ['darwish','paris','lived in','a vécu à','عاش في'],
+    ['kanafani','acre','born in','né à','وُلد في'],
+    ['kanafani','men','wrote','a écrit','كتب'],
+    ['kanafani','beirut','lived in','a vécu à','عاش في'],
+    ['qabbani','damascus','born in','né à','وُلد في'],
+    ['qabbani','d1923','born','né en','وُلد عام'],
+    ['qabbani','beirut','lived in','a vécu à','عاش في'],
+    ['adonis','syria','born in','né en','وُلد في'],
+    ['adonis','beirut','lived in','a vécu à','عاش في'],
+    ['adonis','paris','lives in','vit à','يعيش في'],
+    ['prophet','d1923','published','publié en','نُشر عام'],
+    ['pen','newyork','founded in','fondée à','تأسست في'],
+    ['cu','cairo','located in','située au','تقع في'],
+    ['azhar','cairo','located in','situé au','يقع في'],
+    ['sorbonne','paris','located in','située à','تقع في'],
+    ['cairo','egypt','capital of','capitale de','عاصمة'],
+    ['alexandria','egypt','located in','située en','تقع في'],
+    ['minya','egypt','located in','située en','تقع في'],
+    ['beirut','lebanon','capital of','capitale du','عاصمة'],
+    ['bsharri','lebanon','located in','situé au','تقع في'],
+    ['baskinta','lebanon','located in','situé au','تقع في'],
+    ['damascus','syria','capital of','capitale de la','عاصمة'],
+    ['paris','france','capital of','capitale de la','عاصمة'],
+    ['nazareth','galilee','located in','située en','تقع في'],
+    ['acre','galilee','located in','située en','تقع في'],
+    ['birwa','galilee','located in','située en','تقع في']
+  ];
+  // The graph grows from one of these hubs, so whatever fits on screen stays connected
+  var KG_HUBS = ['cairo','beirut','paris','gibran','hussein','darwish','egypt','lebanon'];
+  var COL = {en:2, fr:3, ar:4};
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var accent = '#3F3D9E', muted = '#55546B', paper = '#FFFFFF', soft = '#ECEBFA', tcol = {};
+  var TYPE_VAR = {PER:'--kg-per', GPE:'--kg-place', LOC:'--kg-place', ORG:'--kg-org', WORK:'--kg-work', DATE:'--kg-date'};
+  function readColors(){
+    var cs = getComputedStyle(document.documentElement);
+    soft = cs.getPropertyValue('--accent-soft').trim() || soft;
+    Object.keys(TYPE_VAR).forEach(function(k){ tcol[k] = cs.getPropertyValue(TYPE_VAR[k]).trim() || accent; });
+    accent = cs.getPropertyValue('--accent').trim() || accent;
+    muted = cs.getPropertyValue('--muted').trim() || muted;
+    paper = cs.getPropertyValue('--bg').trim() || paper;
+  }
+  function now(){ return (window.performance && performance.now) ? performance.now() : Date.now(); }
+  function rr(ctx, x, y, w, h, r){
+    ctx.beginPath(); ctx.moveTo(x + r, y);
+    ctx.arcTo(x + w, y, x + w, y + h, r); ctx.arcTo(x + w, y + h, x, y + h, r);
+    ctx.arcTo(x, y + h, x, y, r); ctx.arcTo(x, y, x + w, y, r); ctx.closePath();
+  }
+  // Seeded so a resize or the web fonts loading rebuilds the same graph instead of a new one
+  function seeded(s){ return function(){ s = (s + 0x6D2B79F5) | 0; var t = Math.imul(s ^ (s >>> 15), 1 | s); t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t; return ((t ^ (t >>> 14)) >>> 0) / 4294967296; }; }
+  // Where the line from a node's centre towards (x, y) leaves its pill
+  function rim(n, x, y){
+    var dx = x - n.x, dy = y - n.y;
+    var s = Math.min((n.w / 2 + 4) / (Math.abs(dx) || 1e-6), (n.h / 2 + 4) / (Math.abs(dy) || 1e-6), 1);
+    return [n.x + dx * s, n.y + dy * s];
+  }
+
+  // A point on an edge's gentle curve, q from 0 at the head to 1 at the tail
+  function qpt(e, q){ var r = 1 - q; return [r * r * e.x1 + 2 * r * q * e.cx + q * q * e.x2, r * r * e.y1 + 2 * r * q * e.cy + q * q * e.y2]; }
+  function Field(canvas){
+    this.c = canvas; this.ctx = canvas.getContext('2d'); this.nodes = []; this.edges = []; this.lit = []; this.blocks = []; this.last = 0;
+    this.pointer = null; this.visible = true; this.w = 0;
+    var view = canvas.closest('.view');
+    this.lang = (view && view.getAttribute('data-view')) || 'en';
+    this.rtl = this.lang === 'ar';
+    var self = this, host = canvas.parentNode;
+    host.addEventListener('pointermove', function(e){ var r = canvas.getBoundingClientRect(); self.pointer = {x:e.clientX - r.left, y:e.clientY - r.top}; if (reduce) self.draw(false); });
+    host.addEventListener('pointerleave', function(e){ if (e.pointerType !== 'mouse') return; self.pointer = null; if (reduce) self.draw(false); });
+    host.addEventListener('pointerdown', function(e){
+      if (e.pointerType === 'mouse') return;
+      var r = canvas.getBoundingClientRect(); self.pointer = {x:e.clientX - r.left, y:e.clientY - r.top};
+      clearTimeout(self.tap); self.tap = setTimeout(function(){ self.pointer = null; if (reduce) self.draw(false); }, 2600);
+      if (reduce) self.draw(false);
+    });
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver(function(es){ self.visible = es[0].isIntersecting; }).observe(host);
+    }
+  }
+  Field.prototype.refresh = function(){
+    var r = this.c.getBoundingClientRect();
+    if (!r.width) { this.w = 0; return; }
+    var dpr = Math.min(window.devicePixelRatio || 1, 2);
+    this.w = r.width; this.h = r.height;
+    this.c.width = Math.round(r.width * dpr); this.c.height = Math.round(r.height * dpr);
+    var ctx = this.ctx, col = COL[this.lang], k, q;
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    if ('direction' in ctx) ctx.direction = 'ltr';
+    this.font = this.rtl ? '500 13px "IBM Plex Sans Arabic", "Geeza Pro", sans-serif' : '500 12px "Schibsted Grotesk", "Helvetica Neue", sans-serif';
+    this.rfont = this.rtl ? '500 11.5px "IBM Plex Sans Arabic", "Geeza Pro", sans-serif' : 'italic 500 10.5px "Source Serif 4", Georgia, serif';
+    this.measureBlocks();
+    // On wide screens the graph keeps to the half away from the text: the right, or the left in Arabic
+    var wide = this.w >= 900;
+    this.x0 = wide && !this.rtl ? this.w * .5 : 0; this.x1 = wide && this.rtl ? this.w * .5 : this.w;
+    var free = (this.x1 - this.x0) * this.h, all = {}, rels = [];
+    for (k = 0; k < this.blocks.length; k++) {
+      q = this.blocks[k]; free -= Math.max(0, Math.min(q.r, this.x1) - Math.max(q.l, this.x0)) * (q.b - q.t);
+    }
+    ctx.font = this.font;
+    KG_NODES.forEach(function(d){ all[d[0]] = {id:d[0], type:d[1], t:d[col], w:ctx.measureText(d[col]).width + 30, h:24}; });
+    ctx.font = this.rfont;
+    KG_EDGES.forEach(function(e){ rels.push({a:all[e[0]], b:all[e[1]], t:e[col], lw:ctx.measureText(e[col]).width}); });
+    // Try a few seeded layouts, each grown from a different hub, and keep the largest connected graph
+    var best = null, res, rnd = seeded(11);
+    for (k = 0; k < KG_HUBS.length * 2; k++) {
+      res = this.layout(this.grow(all, rels, KG_HUBS[k % KG_HUBS.length], free, k + 1), rels, k + 1);
+      if (!best || res.score > best.score) best = res;
+    }
+    this.nodes = best.nodes; this.edges = best.edges;
+    this.nodes.forEach(function(a){ a.f = a.g = a.mx = a.my = 0; });
+    this.edges.forEach(function(e, i){ e.bend = i % 2 ? 1 : -1; });
+    // A soft halo behind the graph
+    var cx = 0, cy = 0, r = 0;
+    this.nodes.forEach(function(a){ cx += a.rx; cy += a.ry; });
+    cx /= this.nodes.length || 1; cy /= this.nodes.length || 1;
+    this.nodes.forEach(function(a){ r = Math.max(r, Math.sqrt((a.rx - cx) * (a.rx - cx) + (a.ry - cy) * (a.ry - cy))); });
+    this.halo = {x:cx, y:cy, r:r + 60};
+    this.nodes.forEach(function(a, i){ a.rx = best.pos[i][0]; a.ry = best.pos[i][1]; a.ph = rnd() * 6.28; a.sp = .00018 + rnd() * .00015; });
+    this.lit = [];
+    var t0 = now() - 900;
+    for (k = 0; k < 3; k++) this.spawn(t0, reduce);
+    readColors();
+    this.draw(false);
+  };
+  // Pick entities outward from a hub, always the one with most relations into the graph so far,
+  // until the space around the content is used up
+  Field.prototype.grow = function(all, rels, hub, free, seed){
+    var rnd = seeded(seed * 31), picked = [all[hub]], used = 0, inSet = {}, k, best, bestN, n, cand;
+    inSet[hub] = true;
+    while (true) {
+      cand = {};
+      rels.forEach(function(e){
+        if (inSet[e.a.id] && !inSet[e.b.id]) cand[e.b.id] = (cand[e.b.id] || 0) + 1;
+        if (inSet[e.b.id] && !inSet[e.a.id]) cand[e.a.id] = (cand[e.a.id] || 0) + 1;
+      });
+      best = null; bestN = -1;
+      for (k in cand) { n = cand[k] + rnd() * .9; if (n > bestN) { bestN = n; best = all[k]; } }
+      if (!best) break;
+      used += (best.w + 60) * (best.h + 68);
+      if (picked.length >= 5 && used > free) break;
+      picked.push(best); inSet[best.id] = true;
+    }
+    return picked;
+  };
+  // The name, text and portrait: entities stay out from under them. Text is measured by its
+  // lines rather than its box, so the graph can use the space beside short lines
+  Field.prototype.measureBlocks = function(){
+    var host = this.c.parentNode, cr = this.c.getBoundingClientRect(), out = [], range = document.createRange();
+    Array.prototype.forEach.call(host.querySelectorAll('.hero-grid > div > *, .portrait'), function(el){
+      var pic = el.classList.contains('portrait'), pad = pic ? 22 : 8, r;
+      if (pic) r = el.getBoundingClientRect(); else { range.selectNodeContents(el); r = range.getBoundingClientRect(); }
+      if (r.width) out.push({l:r.left - cr.left - pad, r:r.right - cr.left + pad, t:r.top - cr.top - pad / 2, b:r.bottom - cr.top + pad});
+    });
+    this.blocks = out;
+  };
+  Field.prototype.blocked = function(l, r, t, b){
+    for (var k = 0; k < this.blocks.length; k++) {
+      var q = this.blocks[k];
+      if (l < q.r && r > q.l && t < q.b && b > q.t) return true;
+    }
+    return false;
+  };
+  // Does the segment from (x1, y1) to (x2, y2) pass through the rectangle q (Liang-Barsky clipping)
+  function hits(q, x1, y1, x2, y2){
+    var dx = x2 - x1, dy = y2 - y1, t0 = 0, t1 = 1, i, u, pp = [-dx, dx, -dy, dy], rr4 = [x1 - q.l, q.r - x1, y1 - q.t, q.b - y1];
+    for (i = 0; i < 4; i++) {
+      if (pp[i] === 0) { if (rr4[i] < 0) return false; continue; }
+      u = rr4[i] / pp[i];
+      if (pp[i] < 0) { if (u > t1) return false; if (u > t0) t0 = u; }
+      else { if (u < t0) return false; if (u < t1) t1 = u; }
+    }
+    return true;
+  }
+  // Does it pass under any of the content
+  Field.prototype.crosses = function(x1, y1, x2, y2){
+    for (var k = 0; k < this.blocks.length; k++) if (hits(this.blocks[k], x1, y1, x2, y2)) return true;
+    return false;
+  };
+  // Push a node out from under the content and back inside the canvas
+  Field.prototype.place = function(a){
+    var hw = a.w / 2 + 14, hh = a.h / 2 + 18, k, q, L, R, T, B, m;
+    for (k = 0; k < this.blocks.length; k++) {
+      q = this.blocks[k];
+      if (a.x + hw <= q.l || a.x - hw >= q.r || a.y + hh <= q.t || a.y - hh >= q.b) continue;
+      L = a.x + hw - q.l; R = q.r - a.x + hw; T = a.y + hh - q.t; B = q.b - a.y + hh; m = Math.min(L, R, T, B);
+      if (m === L) a.x -= L; else if (m === R) a.x += R; else if (m === T) a.y -= T; else a.y += B;
+    }
+    a.x = Math.max(this.x0 + a.w / 2 + 8, Math.min(this.x1 - a.w / 2 - 8, a.x));
+    a.y = Math.max(a.h / 2 + 20, Math.min(this.h - a.h / 2 - 10, a.y));
+  };
+  // Force-directed layout: edges pull like springs, entities push each other apart and out from under the content
+  Field.prototype.layout = function(ns, rels, seed){
+    var n = ns.length, w = this.w, h = this.h, rnd = seeded(seed), i, j, k, a, b, dx, dy, d, f, s, it;
+    var es = rels.filter(function(e){ return ns.indexOf(e.a) > -1 && ns.indexOf(e.b) > -1; });
+    var L = Math.max(80, Math.min(160, Math.sqrt((this.x1 - this.x0) * h / (n + 1)) * .55));
+    for (i = 0; i < n; i++) {
+      a = ns[i];
+      for (k = 0; k < 30; k++) {
+        a.x = this.x0 + 20 + rnd() * (this.x1 - this.x0 - 40); a.y = 24 + rnd() * (h - 44);
+        if (!this.blocked(a.x - a.w / 2, a.x + a.w / 2, a.y - a.h / 2, a.y + a.h / 2)) break;
+      }
+    }
+    for (it = 0; it < 280; it++) {
+      s = 26 * (1 - it / 280) + 1;
+      for (i = 0; i < n; i++) ns[i].fx = ns[i].fy = 0;
+      for (i = 0; i < n; i++) for (j = i + 1; j < n; j++) {
+        a = ns[i]; b = ns[j]; dx = a.x - b.x; dy = a.y - b.y; d = dx * dx + dy * dy || 1; f = L * L / d;
+        a.fx += dx * f; a.fy += dy * f; b.fx -= dx * f; b.fy -= dy * f;
+      }
+      for (k = 0; k < es.length; k++) {
+        a = es[k].a; b = es[k].b; dx = b.x - a.x; dy = b.y - a.y; f = Math.sqrt(dx * dx + dy * dy) / L;
+        a.fx += dx * f; a.fy += dy * f; b.fx -= dx * f; b.fy -= dy * f;
+      }
+      for (i = 0; i < n; i++) {
+        a = ns[i]; d = Math.sqrt(a.fx * a.fx + a.fy * a.fy) || 1;
+        a.x += a.fx / d * Math.min(d, s); a.y += a.fy / d * Math.min(d, s);
+      }
+      for (i = 0; i < n; i++) for (j = i + 1; j < n; j++) {
+        a = ns[i]; b = ns[j];
+        dx = (a.w + b.w) / 2 + 24 - Math.abs(a.x - b.x); dy = (a.h + b.h) / 2 + 40 - Math.abs(a.y - b.y);
+        if (dx <= 0 || dy <= 0) continue;
+        if (dx < dy) { f = (a.x < b.x ? -dx : dx) / 2; a.x += f; b.x -= f; }
+        else { f = (a.y < b.y ? -dy : dy) / 2; a.y += f; b.y -= f; }
+      }
+      for (i = 0; i < n; i++) this.place(ns[i]);
+    }
+    // Drop entities the content still covers or that crowd one kept before them
+    var kept = [];
+    ns.forEach(function(a){
+      if (this.blocked(a.x - a.w / 2 - 4, a.x + a.w / 2 + 4, a.y - a.h / 2 - 14, a.y + a.h / 2 + 4)) return;
+      for (var m = 0; m < kept.length; m++) {
+        b = kept[m];
+        if (Math.abs(a.x - b.x) < (a.w + b.w) / 2 + 10 && Math.abs(a.y - b.y) < (a.h + b.h) / 2 + 24) return;
+      }
+      kept.push(a);
+    }, this);
+    // Keep the largest connected part, so no entity floats on its own. A relation that has to pass
+    // under the content still links the graph; it is only drawn fainter
+    var links = es.filter(function(e){ return kept.indexOf(e.a) > -1 && kept.indexOf(e.b) > -1; });
+    var comp = [], seen = {}, stack, c, x;
+    kept.forEach(function(a){
+      if (seen[a.id]) return;
+      c = []; stack = [a]; seen[a.id] = true;
+      while (stack.length) {
+        x = stack.pop(); c.push(x);
+        links.forEach(function(e){
+          var o = e.a === x ? e.b : e.b === x ? e.a : null;
+          if (o && !seen[o.id]) { seen[o.id] = true; stack.push(o); }
+        });
+      }
+      if (c.length > comp.length) comp = c;
+    });
+    links = links.filter(function(e){ return comp.indexOf(e.a) > -1; });
+    var clear = 0, through = 0;
+    links.forEach(function(e){
+      var p1 = rim(e.a, e.b.x, e.b.y), p2 = rim(e.b, e.a.x, e.a.y);
+      e.under = this.crosses(p1[0], p1[1], p2[0], p2[1]);
+      if (!e.under) clear++;
+      comp.forEach(function(o){
+        if (o !== e.a && o !== e.b && hits({l:o.x - o.w / 2 - 3, r:o.x + o.w / 2 + 3, t:o.y - o.h / 2 - 3, b:o.y + o.h / 2 + 3}, p1[0], p1[1], p2[0], p2[1])) through++;
+      });
+    }, this);
+    return {nodes:comp, edges:links, score:comp.length * 3 + clear * 2 + links.length - through * 5, pos:comp.map(function(a){ return [a.x, a.y]; })};
+  };
+  // Is the edge long enough to hold its relation label between the two pills
+  Field.prototype.roomy = function(e){
+    var p1 = rim(e.a, e.b.x, e.b.y), p2 = rim(e.b, e.a.x, e.a.y), dx = p2[0] - p1[0], dy = p2[1] - p1[1], d = Math.sqrt(dx * dx + dy * dy);
+    return d > (Math.abs(dx) / d * (e.lw + 14) + Math.abs(dy) / d * 18) + 30;
+  };
+  Field.prototype.spawn = function(t, still){
+    var es = this.edges, w = this.w;
+    for (var tries = 0; tries < 30 && es.length; tries++) {
+      var e = es[Math.floor(Math.random() * es.length)], a = e.a, b = e.b, mx = (a.rx + b.rx) / 2, my = (a.ry + b.ry) / 2, k, busy = false;
+      // Light up triples only where the fade leaves the graph visible, with the relation label clear of the content
+      if (e.under) continue;
+      if (w >= 780 && (this.rtl ? Math.max(a.rx, b.rx) > w * .72 : Math.min(a.rx, b.rx) < w * .28)) continue;
+      if (this.blocked(mx - e.lw / 2 - 10, mx + e.lw / 2 + 10, my - 12, my + 12) || !this.roomy(e)) continue;
+      for (k = 0; k < this.lit.length; k++) if (this.lit[k].e === e) busy = true;
+      if (busy) continue;
+      this.lit.push({e:e, t0:t, life: still ? Infinity : 6500 + Math.random() * 3000, env:0});
+      return;
+    }
+  };
+  Field.prototype.draw = function(step){
+    if (!this.w) return;
+    var ctx = this.ctx, w = this.w, h = this.h, t = now(), ns = this.nodes, es = this.edges, lit = this.lit, p = this.pointer;
+    var i, k, n, e, l, a, b, age, v, dx, dy, d, ang, sz, best = null, bestD = 60, dim, hot, s, tx, ty;
+    // Hover changes ease in over ~250ms rather than switching; with reduced motion they snap
+    var dt = Math.min(64, t - (this.prev || t)), ease = reduce ? 1 : 1 - Math.exp(-dt / 220);
+    this.prev = t;
+    ctx.clearRect(0, 0, w, h);
+    if (this.halo && this.halo.r > 0) {
+      var hg = ctx.createRadialGradient(this.halo.x, this.halo.y, 0, this.halo.x, this.halo.y, this.halo.r);
+      hg.addColorStop(0, soft); hg.addColorStop(1, 'transparent');
+      ctx.globalAlpha = .9; ctx.fillStyle = hg; ctx.fillRect(0, 0, w, h);
+    }
+
+    // Focus: the entity under the pointer, or the closest one within reach
+    if (p) for (i = 0; i < ns.length; i++) {
+      n = ns[i];
+      dx = Math.max(Math.abs(p.x - n.x) - n.w / 2, 0); dy = Math.max(Math.abs(p.y - n.y) - n.h / 2, 0); d = Math.sqrt(dx * dx + dy * dy);
+      if (d < bestD) { bestD = d; best = n; }
+    }
+    for (i = 0; i < ns.length; i++) ns[i].tf = 0;
+    for (k = 0; k < es.length; k++) {
+      e = es[k]; e.tf = 0; e.lit = 0;
+      if (best && (e.a === best || e.b === best)) { e.tf = 1; (e.a === best ? e.b : e.a).tf = .8; }
+    }
+    if (best) best.tf = 1;
+    this.F = (this.F || 0) + ((best ? 1 : 0) - (this.F || 0)) * ease;
+    var F = this.F;
+    // New triples wait while someone is exploring the graph
+    if (step && !best && t - this.last > 2400 && lit.length < (w < 780 ? 2 : 4)) { this.spawn(t, false); this.last = t; }
+
+    for (i = 0; i < ns.length; i++) {
+      n = ns[i]; n.lit = 0; n.near = 0;
+      n.f = (n.f || 0) + (n.tf - (n.f || 0)) * ease;
+      n.g = (n.g || 0) + ((n === best ? 1 : 0) - (n.g || 0)) * ease;
+      n.x = n.rx + (reduce ? 0 : Math.sin(t * n.sp + n.ph) * 7);
+      n.y = n.ry + (reduce ? 0 : Math.cos(t * n.sp * 1.3 + n.ph) * 5);
+      // Magnetic: the focused entity leans towards the pointer and its neighbours draw in a little
+      tx = ty = 0;
+      if (n === best) { tx = (p.x - n.x) * .12; ty = (p.y - n.y) * .12; }
+      else if (best && n.tf) { tx = (best.rx - n.rx) * .06; ty = (best.ry - n.ry) * .06; }
+      n.mx = (n.mx || 0) + (tx - (n.mx || 0)) * ease; n.my = (n.my || 0) + (ty - (n.my || 0)) * ease;
+      n.x += n.mx; n.y += n.my;
+      if (p) { dx = n.x - p.x; dy = n.y - p.y; n.near = Math.max(0, 1 - Math.sqrt(dx * dx + dy * dy) / 170) * (1 - F); }
+    }
+    for (k = lit.length - 1; k >= 0; k--) {
+      l = lit[k]; age = t - l.t0;
+      if (age > l.life) { lit.splice(k, 1); continue; }
+      l.env = l.life === Infinity ? 1 : Math.max(0, Math.min(1, age / 900, (l.life - age) / 1300));
+      l.e.lit = Math.max(l.e.lit, l.env); l.e.a.lit = Math.max(l.e.a.lit, l.env); l.e.b.lit = Math.max(l.e.b.lit, l.env);
+    }
+
+    // Relations: a directed edge from the rim of the head to the rim of the tail. Everything outside
+    // the focus fades back; the focused entity's relations come forward with dots flowing head to tail
+    var order = es.slice().sort(function(x, y){ return (x.f || 0) - (y.f || 0); });
+    for (k = 0; k < order.length; k++) {
+      e = order[k]; a = e.a; b = e.b;
+      e.f = (e.f || 0) + (e.tf - (e.f || 0)) * ease;
+      // A gentle curve: the control point sits off the middle of the chord, alternating sides
+      e.cx = (a.x + b.x) / 2 - (b.y - a.y) * .14 * e.bend; e.cy = (a.y + b.y) / 2 + (b.x - a.x) * .14 * e.bend;
+      var p1 = rim(a, e.cx, e.cy), p2 = rim(b, e.cx, e.cy);
+      e.x1 = p1[0]; e.y1 = p1[1]; e.x2 = p2[0]; e.y2 = p2[1];
+      dim = 1 - .72 * F * (1 - e.f); hot = Math.max(e.lit, e.f);
+      v = Math.min(1, ((e.under ? .08 : .17) + Math.max(a.near, b.near) * (e.under ? .12 : .3)) * dim + e.lit * .6 * dim + e.f * (e.under ? .22 : .6));
+      ctx.strokeStyle = ctx.fillStyle = hot > .05 ? accent : muted;
+      ctx.globalAlpha = v; ctx.lineWidth = 1 + hot * .5;
+      ctx.beginPath(); ctx.moveTo(e.x1, e.y1); ctx.quadraticCurveTo(e.cx, e.cy, e.x2, e.y2); ctx.stroke();
+      // Dots glide from head to tail at a steady speed, fading in and out at the ends
+      if (e.f > .02) {
+        var len = Math.sqrt((e.x2 - e.x1) * (e.x2 - e.x1) + (e.y2 - e.y1) * (e.y2 - e.y1)) || 1, cnt = Math.max(1, Math.round(len / 80)), q;
+        for (i = 0; i < cnt; i++) {
+          q = reduce ? (i + .5) / cnt : (t * .04 / len + i / cnt) % 1;
+          ctx.globalAlpha = e.f * (e.under ? .4 : 1) * Math.sin(Math.PI * q);
+          var pt = qpt(e, q);
+          ctx.beginPath(); ctx.arc(pt[0], pt[1], 2.6, 0, 6.2832); ctx.fill();
+        }
+        ctx.globalAlpha = Math.max(v, e.f * (e.under ? .35 : .85));
+      }
+      ang = Math.atan2(e.y2 - e.cy, e.x2 - e.cx); sz = 6 + e.f * 2;
+      ctx.beginPath(); ctx.moveTo(e.x2, e.y2);
+      ctx.lineTo(e.x2 - sz * Math.cos(ang - .45), e.y2 - sz * Math.sin(ang - .45));
+      ctx.lineTo(e.x2 - sz * Math.cos(ang + .45), e.y2 - sz * Math.sin(ang + .45));
+      ctx.closePath(); ctx.fill();
+    }
+
+    // Entities: a pill per node, with its type above it once it is lit or in focus. The focused one
+    // grows a little, glows and pulses
+    ctx.textBaseline = 'middle';
+    order = ns.slice().sort(function(x, y){ return x.f - y.f; });
+    for (i = 0; i < order.length; i++) {
+      n = order[i]; dim = 1 - .72 * F * (1 - n.f); hot = Math.max(n.lit, n.f);
+      var tc = tcol[n.type] || accent, side = this.rtl ? 1 : -1;
+      s = 1 + n.g * .1 + (n.f - n.g) * .03;
+      ctx.save(); ctx.translate(n.x, n.y); ctx.scale(s, s);
+      if (n.g > .01 && !reduce) {
+        v = (t % 2600) / 2600;
+        rr(ctx, -n.w / 2 - 3 - v * 9, -n.h / 2 - 3 - v * 9, n.w + 6 + v * 18, n.h + 6 + v * 18, n.h / 2 + 3 + v * 9);
+        ctx.globalAlpha = n.g * (1 - v) * .45; ctx.strokeStyle = tc; ctx.lineWidth = 1; ctx.stroke();
+      }
+      rr(ctx, -n.w / 2, -n.h / 2, n.w, n.h, n.h / 2);
+      ctx.globalAlpha = 1; ctx.fillStyle = paper; ctx.fill();
+      ctx.globalAlpha = (.07 + hot * .1 + n.g * .06) * (hot ? 1 : dim); ctx.fillStyle = tc; ctx.fill();
+      if (n.g > .01) { ctx.shadowColor = tc; ctx.shadowBlur = 14 * n.g; }
+      ctx.strokeStyle = tc; ctx.lineWidth = 1 + hot * .4 + n.g * .4;
+      ctx.globalAlpha = Math.min(1, (.34 + n.near * .3) * dim + hot * .6); ctx.stroke();
+      ctx.shadowBlur = 0;
+      // The type's dot, at the start of the pill
+      ctx.beginPath(); ctx.arc(side * (n.w / 2 - 11), 0, 3.2, 0, 6.2832);
+      ctx.fillStyle = tc; ctx.globalAlpha = Math.min(1, .8 * dim + hot * .2); ctx.fill();
+      ctx.font = this.font; ctx.textAlign = 'center'; ctx.fillStyle = hot > .05 ? tc : muted;
+      ctx.globalAlpha = Math.min(1, (.5 + n.near * .35) * dim + hot * .5);
+      ctx.fillText(n.t, -side * 5, .5);
+      v = Math.max(n.lit * dim, n.f, n.near * .7);
+      if (v > .05) {
+        ctx.font = '600 9.5px "Schibsted Grotesk", "Helvetica Neue", sans-serif'; ctx.textAlign = 'left';
+        ctx.fillStyle = tc; ctx.globalAlpha = v * .9;
+        if (this.rtl) { ctx.textAlign = 'right'; ctx.fillText(n.type, n.w / 2 - 6, -n.h / 2 - 8); }
+        else ctx.fillText(n.type, -n.w / 2 + 6, -n.h / 2 - 8);
+      }
+      ctx.restore();
+    }
+
+    // Relation labels. At rest every relation with room carries a faint label; lit ones come forward,
+    // and every relation of a focused entity is labelled. A label goes to the midpoint first, then
+    // slides along its edge or steps beside it, and keeps its last spot so it does not jump around
+    ctx.textAlign = 'center'; ctx.font = this.rfont;
+    var shown = es.slice(), placed = [], SLOTS = [[.5, 0], [.4, 0], [.6, 0], [.32, 0], [.68, 0], [.5, 13], [.5, -13], [.4, 13], [.6, -13]];
+    for (k = 0; k < es.length; k++) {
+      e = es[k]; e.v = Math.max(e.lit * (1 - .72 * F), e.f); e.rest = .42 * (1 - F) * (1 - e.f);
+    }
+    shown.sort(function(x, y){ return (y.f * 2 + y.lit) - (x.f * 2 + x.lit); });
+    for (k = 0; k < shown.length; k++) {
+      e = shown[k]; v = Math.max(e.v, e.rest);
+      if (v < .03) continue;
+      var ux = e.x2 - e.x1, uy = e.y2 - e.y1, len = Math.sqrt(ux * ux + uy * uy) || 1, spot = false, mx, my, box, j, c, clash;
+      for (c = -1; c < SLOTS.length && !spot; c++) {
+        j = c < 0 ? e.slot : c;
+        if (j == null) continue;
+        var cp = qpt(e, SLOTS[j][0]);
+        mx = cp[0] - uy / len * SLOTS[j][1]; my = cp[1] + ux / len * SLOTS[j][1];
+        box = [mx - e.lw / 2 - 8, mx + e.lw / 2 + 8, my - 10, my + 10];
+        if (this.blocked(box[0], box[1], box[2], box[3])) continue;
+        clash = false;
+        for (i = 0; i < placed.length && !clash; i++) clash = box[0] < placed[i][1] && box[1] > placed[i][0] && box[2] < placed[i][3] && box[3] > placed[i][2];
+        for (i = 0; i < ns.length && !clash; i++) {
+          n = ns[i];
+          if (F > .05 && n.f < .3) continue;
+          clash = box[0] < n.x + n.w / 2 + 2 && box[1] > n.x - n.w / 2 - 2 && box[2] < n.y + n.h / 2 + 2 && box[3] > n.y - n.h / 2 - 16;
+        }
+        if (!clash) { spot = true; e.slot = j; }
+      }
+      if (!spot) continue;
+      placed.push(box);
+      rr(ctx, mx - e.lw / 2 - 6, my - 8.5, e.lw + 12, 17, 8.5);
+      ctx.globalAlpha = Math.min(1, v * 1.6); ctx.fillStyle = paper; ctx.fill();
+      if (e.v > .02) { ctx.globalAlpha = e.v * .45; ctx.strokeStyle = accent; ctx.lineWidth = 1; ctx.stroke(); }
+      ctx.globalAlpha = v * .95; ctx.fillStyle = e.v >= e.rest ? accent : muted; ctx.fillText(e.t, mx, my + .5);
+    }
+    // A pulse runs from head to tail as a triple is found
+    for (k = 0; k < lit.length; k++) {
+      l = lit[k]; age = t - l.t0;
+      if (l.life === Infinity || age > 1800) continue;
+      v = age / 1800; e = l.e;
+      ctx.globalAlpha = l.env * (1 - v * .4) * (1 - .72 * F); ctx.fillStyle = accent;
+      var pp = qpt(e, v);
+      ctx.beginPath(); ctx.arc(pp[0], pp[1], 3, 0, 6.2832); ctx.fill();
+    }
+    ctx.globalAlpha = 1;
+  };
+
+  fields = Array.prototype.map.call(document.querySelectorAll('.hero-bg'), function(cv){ return new Field(cv); });
+  function loop(){
+    fields.forEach(function(f){ if (f.w && f.visible && !document.hidden) f.draw(true); });
+    requestAnimationFrame(loop);
+  }
+  var rt; window.addEventListener('resize', function(){ clearTimeout(rt); rt = setTimeout(function(){ fields.forEach(function(f){ f.refresh(); }); }, 150); });
+  if (window.matchMedia) {
+    var mq = window.matchMedia('(prefers-color-scheme: dark)');
+    var onScheme = function(){ readColors(); fields.forEach(function(f){ f.draw(false); }); };
+    if (mq.addEventListener) mq.addEventListener('change', onScheme); else if (mq.addListener) mq.addListener(onScheme);
+  }
+  // Word widths depend on the web fonts, so measure again once they have loaded
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(function(){ fields.forEach(function(f){ f.refresh(); }); });
+
+  // Portrait: show ./img/photo.png when it exists, otherwise keep the initials
+  Array.prototype.forEach.call(document.querySelectorAll('img.photo'), function(img){
+    function ok(){ img.classList.add('loaded'); }
+    function fail(){ img.remove(); }
+    if (img.complete) { if (img.naturalWidth) ok(); else fail(); }
+    else { img.addEventListener('load', ok); img.addEventListener('error', fail); }
+  });
+
+  // Posters: drop a thumbnail that fails to load, and hide the links to any poster that is not on the site
+  (function(){
+    Array.prototype.forEach.call(document.querySelectorAll('img.thumb-img'), function(img){
+      img.addEventListener('error', function(){ var a = img.closest('.poster-thumb'); if (a) a.remove(); });
+    });
+    var links = document.querySelectorAll('[data-poster-link]');
+    if (!links.length || !window.fetch || location.protocol === 'file:') return;
+    var byUrl = {};
+    Array.prototype.forEach.call(links, function(a){ var u = a.getAttribute('href'); (byUrl[u] = byUrl[u] || []).push(a); });
+    Object.keys(byUrl).forEach(function(u){
+      fetch(u, {method:'HEAD', cache:'no-store'}).then(function(r){
+        if (r.status === 404) byUrl[u].forEach(function(a){ a.remove(); });
+      }, function(){});
+    });
+  })();
+
+  var start = langFromHash() || read('am-lang');
+  if (!start && navigator.language) {
+    var nl = navigator.language.slice(0, 2).toLowerCase();
+    if (nl === 'fr' || nl === 'ar') start = nl;
+  }
+  setLang(start || 'en');
+  if (!reduce) requestAnimationFrame(loop);
+
+  var h = (location.hash || '').slice(1);
+  if (h && VALID.indexOf(h) === -1) {
+    var target = document.getElementById(h);
+    if (target) setTimeout(function(){ target.scrollIntoView(); }, 80);
+  }
+})();
+</script>
 </body>
 </html>
