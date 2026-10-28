@@ -1159,26 +1159,18 @@ html[dir="rtl"] .progress span{transform-origin:right center}
     this.nodes = nodes; this.clusters = clusters; this.t = 0;
     this.positions();
 
-    // Relations from the knowledge graph, head to tail, then faint links between neighbours of the same type
+    // Relations from the knowledge graph, head to tail; these are the only links drawn
     var edges = [], seen = {};
     function link(a, b, kind, label){
       if (!a || !b || a === b) return null;
       var key = Math.min(a.id, b.id) + '-' + Math.max(a.id, b.id);
       if (seen[key]) return null; seen[key] = 1;
-      var e = { a: a, b: b, kind: kind, label: label, lit: 0, lbl: 0, hv: 0, bend: (edges.length % 2 ? 1 : -1) * (kind === 'rel' ? .14 : .05) };
-      e.shown = kind !== 'rel' || a.cl === b.cl || rnd() < .15;
+      var e = { a: a, b: b, kind: kind, label: label, lit: 0, lbl: 0, hv: 0, bend: (edges.length % 2 ? 1 : -1) * .14 };
+      e.shown = a.cl === b.cl || rnd() < .25;
       edges.push(e); a.nb.push({ e: e, o: b }); b.nb.push({ e: e, o: a });
       return e;
     }
     KG_EDGES.forEach(function(row){ link(byId[row[0]], byId[row[1]], 'rel', row[col]); });
-    clusters.forEach(function(cl){
-      var mine = nodes.filter(function(n){ return n.cl === cl; });
-      mine.forEach(function(n){
-        mine.filter(function(o){ return o !== n; })
-          .sort(function(p, q){ return Math.hypot(p.ox - n.ox, p.oy - n.oy) - Math.hypot(q.ox - n.ox, q.oy - n.oy); })
-          .slice(0, cl.main ? 2 : 1).forEach(function(o){ link(n, o, 'in'); });
-      });
-    });
     // Every entity keeps at least one of its relations in view: the shortest one, when none is shown already
     nodes.forEach(function(n){
       var rels = n.nb.filter(function(p){ return p.e.kind === 'rel'; });
@@ -1239,11 +1231,11 @@ html[dir="rtl"] .progress span{transform-origin:right center}
   Graph.prototype.go = function(path, big, colour){
     if (path.length) { path[0].from.lit = Math.max(path[0].from.lit, big ? 1 : .6); this.beams.push({ path: path, i: 0, q: 0, v: big ? 1.4 : 1, big: big, col: colour }); }
   };
-  // A small pulse wandering inside one cluster
+  // A small pulse wandering along a few relations, in the colour of the entity it starts from
   Graph.prototype.spawnWalk = function(){
     var n = this.nodes[Math.floor(Math.random() * this.nodes.length)], path = [], prev = null, first = n;
-    for (var k = 0; k < 4; k++) {
-      var opts = n.nb.filter(function(p){ return p.e.kind === 'in' && p.o !== prev; });
+    for (var k = 0; k < 3; k++) {
+      var opts = n.nb.filter(function(p){ return p.e.shown && p.o !== prev; });
       if (!opts.length) break;
       var p = opts[Math.floor(Math.random() * opts.length)];
       path.push({ e: p.e, from: n, to: p.o }); prev = n; n = p.o;
@@ -1258,10 +1250,11 @@ html[dir="rtl"] .progress span{transform-origin:right center}
     if (!still && !reduce) {
       var bigs = this.beams.filter(function(x){ return x.big; }).length;
       if (this.t % 110 === 30 && bigs < 3) this.go(this.story(Math.random), true, 'beam');
-      if (this.t % 45 === 0 && this.beams.length - bigs < 5) this.spawnWalk();
+      if (this.t % 70 === 0 && this.beams.length - bigs < 3) this.spawnWalk();
       for (i = this.beams.length - 1; i >= 0; i--) {
         b = this.beams[i]; seg = b.path[b.i];
-        b.q += b.v / this.edgeLen(seg.e); seg.e.lit = Math.max(seg.e.lit, b.big ? 1 : .6);
+        b.q += b.v / this.edgeLen(seg.e);
+        if (b.big) seg.e.lit = Math.max(seg.e.lit, 1);
         if (b.big) seg.e.lbl = Math.min(1, seg.e.lbl + .08);
         if (b.q >= 1) {
           seg.to.lit = Math.max(seg.to.lit, b.big ? 1 : .55);
@@ -1283,18 +1276,18 @@ html[dir="rtl"] .progress span{transform-origin:right center}
     var ctx = this.ctx, w = this.w, h = this.h, self = this, i, e, n, b, m, z, on;
     ctx.clearRect(0, 0, w, h);
     ctx.lineCap = 'round';
-    // links: relations dotted until a beam or the pointer lights them, links within a cluster solid and faint
+    // relations: within a cluster solid and faint in its colour, between clusters dotted; gold while a beam or the pointer lights them
     for (i = 0; i < this.edges.length; i++) {
       e = this.edges[i]; on = Math.max(e.lit, e.hv);
       if (!e.shown && on < .02) continue;
       m = this.ctrl(e); z = Math.min(e.a.z, e.b.z, this.zone(m[0], m[1]));
-      if (e.kind === 'rel') {
+      if (on < .05 && e.a.cl === e.b.cl) {
+        ctx.strokeStyle = C[e.a.cl.key]; ctx.lineWidth = 1;
+        ctx.globalAlpha = .22 * z;
+      } else {
         ctx.strokeStyle = on > .05 ? C.beam : C.muted; ctx.lineWidth = 1 + on * .7;
         ctx.globalAlpha = (.12 + on * .5) * z;
         if (on < .05) ctx.setLineDash([2, 5]);
-      } else {
-        ctx.strokeStyle = C[e.a.cl.key]; ctx.lineWidth = 1 + on * .6;
-        ctx.globalAlpha = (.18 + on * .4) * z;
       }
       ctx.beginPath(); ctx.moveTo(e.a.x, e.a.y); ctx.quadraticCurveTo(m[0], m[1], e.b.x, e.b.y); ctx.stroke();
       ctx.setLineDash([]);
