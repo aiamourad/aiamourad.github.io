@@ -14,7 +14,7 @@
 :root{
   --bg:#FFFFFF; --surface:#FFFFFF; --ink:#17162B; --muted:#55546B; --line:#E1E0EC;
   --accent:#3F3D9E; --accent-ink:#FFFFFF; --accent-soft:#ECEBFA;
-  --kg-per:#3F3D9E; --kg-place:#0E7C6B; --kg-org:#B0541C; --kg-work:#A02F74; --kg-date:#5F6478;
+  --kg-per:#3F3D9E; --kg-place:#0E7C6B; --kg-org:#B0541C; --kg-work:#A02F74; --kg-date:#5F6478; --kg-beam:#C98A04;
   --band:#1E1D4A; --band-ink:#EFEFFB; --band-muted:#B7B6DC; --band-line:#33326A; --band-accent:#ABA8F0; --band-accent-ink:#14133A;
   --oral-bg:#F5B83D; --oral-ink:#3A2400; --oral-line:#E0A12A;
   --sans:"Schibsted Grotesk", "Helvetica Neue", Arial, system-ui, sans-serif;
@@ -32,7 +32,7 @@
   :root:not([data-theme="light"]){
     --bg:#0F0F1A; --surface:#171725; --ink:#ECECF6; --muted:#ABAAC6; --line:#2A2A40;
     --accent:#ABA8F0; --accent-ink:#14133A; --accent-soft:#22213D;
-    --kg-per:#ABA8F0; --kg-place:#6CCFBE; --kg-org:#EFA06B; --kg-work:#E58AC2; --kg-date:#A9ADC0;
+    --kg-per:#ABA8F0; --kg-place:#6CCFBE; --kg-org:#EFA06B; --kg-work:#E58AC2; --kg-date:#A9ADC0; --kg-beam:#F3C969;
     --band:#18183A; --band-ink:#EFEFFB; --band-muted:#B7B6DC; --band-line:#2E2D5C; --band-accent:#ABA8F0; --band-accent-ink:#14133A;
     --oral-bg:#EDB042; --oral-ink:#241600; --oral-line:#EDB042;
     color-scheme:dark;
@@ -41,7 +41,7 @@
 :root[data-theme="dark"]{
   --bg:#0F0F1A; --surface:#171725; --ink:#ECECF6; --muted:#ABAAC6; --line:#2A2A40;
   --accent:#ABA8F0; --accent-ink:#14133A; --accent-soft:#22213D;
-  --kg-per:#ABA8F0; --kg-place:#6CCFBE; --kg-org:#EFA06B; --kg-work:#E58AC2; --kg-date:#A9ADC0;
+  --kg-per:#ABA8F0; --kg-place:#6CCFBE; --kg-org:#EFA06B; --kg-work:#E58AC2; --kg-date:#A9ADC0; --kg-beam:#F3C969;
   --band:#18183A; --band-ink:#EFEFFB; --band-muted:#B7B6DC; --band-line:#2E2D5C; --band-accent:#ABA8F0; --band-accent-ink:#14133A;
   --oral-bg:#EDB042; --oral-ink:#241600; --oral-line:#EDB042;
   color-scheme:dark;
@@ -97,11 +97,8 @@ nav.main a:hover,nav.main a.active{color:var(--ink);background:var(--accent-soft
 /* Hero */
 .hero-top{position:relative;overflow:hidden;padding:clamp(2rem, 5vw, 3.75rem) 0 clamp(1rem, 3vw, 2rem)}
 .hero-bg{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;
-  -webkit-mask-image:linear-gradient(to right, transparent 0%, rgba(0,0,0,.2) 40%, #000 56%);
-          mask-image:linear-gradient(to right, transparent 0%, rgba(0,0,0,.2) 40%, #000 56%)}
-.view[dir="rtl"] .hero-bg{
-  -webkit-mask-image:linear-gradient(to left, transparent 0%, rgba(0,0,0,.2) 40%, #000 56%);
-          mask-image:linear-gradient(to left, transparent 0%, rgba(0,0,0,.2) 40%, #000 56%)}
+  -webkit-mask-image:linear-gradient(to bottom, #000 90%, transparent);
+          mask-image:linear-gradient(to bottom, #000 90%, transparent)}
 .hero-grid{position:relative;z-index:1;display:grid;grid-template-columns:minmax(0, 36rem);gap:1.5rem;align-items:start}
 .hero h1{margin:0;font-size:clamp(1.75rem, 3.4vw, 2.5rem);line-height:1.05;letter-spacing:-.04em;font-weight:700}
 .view[lang="ar"] .hero h1{font-family:var(--ar-display);font-size:clamp(1.6rem, 3vw, 2.2rem);line-height:1.35}
@@ -124,9 +121,6 @@ nav.main a:hover,nav.main a.active{color:var(--ink);background:var(--accent-soft
   .portrait{width:88px}
   .portrait::before{inset:-4px}
   .portrait .initials{font-size:1.8rem}
-  .hero-bg,.view[dir="rtl"] .hero-bg{
-    -webkit-mask-image:linear-gradient(to bottom, #000 0%, rgba(0,0,0,.35) 45%, transparent 85%);
-            mask-image:linear-gradient(to bottom, #000 0%, rgba(0,0,0,.35) 45%, transparent 85%)}
 }
 
 .status{list-style:none;margin:clamp(1.5rem, 4vw, 2.5rem) 0 0;padding:1.1rem 0;display:flex;flex-wrap:wrap;gap:.6rem 2.2rem;border-top:1px solid var(--line);border-bottom:1px solid var(--line);font-size:.97rem}
@@ -201,8 +195,22 @@ footer{margin-top:clamp(2.75rem, 6vw, 4.25rem);padding:2.5rem 0 2.75rem;border-t
 .fineprint{margin-top:2.5rem;color:var(--muted);font-size:.88rem}
 @media (max-width: 760px){.foot{grid-template-columns:1fr}}
 
+/* Reading progress and back to top */
+.progress{position:fixed;top:env(safe-area-inset-top, 0px);left:0;right:0;height:3px;z-index:40;pointer-events:none}
+.progress span{display:block;height:100%;background:var(--accent);transform:scaleX(0);transform-origin:left center}
+html[dir="rtl"] .progress span{transform-origin:right center}
+.to-top{position:fixed;bottom:calc(env(safe-area-inset-bottom, 0px) + 1.2rem);inset-inline-end:1.2rem;z-index:35;width:48px;height:48px;border-radius:50%;border:0;background:var(--accent);color:var(--accent-ink);display:grid;place-items:center;cursor:pointer;box-shadow:0 10px 24px -10px rgba(20,19,58,.55);opacity:0;transform:translateY(12px);pointer-events:none;transition:opacity .25s, transform .25s}
+.to-top.show{opacity:1;transform:none;pointer-events:auto}
+.to-top svg{width:20px;height:20px}
+
+/* Reveal on scroll */
+.js .reveal{opacity:0;transform:translateY(18px);transition:opacity .7s cubic-bezier(.2,.7,.2,1), transform .7s cubic-bezier(.2,.7,.2,1)}
+.js .reveal.in{opacity:1;transform:none}
+@media (prefers-reduced-motion: reduce){.js .reveal{opacity:1;transform:none;transition:none}}
+
 @media print{
-  header.top,.cta-row,.copy,.hero-bg{display:none !important}
+  header.top,.cta-row,.copy,.hero-bg,.progress,.to-top{display:none !important}
+  .js .reveal{opacity:1;transform:none}
   body{background:#fff;color:#000;font-size:11pt}
   section.block{padding-top:1.5rem}
   .pubs li{break-inside:avoid}
@@ -225,6 +233,7 @@ footer{margin-top:clamp(2.75rem, 6vw, 4.25rem);padding:2.5rem 0 2.75rem;border-t
 </style>
 </head>
 <body>
+<div class="progress" aria-hidden="true"><span></span></div>
 <a class="skip" href="#publications">Skip to content</a>
 
 <div class="view" data-view="en" lang="en" dir="ltr">
@@ -241,7 +250,7 @@ footer{margin-top:clamp(2.75rem, 6vw, 4.25rem);padding:2.5rem 0 2.75rem;border-t
       <button type="button" data-set-lang="fr" lang="fr" aria-pressed="false">FR</button>
       <button type="button" data-set-lang="ar" lang="ar" aria-pressed="false">عربي</button>
     </div>
-    <a class="btn primary hdr-btn" href="mailto:aya.mourad@sorbonne-universite.fr">Email me</a>
+    <a class="btn primary hdr-btn" href="#contact" data-mail>Email me</a>
   </div>
 </header>
 
@@ -256,7 +265,7 @@ footer{margin-top:clamp(2.75rem, 6vw, 4.25rem);padding:2.5rem 0 2.75rem;border-t
           <p class="role">NLP Researcher <span>in information extraction and low-resource languages, Paris</span></p>
           <p class="statement">I build information extraction methods and datasets for low-resource languages like Arabic: nested entities, relations and events across long documents, with modest compute and little labelled data.</p>
           <div class="cta-row">
-            <a class="btn primary" href="mailto:aya.mourad@sorbonne-universite.fr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3.5 6.5 8.5 6 8.5-6"/></svg>Email me</a>
+            <a class="btn primary" href="#contact" data-mail><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3.5 6.5 8.5 6 8.5-6"/></svg>Email me</a>
             <a class="btn" href="https://scholar.google.com/citations?hl=en&amp;user=mmVpZUsAAAAJ" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 9.5 12 4l10 5.5-10 5.5z"/><path d="M6 11.7V16c0 1.6 2.7 3 6 3s6-1.4 6-3v-4.3"/></svg>Google Scholar</a>
             <a class="btn icon" href="https://github.com/aiamourad" target="_blank" rel="noopener" aria-label="GitHub"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 19c-4.3 1.4-4.3-2.5-6-3m12 5v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6 0 0 0-1.3-3.2 4.2 4.2 0 0 0-.1-3.2s-1.1-.3-3.5 1.3a12.3 12.3 0 0 0-6.2 0C6.5 2.8 5.4 3.1 5.4 3.1a4.2 4.2 0 0 0-.1 3.2A4.6 4.6 0 0 0 4 9.5c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V21"/></svg></a>
           </div>
@@ -272,7 +281,7 @@ footer{margin-top:clamp(2.75rem, 6vw, 4.25rem);padding:2.5rem 0 2.75rem;border-t
     <div class="wrap">
       <ul class="status" aria-label="Current status">
         <li><span class="dot" aria-hidden="true"></span><span><b>PhD researcher</b> at Sorbonne Université, ISIR</span></li>
-        <li><span class="dot" aria-hidden="true"></span><span><b>Open</b> to consulting in Arabic NLP</span></li>
+        <li><span class="dot" aria-hidden="true"></span><span><b>Open</b> to consulting in NLP</span></li>
         <li><span><b>Fully funded</b> by a Marie Skłodowska-Curie fellowship, SOUND.AI</span></li>
       </ul>
     </div>
@@ -389,11 +398,10 @@ footer{margin-top:clamp(2.75rem, 6vw, 4.25rem);padding:2.5rem 0 2.75rem;border-t
       <div>
         <h2>Let’s talk.</h2>
         <p>For research collaborations, talks or consulting, email is the fastest way to reach me.</p>
-        <a class="btn primary" href="mailto:aya.mourad@sorbonne-universite.fr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3.5 6.5 8.5 6 8.5-6"/></svg>Email me</a>
+        <a class="btn primary" href="#contact" data-mail><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3.5 6.5 8.5 6 8.5-6"/></svg>Email me</a>
       </div>
       <ul class="contact-list">
-        <li><span class="k">Email</span><span><a href="mailto:aya.mourad@sorbonne-universite.fr" dir="ltr">aya.mourad@sorbonne-universite.fr</a><button class="copy" type="button" aria-label="Copy email address" data-copy="Copy" data-copied="Copied">Copy</button></span></li>
-        <li><span class="k">Phone</span><a href="tel:+33688254253" dir="ltr">+33 6 88 25 42 53</a></li>
+        <li><span class="k">Email</span><span><a href="#contact" data-mail dir="ltr">aya dot mourad at sorbonne-universite.fr</a><button class="copy" type="button" aria-label="Copy email address" data-copy="Copy" data-copied="Copied">Copy</button></span></li>
         <li><span class="k">Google Scholar</span><a href="https://scholar.google.com/citations?hl=en&amp;user=mmVpZUsAAAAJ" target="_blank" rel="noopener" dir="ltr">Aya Mourad</a></li>
         <li><span class="k">GitHub</span><a href="https://github.com/aiamourad" target="_blank" rel="noopener" dir="ltr">aiamourad</a></li>
         <li><span class="k">Based in</span><span>Paris, France</span></li>
@@ -418,7 +426,7 @@ footer{margin-top:clamp(2.75rem, 6vw, 4.25rem);padding:2.5rem 0 2.75rem;border-t
       <button type="button" data-set-lang="fr" lang="fr" aria-pressed="true">FR</button>
       <button type="button" data-set-lang="ar" lang="ar" aria-pressed="false">عربي</button>
     </div>
-    <a class="btn primary hdr-btn" href="mailto:aya.mourad@sorbonne-universite.fr">M’écrire</a>
+    <a class="btn primary hdr-btn" href="#fr-contact" data-mail>M’écrire</a>
   </div>
 </header>
 
@@ -433,7 +441,7 @@ footer{margin-top:clamp(2.75rem, 6vw, 4.25rem);padding:2.5rem 0 2.75rem;border-t
           <p class="role">Chercheuse en TAL <span>spécialisée en extraction d’information et langues peu dotées, Paris</span></p>
           <p class="statement">Je conçois des méthodes et des jeux de données d’extraction d’information pour les langues peu dotées comme l’arabe&nbsp;: entités imbriquées, relations et événements dans des documents longs, avec peu de calcul et peu de données annotées.</p>
           <div class="cta-row">
-            <a class="btn primary" href="mailto:aya.mourad@sorbonne-universite.fr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3.5 6.5 8.5 6 8.5-6"/></svg>M’écrire</a>
+            <a class="btn primary" href="#fr-contact" data-mail><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3.5 6.5 8.5 6 8.5-6"/></svg>M’écrire</a>
             <a class="btn" href="https://scholar.google.com/citations?hl=en&amp;user=mmVpZUsAAAAJ" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 9.5 12 4l10 5.5-10 5.5z"/><path d="M6 11.7V16c0 1.6 2.7 3 6 3s6-1.4 6-3v-4.3"/></svg>Google Scholar</a>
             <a class="btn icon" href="https://github.com/aiamourad" target="_blank" rel="noopener" aria-label="GitHub"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 19c-4.3 1.4-4.3-2.5-6-3m12 5v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6 0 0 0-1.3-3.2 4.2 4.2 0 0 0-.1-3.2s-1.1-.3-3.5 1.3a12.3 12.3 0 0 0-6.2 0C6.5 2.8 5.4 3.1 5.4 3.1a4.2 4.2 0 0 0-.1 3.2A4.6 4.6 0 0 0 4 9.5c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V21"/></svg></a>
           </div>
@@ -449,7 +457,7 @@ footer{margin-top:clamp(2.75rem, 6vw, 4.25rem);padding:2.5rem 0 2.75rem;border-t
     <div class="wrap">
       <ul class="status" aria-label="Situation actuelle">
         <li><span class="dot" aria-hidden="true"></span><span><b>Doctorante</b> à Sorbonne Université, ISIR</span></li>
-        <li><span class="dot" aria-hidden="true"></span><span><b>Ouverte</b> aux missions de conseil en TAL arabe</span></li>
+        <li><span class="dot" aria-hidden="true"></span><span><b>Ouverte</b> aux missions de conseil en TAL</span></li>
         <li><span><b>Entièrement financée</b> par une bourse Marie Skłodowska-Curie, SOUND.AI</span></li>
       </ul>
     </div>
@@ -566,11 +574,10 @@ footer{margin-top:clamp(2.75rem, 6vw, 4.25rem);padding:2.5rem 0 2.75rem;border-t
       <div>
         <h2>Parlons-en.</h2>
         <p>Pour une collaboration de recherche, une intervention ou une mission de conseil, le courriel est le moyen le plus rapide de me joindre.</p>
-        <a class="btn primary" href="mailto:aya.mourad@sorbonne-universite.fr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3.5 6.5 8.5 6 8.5-6"/></svg>M’écrire</a>
+        <a class="btn primary" href="#fr-contact" data-mail><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3.5 6.5 8.5 6 8.5-6"/></svg>M’écrire</a>
       </div>
       <ul class="contact-list">
-        <li><span class="k">Courriel</span><span><a href="mailto:aya.mourad@sorbonne-universite.fr" dir="ltr">aya.mourad@sorbonne-universite.fr</a><button class="copy" type="button" aria-label="Copier l’adresse courriel" data-copy="Copier" data-copied="Copié">Copier</button></span></li>
-        <li><span class="k">Téléphone</span><a href="tel:+33688254253" dir="ltr">+33 6 88 25 42 53</a></li>
+        <li><span class="k">Courriel</span><span><a href="#fr-contact" data-mail dir="ltr">aya dot mourad at sorbonne-universite.fr</a><button class="copy" type="button" aria-label="Copier l’adresse courriel" data-copy="Copier" data-copied="Copié">Copier</button></span></li>
         <li><span class="k">Google Scholar</span><a href="https://scholar.google.com/citations?hl=en&amp;user=mmVpZUsAAAAJ" target="_blank" rel="noopener" dir="ltr">Aya Mourad</a></li>
         <li><span class="k">GitHub</span><a href="https://github.com/aiamourad" target="_blank" rel="noopener" dir="ltr">aiamourad</a></li>
         <li><span class="k">Basée à</span><span>Paris, France</span></li>
@@ -595,7 +602,7 @@ footer{margin-top:clamp(2.75rem, 6vw, 4.25rem);padding:2.5rem 0 2.75rem;border-t
       <button type="button" data-set-lang="fr" lang="fr" aria-pressed="false">FR</button>
       <button type="button" data-set-lang="ar" lang="ar" aria-pressed="true">عربي</button>
     </div>
-    <a class="btn primary hdr-btn" href="mailto:aya.mourad@sorbonne-universite.fr">راسليني</a>
+    <a class="btn primary hdr-btn" href="#ar-contact" data-mail>راسليني</a>
   </div>
 </header>
 
@@ -610,7 +617,7 @@ footer{margin-top:clamp(2.75rem, 6vw, 4.25rem);padding:2.5rem 0 2.75rem;border-t
           <p class="role">باحثة في معالجة اللغات الطبيعية <span>متخصصة في استخراج المعلومات واللغات منخفضة الموارد، باريس</span></p>
           <p class="statement">أطوّر أساليب ومجموعات بيانات لاستخراج المعلومات في اللغات منخفضة الموارد كالعربية: الكيانات المتداخلة والعلاقات والأحداث عبر الوثائق الطويلة، بحوسبة محدودة وقليل من البيانات الموسومة.</p>
           <div class="cta-row">
-            <a class="btn primary" href="mailto:aya.mourad@sorbonne-universite.fr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3.5 6.5 8.5 6 8.5-6"/></svg>راسليني</a>
+            <a class="btn primary" href="#ar-contact" data-mail><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3.5 6.5 8.5 6 8.5-6"/></svg>راسليني</a>
             <a class="btn" href="https://scholar.google.com/citations?hl=en&amp;user=mmVpZUsAAAAJ" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 9.5 12 4l10 5.5-10 5.5z"/><path d="M6 11.7V16c0 1.6 2.7 3 6 3s6-1.4 6-3v-4.3"/></svg>Google Scholar</a>
             <a class="btn icon" href="https://github.com/aiamourad" target="_blank" rel="noopener" aria-label="GitHub"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 19c-4.3 1.4-4.3-2.5-6-3m12 5v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6 0 0 0-1.3-3.2 4.2 4.2 0 0 0-.1-3.2s-1.1-.3-3.5 1.3a12.3 12.3 0 0 0-6.2 0C6.5 2.8 5.4 3.1 5.4 3.1a4.2 4.2 0 0 0-.1 3.2A4.6 4.6 0 0 0 4 9.5c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V21"/></svg></a>
           </div>
@@ -626,7 +633,7 @@ footer{margin-top:clamp(2.75rem, 6vw, 4.25rem);padding:2.5rem 0 2.75rem;border-t
     <div class="wrap">
       <ul class="status" aria-label="الوضع الحالي">
         <li><span class="dot" aria-hidden="true"></span><span><b>باحثة دكتوراه</b> في جامعة السوربون، معهد ISIR</span></li>
-        <li><span class="dot" aria-hidden="true"></span><span><b>متاحة</b> للاستشارات في معالجة العربية</span></li>
+        <li><span class="dot" aria-hidden="true"></span><span><b>متاحة</b> للاستشارات في معالجة اللغات الطبيعية</span></li>
         <li><span><b>ممولة بالكامل</b> بزمالة ماري سكوودوفسكا-كوري، برنامج SOUND.AI</span></li>
       </ul>
     </div>
@@ -743,11 +750,10 @@ footer{margin-top:clamp(2.75rem, 6vw, 4.25rem);padding:2.5rem 0 2.75rem;border-t
       <div>
         <h2>لنتحدّث.</h2>
         <p>للتعاون البحثي أو المحاضرات أو الاستشارات، البريد الإلكتروني هو أسرع وسيلة للتواصل معي.</p>
-        <a class="btn primary" href="mailto:aya.mourad@sorbonne-universite.fr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3.5 6.5 8.5 6 8.5-6"/></svg>راسليني</a>
+        <a class="btn primary" href="#ar-contact" data-mail><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3.5 6.5 8.5 6 8.5-6"/></svg>راسليني</a>
       </div>
       <ul class="contact-list">
-        <li><span class="k">البريد الإلكتروني</span><span><a href="mailto:aya.mourad@sorbonne-universite.fr" dir="ltr">aya.mourad@sorbonne-universite.fr</a><button class="copy" type="button" aria-label="نسخ عنوان البريد الإلكتروني" data-copy="نسخ" data-copied="تم النسخ">نسخ</button></span></li>
-        <li><span class="k">الهاتف</span><a href="tel:+33688254253" dir="ltr">+33 6 88 25 42 53</a></li>
+        <li><span class="k">البريد الإلكتروني</span><span><a href="#ar-contact" data-mail dir="ltr">aya dot mourad at sorbonne-universite.fr</a><button class="copy" type="button" aria-label="نسخ عنوان البريد الإلكتروني" data-copy="نسخ" data-copied="تم النسخ">نسخ</button></span></li>
         <li><span class="k">Google Scholar</span><a href="https://scholar.google.com/citations?hl=en&amp;user=mmVpZUsAAAAJ" target="_blank" rel="noopener" dir="ltr">Aya Mourad</a></li>
         <li><span class="k">GitHub</span><a href="https://github.com/aiamourad" target="_blank" rel="noopener" dir="ltr">aiamourad</a></li>
         <li><span class="k">المقر</span><span>باريس، فرنسا</span></li>
@@ -757,10 +763,14 @@ footer{margin-top:clamp(2.75rem, 6vw, 4.25rem);padding:2.5rem 0 2.75rem;border-t
   </div>
 </footer>
 </div>
+<button type="button" class="to-top" aria-label="Back to top"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5M6 11l6-6 6 6"/></svg></button>
 <script>
 (function(){
+  document.documentElement.classList.add('js');
   var VALID = ['en','fr','ar'];
-  var EMAIL = 'aya.mourad@sorbonne-universite.fr';
+  // Put together here rather than written out, so address harvesters reading the page do not find it
+  var EMAIL = ['aya', 'mourad'].join('.') + '@' + 'sorbonne-universite.fr';
+  Array.prototype.forEach.call(document.querySelectorAll('[data-mail]'), function(a){ a.href = 'mailto:' + EMAIL; });
   var TITLES = {
     en: 'Aya Mourad · NLP Researcher',
     fr: 'Aya Mourad · Chercheuse en TAL',
@@ -769,6 +779,8 @@ footer{margin-top:clamp(2.75rem, 6vw, 4.25rem);padding:2.5rem 0 2.75rem;border-t
   var views = {};
   Array.prototype.forEach.call(document.querySelectorAll('.view'), function(v){ views[v.getAttribute('data-view')] = v; });
   var activeKey = null;
+  var TOP_LABEL = { en: 'Back to top', fr: 'Haut de page', ar: 'العودة إلى الأعلى' };
+  var toTop = document.querySelector('.to-top'), bar = document.querySelector('.progress span'), ticking = false;
   var fields = [];
 
   function store(k, v){ try { localStorage.setItem(k, v); } catch(e){} }
@@ -793,6 +805,7 @@ footer{margin-top:clamp(2.75rem, 6vw, 4.25rem);padding:2.5rem 0 2.75rem;border-t
     document.documentElement.lang = l;
     document.documentElement.dir = (l === 'ar') ? 'rtl' : 'ltr';
     document.title = TITLES[l];
+    if (toTop) toTop.setAttribute('aria-label', TOP_LABEL[l]);
     Array.prototype.forEach.call(document.querySelectorAll('[data-set-lang]'), function(b){
       b.setAttribute('aria-pressed', b.getAttribute('data-set-lang') === l ? 'true' : 'false');
     });
@@ -810,8 +823,21 @@ footer{margin-top:clamp(2.75rem, 6vw, 4.25rem);padding:2.5rem 0 2.75rem;border-t
     b.addEventListener('click', function(){ setLang(b.getAttribute('data-set-lang'), {save:true, keepSection:true}); });
   });
 
-  function onScroll(){ document.body.classList.toggle('scrolled', window.scrollY > 8); }
-  window.addEventListener('scroll', onScroll, {passive:true}); onScroll();
+  // Scroll: header border, reading progress, back to top
+  function onScroll(){
+    if (ticking) return; ticking = true;
+    requestAnimationFrame(function(){
+      ticking = false;
+      var y = window.scrollY, max = document.documentElement.scrollHeight - window.innerHeight;
+      document.body.classList.toggle('scrolled', y > 8);
+      if (bar) bar.style.transform = 'scaleX(' + (max > 0 ? Math.min(1, y / max) : 0) + ')';
+      if (toTop) toTop.classList.toggle('show', y > 900);
+    });
+  }
+  window.addEventListener('scroll', onScroll, {passive:true});
+  window.addEventListener('resize', onScroll);
+  if (toTop) toTop.addEventListener('click', function(){ window.scrollTo({top:0, behavior: reduce ? 'auto' : 'smooth'}); });
+  onScroll();
 
   if ('IntersectionObserver' in window) {
     var io = new IntersectionObserver(function(entries){
@@ -839,8 +865,14 @@ footer{margin-top:clamp(2.75rem, 6vw, 4.25rem);padding:2.5rem 0 2.75rem;border-t
     });
   });
 
-  /* Hero background: a knowledge graph of modern Arabic literature. Entities are typed nodes, relations are
-     directed edges, and every few seconds one triple (head, relation, tail) is extracted and lights up */
+  /* Hero background: a knowledge graph of modern Arabic literature, always moving.
+     Entities gather in clusters by type: people, places and works, with institutions and dates
+     in two small clusters between the ones they connect. Faint dotted arcs are the relations.
+     Gold beams travel along chains of relations, head to tail, lighting each entity they reach
+     and showing each relation's name as they pass; small pulses wander inside clusters.
+     Entities passing behind the text fade almost to nothing so it stays readable. Pointing at an
+     entity lights it, its links and the names of its relations. 60 steps per second, paused off
+     screen, and a still frame for visitors who prefer reduced motion. */
   var KG_NODES = [
     // id, type, English, French, Arabic
     ['mahfouz','PER','Naguib Mahfouz','Naguib Mahfouz','نجيب محفوظ'],
@@ -941,442 +973,426 @@ footer{margin-top:clamp(2.75rem, 6vw, 4.25rem);padding:2.5rem 0 2.75rem;border-t
     ['acre','galilee','located in','située en','تقع في'],
     ['birwa','galilee','located in','située en','تقع في']
   ];
-  // The graph grows from one of these hubs, so whatever fits on screen stays connected
-  var KG_HUBS = ['cairo','beirut','paris','gibran','hussein','darwish','egypt','lebanon'];
+  // Entity types grouped into clusters: three large ones, and two small ones that sit between the pairs they connect.
+  // On small screens each cluster keeps only the entities listed in "small"
+  var GROUPS = [
+    { key:'PER', types:['PER'], title:{ en:'People', fr:'Personnes', ar:'أشخاص' }, small:['mahfouz','hussein','gibran','darwish','qabbani'] },
+    { key:'PLACE', types:['GPE','LOC'], title:{ en:'Places', fr:'Lieux', ar:'أماكن' }, small:['cairo','beirut','paris','egypt','lebanon','damascus'] },
+    { key:'WORK', types:['WORK'], title:{ en:'Works', fr:'Œuvres', ar:'أعمال' }, small:['trilogy','days','prophet'] },
+    { key:'ORG', types:['ORG'], between:[0, 1], title:{ en:'Institutions', fr:'Institutions', ar:'مؤسسات' }, small:['cu','sorbonne'] },
+    { key:'DATE', types:['DATE'], between:[0, 2], title:{ en:'Dates', fr:'Dates', ar:'تواريخ' }, small:['d1911','d1923'] }
+  ];
   var COL = {en:2, fr:3, ar:4};
   var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  var accent = '#3F3D9E', muted = '#55546B', paper = '#FFFFFF', soft = '#ECEBFA', tcol = {};
-  var TYPE_VAR = {PER:'--kg-per', GPE:'--kg-place', LOC:'--kg-place', ORG:'--kg-org', WORK:'--kg-work', DATE:'--kg-date'};
+  var C = { bg:'#FFFFFF', muted:'#55546B', beam:'#C98A04', PER:'#3F3D9E', PLACE:'#0E7C6B', WORK:'#A02F74', ORG:'#B0541C', DATE:'#5F6478' };
+  var VARS = { bg:'--bg', muted:'--muted', beam:'--kg-beam', PER:'--kg-per', PLACE:'--kg-place', WORK:'--kg-work', ORG:'--kg-org', DATE:'--kg-date' };
   function readColors(){
     var cs = getComputedStyle(document.documentElement);
-    soft = cs.getPropertyValue('--accent-soft').trim() || soft;
-    Object.keys(TYPE_VAR).forEach(function(k){ tcol[k] = cs.getPropertyValue(TYPE_VAR[k]).trim() || accent; });
-    accent = cs.getPropertyValue('--accent').trim() || accent;
-    muted = cs.getPropertyValue('--muted').trim() || muted;
-    paper = cs.getPropertyValue('--bg').trim() || paper;
+    Object.keys(VARS).forEach(function(k){ C[k] = cs.getPropertyValue(VARS[k]).trim() || C[k]; });
   }
-  function now(){ return (window.performance && performance.now) ? performance.now() : Date.now(); }
-  function rr(ctx, x, y, w, h, r){
-    ctx.beginPath(); ctx.moveTo(x + r, y);
-    ctx.arcTo(x + w, y, x + w, y + h, r); ctx.arcTo(x + w, y + h, x, y + h, r);
-    ctx.arcTo(x, y + h, x, y, r); ctx.arcTo(x, y, x + w, y, r); ctx.closePath();
-  }
+  function clamp(v, a, b){ return v < a ? a : v > b ? b : v; }
   // Seeded so a resize or the web fonts loading rebuilds the same graph instead of a new one
   function seeded(s){ return function(){ s = (s + 0x6D2B79F5) | 0; var t = Math.imul(s ^ (s >>> 15), 1 | s); t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t; return ((t ^ (t >>> 14)) >>> 0) / 4294967296; }; }
-  // Where the line from a node's centre towards (x, y) leaves its pill
-  function rim(n, x, y){
-    var dx = x - n.x, dy = y - n.y;
-    var s = Math.min((n.w / 2 + 4) / (Math.abs(dx) || 1e-6), (n.h / 2 + 4) / (Math.abs(dy) || 1e-6), 1);
-    return [n.x + dx * s, n.y + dy * s];
-  }
+  var F_LA = '"Schibsted Grotesk", "Helvetica Neue", Arial, sans-serif', F_AR = '"IBM Plex Sans Arabic", "Geeza Pro", sans-serif', F_REL = '"Source Serif 4", Georgia, serif';
+  var TAU = 6.2832;
+  var DEGREE = {};
+  KG_EDGES.forEach(function(r){ DEGREE[r[0]] = (DEGREE[r[0]] || 0) + 1; DEGREE[r[1]] = (DEGREE[r[1]] || 0) + 1; });
 
-  // A point on an edge's gentle curve, q from 0 at the head to 1 at the tail
-  function qpt(e, q){ var r = 1 - q; return [r * r * e.x1 + 2 * r * q * e.cx + q * q * e.x2, r * r * e.y1 + 2 * r * q * e.cy + q * q * e.y2]; }
-  function Field(canvas){
-    this.c = canvas; this.ctx = canvas.getContext('2d'); this.nodes = []; this.edges = []; this.lit = []; this.blocks = []; this.last = 0;
-    this.pointer = null; this.visible = true; this.w = 0;
+  function Graph(canvas){
+    this.c = canvas; this.ctx = canvas.getContext('2d'); this.host = canvas.parentNode;
     var view = canvas.closest('.view');
     this.lang = (view && view.getAttribute('data-view')) || 'en';
     this.rtl = this.lang === 'ar';
-    var self = this, host = canvas.parentNode;
-    host.addEventListener('pointermove', function(e){ var r = canvas.getBoundingClientRect(); self.pointer = {x:e.clientX - r.left, y:e.clientY - r.top}; if (reduce) self.draw(false); });
-    host.addEventListener('pointerleave', function(e){ if (e.pointerType !== 'mouse') return; self.pointer = null; if (reduce) self.draw(false); });
+    this.nodes = []; this.edges = []; this.beams = []; this.clusters = []; this.pointer = null; this.visible = true; this.w = 0; this.t = 0;
+    var self = this, host = this.host;
+    function at(e){ var r = canvas.getBoundingClientRect(); return { x: e.clientX - r.left, y: e.clientY - r.top }; }
+    host.addEventListener('pointermove', function(e){ self.pointer = at(e); if (reduce) { self.step(true); self.draw(); } });
+    host.addEventListener('pointerleave', function(e){ if (e.pointerType === 'mouse') { self.pointer = null; if (reduce) { self.step(true); self.draw(); } } });
     host.addEventListener('pointerdown', function(e){
       if (e.pointerType === 'mouse') return;
-      var r = canvas.getBoundingClientRect(); self.pointer = {x:e.clientX - r.left, y:e.clientY - r.top};
-      clearTimeout(self.tap); self.tap = setTimeout(function(){ self.pointer = null; if (reduce) self.draw(false); }, 2600);
-      if (reduce) self.draw(false);
+      self.pointer = at(e); clearTimeout(self.tap); self.tap = setTimeout(function(){ self.pointer = null; }, 2600);
     });
-    if ('IntersectionObserver' in window) {
-      new IntersectionObserver(function(es){ self.visible = es[0].isIntersecting; }).observe(host);
-    }
+    if ('IntersectionObserver' in window) new IntersectionObserver(function(es){ self.visible = es[0].isIntersecting; }).observe(host);
   }
-  Field.prototype.refresh = function(){
+  Graph.prototype.measure = function(r){
+    var col = this.host.querySelector('.hero-grid > div'), texts = [], range = document.createRange();
+    if (col) Array.prototype.forEach.call(col.children, function(el){
+      range.selectNodeContents(el); var b = range.getBoundingClientRect();
+      if (b.width) texts.push({ x: b.left - r.left - 10, y: b.top - r.top - 6, w: b.width + 20, h: b.height + 12 });
+    });
+    var fr = this.host.querySelector('.portrait .frame'), b2 = fr && fr.getBoundingClientRect();
+    if (b2 && b2.width) texts.push({ x: b2.left - r.left - 10, y: b2.top - r.top - 10, w: b2.width + 20, h: b2.height + 20 });
+    this.texts = texts;
+  };
+  Graph.prototype.covered = function(x, y, pad){
+    for (var i = 0; i < this.texts.length; i++) { var q = this.texts[i]; if (x > q.x - pad && x < q.x + q.w + pad && y > q.y - pad && y < q.y + q.h + pad) return true; }
+    return false;
+  };
+  // 1 in open space, fading to .1 behind the text
+  Graph.prototype.zone = function(x, y){
+    var best = 1, i, t, dx, dy, d;
+    for (i = 0; i < this.texts.length; i++) {
+      t = this.texts[i]; dx = Math.max(t.x - x, 0, x - t.x - t.w); dy = Math.max(t.y - y, 0, y - t.y - t.h); d = Math.sqrt(dx * dx + dy * dy);
+      if (d < 40) best = Math.min(best, .1 + .9 * d / 40);
+    }
+    return best;
+  };
+  Graph.prototype.refresh = function(){
     var r = this.c.getBoundingClientRect();
     if (!r.width) { this.w = 0; return; }
-    var dpr = Math.min(window.devicePixelRatio || 1, 2);
-    this.w = r.width; this.h = r.height;
-    this.c.width = Math.round(r.width * dpr); this.c.height = Math.round(r.height * dpr);
-    var ctx = this.ctx, col = COL[this.lang], k, q;
+    var dpr = Math.min(window.devicePixelRatio || 1, 2), w = this.w = r.width, h = this.h = r.height, self = this, rnd = seeded(11), ctx = this.ctx, k, j, x, y;
+    this.c.width = Math.round(w * dpr); this.c.height = Math.round(h * dpr);
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-    if ('direction' in ctx) ctx.direction = 'ltr';
-    this.font = this.rtl ? '500 13px "IBM Plex Sans Arabic", "Geeza Pro", sans-serif' : '500 12px "Schibsted Grotesk", "Helvetica Neue", sans-serif';
-    this.rfont = this.rtl ? '500 11.5px "IBM Plex Sans Arabic", "Geeza Pro", sans-serif' : 'italic 500 10.5px "Source Serif 4", Georgia, serif';
-    this.measureBlocks();
-    // On wide screens the graph keeps to the half away from the text: the right, or the left in Arabic
-    var wide = this.w >= 900;
-    this.x0 = wide && !this.rtl ? this.w * .5 : 0; this.x1 = wide && this.rtl ? this.w * .5 : this.w;
-    var free = (this.x1 - this.x0) * this.h, all = {}, rels = [];
-    for (k = 0; k < this.blocks.length; k++) {
-      q = this.blocks[k]; free -= Math.max(0, Math.min(q.r, this.x1) - Math.max(q.l, this.x0)) * (q.b - q.t);
+    this.measure(r);
+    var small = this.small = w < 700, col = COL[this.lang];
+    var fs = this.fs = small ? 12 : 12.5;
+    var R = small ? clamp(w * .3, 95, 130) : clamp(w * .12, 140, 185), Ri, mains = null, bridges = [];
+    // Wide screens: a fixed arrangement beside the text. Places and works at the top, people below between them,
+    // institutions and dates in the outer corners next to the clusters they connect
+    if (w >= 900) {
+      var left = w, right = 0;
+      this.texts.forEach(function(t){ left = Math.min(left, t.x); right = Math.max(right, t.x + t.w); });
+      var x0 = this.rtl ? 16 : right + 24, x1 = this.rtl ? left - 24 : w - 16, y0 = 24, y1 = h - 40, RW = x1 - x0, RH = y1 - y0;
+      if (RW >= 520) {
+        R = clamp(Math.min(RW * .22, RH * .23), 110, 180);
+        var spotAt = function(fx, fy){ return { x: self.rtl ? x1 - fx * RW : x0 + fx * RW, y: y0 + fy * RH }; };
+        mains = [spotAt(.5, .7), spotAt(.25, .27), spotAt(.77, .27)];
+        bridges = [spotAt(.12, .8), spotAt(.89, .76)];
+      }
     }
-    ctx.font = this.font;
-    KG_NODES.forEach(function(d){ all[d[0]] = {id:d[0], type:d[1], t:d[col], w:ctx.measureText(d[col]).width + 30, h:24}; });
-    ctx.font = this.rfont;
-    KG_EDGES.forEach(function(e){ rels.push({a:all[e[0]], b:all[e[1]], t:e[col], lw:ctx.measureText(e[col]).width}); });
-    // Try a few seeded layouts, each grown from a different hub, and keep the largest connected graph
-    var best = null, res, rnd = seeded(11);
-    for (k = 0; k < KG_HUBS.length * 2; k++) {
-      res = this.layout(this.grow(all, rels, KG_HUBS[k % KG_HUBS.length], free, k + 1), rels, k + 1);
-      if (!best || res.score > best.score) best = res;
+    Ri = R * .6;
+    if (!mains) {
+    // Open space, sampled on a grid
+    var free = [];
+    for (y = 10; y < h - 10; y += 22) for (x = 10; x < w - 10; x += 22) if (!this.covered(x, y, 6)) free.push([x, y]);
+    function room(cx, cy, rad){ var n = 0; for (var q = 0; q < free.length; q++) { var dx = free[q][0] - cx, dy = free[q][1] - cy; if (dx * dx + dy * dy < rad * rad) n++; } return n; }
+    // The three large clusters go where there is most open space
+    var cands = [];
+    for (y = h * .12; y < h * .9; y += 28) for (x = Math.max(w * .06, R * .9); x < Math.min(w * .94, w - R * .9); x += 28) cands.push({ x: x, y: y, n: room(x, y, R) });
+    cands.sort(function(a, b){ return b.n - a.n; });
+    var spots = [];
+    for (k = 0; k < cands.length && spots.length < 3; k++) {
+      var c = cands[k], ok = true;
+      for (j = 0; j < spots.length; j++) if (Math.hypot(c.x - spots[j].x, c.y - spots[j].y) < R * (small ? 1.6 : 2.05)) ok = false;
+      if (ok) spots.push(c);
     }
-    this.nodes = best.nodes; this.edges = best.edges;
-    this.nodes.forEach(function(a){ a.f = a.g = a.mx = a.my = 0; });
-    this.edges.forEach(function(e, i){ e.bend = i % 2 ? 1 : -1; });
-    // A soft halo behind the graph
-    var cx = 0, cy = 0, r = 0;
-    this.nodes.forEach(function(a){ cx += a.rx; cy += a.ry; });
-    cx /= this.nodes.length || 1; cy /= this.nodes.length || 1;
-    this.nodes.forEach(function(a){ r = Math.max(r, Math.sqrt((a.rx - cx) * (a.rx - cx) + (a.ry - cy) * (a.ry - cy))); });
-    this.halo = {x:cx, y:cy, r:r + 60};
-    this.nodes.forEach(function(a, i){ a.rx = best.pos[i][0]; a.ry = best.pos[i][1]; a.ph = rnd() * 6.28; a.sp = .00018 + rnd() * .00015; });
-    this.lit = [];
-    var t0 = now() - 900;
-    for (k = 0; k < 3; k++) this.spawn(t0, reduce);
+    while (spots.length < 3) spots.push({ x: w * (.3 + .2 * spots.length), y: h * .5 });
+    // People link to both places and works, so they take the spot between the other two
+    var mid = 0, bestSum = Infinity;
+    spots.forEach(function(s, i){ var sum = 0; spots.forEach(function(o){ sum += Math.hypot(s.x - o.x, s.y - o.y); }); if (sum < bestSum) { bestSum = sum; mid = i; } });
+    var ends = spots.filter(function(s, i){ return i !== mid; }).sort(function(a, b){ return a.x - b.x; });
+    if (this.rtl) ends.reverse();
+    mains = [spots[mid], ends[0], ends[1]];
+    // Each small cluster goes in the freest spot clear of every cluster, preferring the middle of the two it connects
+    GROUPS.slice(3).forEach(function(gp){
+      var A = mains[gp.between[0]], B = mains[gp.between[1]], mx = (A.x + B.x) / 2, my = (A.y + B.y) / 2, best = null, bs = -1e9, relax;
+      for (relax = 1; relax >= .55 && !best; relax -= .15) {
+        for (var yy = Ri * .8; yy < h - Ri * .6; yy += 22) for (var xx = Ri * 1.15 + 20; xx < w - Ri * 1.15 - 20; xx += 22) {
+          var clear = true, q;
+          for (q = 0; q < mains.length && clear; q++) if (Math.hypot(xx - mains[q].x, (yy - mains[q].y) * 1.2) < (R + Ri * .5) * relax) clear = false;
+          for (q = 0; q < bridges.length && clear; q++) if (Math.hypot(xx - bridges[q].x, yy - bridges[q].y) < Ri * 2.1 * relax) clear = false;
+          if (!clear) continue;
+          var sc = room(xx, yy, Ri) - Math.hypot(xx - mx, yy - my) / w * 40;
+          if (sc > bs) { bs = sc; best = { x: xx, y: yy }; }
+        }
+      }
+      bridges.push(best || { x: mx, y: my });
+    });
+    }
+
+    // Clusters drift and slowly revolve; entities sit around each centre, spaced so their names never meet however the cluster turns
+    var nodes = [], clusters = [], byId = {}, CAP = [11, 17, 6, 4, 3];
+    // Choose the entities as one connected set: start from the best-connected one and keep adding whichever has
+    // the most relations to those already chosen, so every entity shown is related to another one on screen
+    function groupOf(type){ for (var q = 0; q < GROUPS.length; q++) if (GROUPS[q].types.indexOf(type) > -1) return q; return -1; }
+    var chosen = {}, nChosen = 0, count = [0, 0, 0, 0, 0];
+    var pool = KG_NODES.filter(function(row){ return !small || GROUPS[groupOf(row[1])].small.indexOf(row[0]) > -1; });
+    function ties(id){ var n = 0; KG_EDGES.forEach(function(r){ if ((r[0] === id && chosen[r[1]]) || (r[1] === id && chosen[r[0]])) n++; }); return n; }
+    for (;;) {
+      var pick = null, ps = -1;
+      pool.forEach(function(row){
+        var g = groupOf(row[1]), l = ties(row[0]);
+        if (chosen[row[0]] || (!small && count[g] >= CAP[g]) || (nChosen && !l)) return;
+        var sc = l * 10 + (DEGREE[row[0]] || 0);
+        if (sc > ps) { ps = sc; pick = row; }
+      });
+      if (!pick) break;
+      chosen[pick[0]] = 1; nChosen++; count[groupOf(pick[1])]++;
+    }
+    function width(t, ar){ ctx.font = '600 ' + (fs + (ar ? 1.5 : 0)) + 'px ' + (ar ? F_AR : F_LA); return ctx.measureText(t).width; }
+    GROUPS.forEach(function(gp, g){
+      var main = g < 3, at = main ? mains[g] : bridges[g - 3], rad = R * [1.05, 1.1, .85, .85, .55][g];
+      var cl = { x0: at.x, y0: at.y, x: at.x, y: at.y, R: rad, g: g, key: gp.key, main: main, title: gp.title[self.lang],
+                 ax: rad * (.06 + rnd() * .05), ay: rad * (.05 + rnd() * .04), ph: rnd() * TAU, ph2: rnd() * TAU,
+                 spin: (rnd() < .5 ? -1 : 1) * TAU / (60 * (70 + rnd() * 30)), rot: 0 };
+      clusters.push(cl);
+      var list = KG_NODES.filter(function(n){ return gp.types.indexOf(n[1]) > -1 && chosen[n[0]]; });
+      list.sort(function(a, b){ return (DEGREE[b[0]] || 0) - (DEGREE[a[0]] || 0); });
+      list.forEach(function(row){
+        var t = row[col], ar = /[\u0600-\u06FF]/.test(t), tw = width(t, ar), spot = null;
+        for (var n = 0; n < 500 && !spot; n++) {
+          var a = rnd() * TAU, rr = rad * Math.sqrt(.04 + rnd() * .96), ox = Math.cos(a) * rr, oy = Math.sin(a) * rr;
+          // the whole name stays on the canvas at every turn of the cluster
+          var fits = rr + tw / 2 + cl.ax + 12 < Math.min(at.x, w - at.x) && rr + cl.ay + 18 < Math.min(at.y, h - at.y);
+          for (var m = 0; m < nodes.length && fits; m++) {
+            var o = nodes[m];
+            if (o.cl === cl && Math.hypot(o.ox - ox, o.oy - oy) < (o.tw + tw) / 2 + 12) fits = false;
+          }
+          if (fits) spot = [ox, oy];
+        }
+        if (!spot) return;
+        var nd = { cl: cl, key: row[0], t: t, ar: ar, tw: tw, ox: spot[0], oy: spot[1], lit: 0, hv: 0, nb: [], px: 0, py: 0,
+                   wp: rnd() * TAU, wq: rnd() * TAU, wa: 3 + rnd() * 4, ws: TAU / (60 * (18 + rnd() * 16)) };
+        nd.id = nodes.length; nodes.push(nd); byId[row[0]] = nd;
+      });
+    });
+    // An entity whose partners did not fit has nothing to relate to on screen, so it is left out too
+    for (var pruned = true; pruned;) {
+      pruned = false;
+      nodes = nodes.filter(function(n){
+        var ok = KG_EDGES.some(function(r){ return (r[0] === n.key && byId[r[1]]) || (r[1] === n.key && byId[r[0]]); });
+        if (!ok) { delete byId[n.key]; pruned = true; }
+        return ok;
+      });
+    }
+    nodes.forEach(function(n, i){ n.id = i; });
+    this.nodes = nodes; this.clusters = clusters; this.t = 0;
+    this.positions();
+
+    // Relations from the knowledge graph, head to tail, then faint links between neighbours of the same type
+    var edges = [], seen = {};
+    function link(a, b, kind, label){
+      if (!a || !b || a === b) return null;
+      var key = Math.min(a.id, b.id) + '-' + Math.max(a.id, b.id);
+      if (seen[key]) return null; seen[key] = 1;
+      var e = { a: a, b: b, kind: kind, label: label, lit: 0, lbl: 0, hv: 0, bend: (edges.length % 2 ? 1 : -1) * (kind === 'rel' ? .14 : .05) };
+      e.shown = kind !== 'rel' || a.cl === b.cl || rnd() < .15;
+      edges.push(e); a.nb.push({ e: e, o: b }); b.nb.push({ e: e, o: a });
+      return e;
+    }
+    KG_EDGES.forEach(function(row){ link(byId[row[0]], byId[row[1]], 'rel', row[col]); });
+    clusters.forEach(function(cl){
+      var mine = nodes.filter(function(n){ return n.cl === cl; });
+      mine.forEach(function(n){
+        mine.filter(function(o){ return o !== n; })
+          .sort(function(p, q){ return Math.hypot(p.ox - n.ox, p.oy - n.oy) - Math.hypot(q.ox - n.ox, q.oy - n.oy); })
+          .slice(0, cl.main ? 2 : 1).forEach(function(o){ link(n, o, 'in'); });
+      });
+    });
+    // Every entity keeps at least one of its relations in view: the shortest one, when none is shown already
+    nodes.forEach(function(n){
+      var rels = n.nb.filter(function(p){ return p.e.kind === 'rel'; });
+      if (!rels.length || rels.some(function(p){ return p.e.shown; })) return;
+      rels.sort(function(p, q){ return Math.hypot(p.o.x - n.x, p.o.y - n.y) - Math.hypot(q.o.x - n.x, q.o.y - n.y); });
+      rels[0].e.shown = true;
+    });
+    this.edges = edges; this.beams = [];
     readColors();
-    this.draw(false);
-  };
-  // Pick entities outward from a hub, always the one with most relations into the graph so far,
-  // until the space around the content is used up
-  Field.prototype.grow = function(all, rels, hub, free, seed){
-    var rnd = seeded(seed * 31), picked = [all[hub]], used = 0, inSet = {}, k, best, bestN, n, cand;
-    inSet[hub] = true;
-    while (true) {
-      cand = {};
-      rels.forEach(function(e){
-        if (inSet[e.a.id] && !inSet[e.b.id]) cand[e.b.id] = (cand[e.b.id] || 0) + 1;
-        if (inSet[e.b.id] && !inSet[e.a.id]) cand[e.a.id] = (cand[e.a.id] || 0) + 1;
-      });
-      best = null; bestN = -1;
-      for (k in cand) { n = cand[k] + rnd() * .9; if (n > bestN) { bestN = n; best = all[k]; } }
-      if (!best) break;
-      used += (best.w + 60) * (best.h + 68);
-      if (picked.length >= 5 && used > free) break;
-      picked.push(best); inSet[best.id] = true;
+    // A still frame lights two chains of relations, labels and all
+    if (reduce) for (k = 0; k < 2; k++) {
+      var path = this.story(seeded(k + 3));
+      path.forEach(function(s){ s.e.lit = s.e.lbl = 1; s.from.lit = s.to.lit = 1; });
     }
-    return picked;
+    this.draw();
   };
-  // The name, text and portrait: entities stay out from under them. Text is measured by its
-  // lines rather than its box, so the graph can use the space beside short lines
-  Field.prototype.measureBlocks = function(){
-    var host = this.c.parentNode, cr = this.c.getBoundingClientRect(), out = [], range = document.createRange();
-    Array.prototype.forEach.call(host.querySelectorAll('.hero-grid > div > *, .portrait'), function(el){
-      var pic = el.classList.contains('portrait'), pad = pic ? 22 : 8, r;
-      if (pic) r = el.getBoundingClientRect(); else { range.selectNodeContents(el); r = range.getBoundingClientRect(); }
-      if (r.width) out.push({l:r.left - cr.left - pad, r:r.right - cr.left + pad, t:r.top - cr.top - pad / 2, b:r.bottom - cr.top + pad});
+  // Where everything is at the current moment
+  Graph.prototype.positions = function(){
+    var t = reduce ? 0 : this.t, p = this.pointer;
+    this.clusters.forEach(function(cl){
+      cl.x = cl.x0 + Math.sin(t * TAU / 3000 + cl.ph) * cl.ax;
+      cl.y = cl.y0 + Math.sin(t * TAU / 3600 + cl.ph2) * cl.ay;
+      cl.rot = t * cl.spin;
     });
-    this.blocks = out;
-  };
-  Field.prototype.blocked = function(l, r, t, b){
-    for (var k = 0; k < this.blocks.length; k++) {
-      var q = this.blocks[k];
-      if (l < q.r && r > q.l && t < q.b && b > q.t) return true;
-    }
-    return false;
-  };
-  // Does the segment from (x1, y1) to (x2, y2) pass through the rectangle q (Liang-Barsky clipping)
-  function hits(q, x1, y1, x2, y2){
-    var dx = x2 - x1, dy = y2 - y1, t0 = 0, t1 = 1, i, u, pp = [-dx, dx, -dy, dy], rr4 = [x1 - q.l, q.r - x1, y1 - q.t, q.b - y1];
-    for (i = 0; i < 4; i++) {
-      if (pp[i] === 0) { if (rr4[i] < 0) return false; continue; }
-      u = rr4[i] / pp[i];
-      if (pp[i] < 0) { if (u > t1) return false; if (u > t0) t0 = u; }
-      else { if (u < t0) return false; if (u < t1) t1 = u; }
-    }
-    return true;
-  }
-  // Does it pass under any of the content
-  Field.prototype.crosses = function(x1, y1, x2, y2){
-    for (var k = 0; k < this.blocks.length; k++) if (hits(this.blocks[k], x1, y1, x2, y2)) return true;
-    return false;
-  };
-  // Push a node out from under the content and back inside the canvas
-  Field.prototype.place = function(a){
-    var hw = a.w / 2 + 14, hh = a.h / 2 + 18, k, q, L, R, T, B, m;
-    for (k = 0; k < this.blocks.length; k++) {
-      q = this.blocks[k];
-      if (a.x + hw <= q.l || a.x - hw >= q.r || a.y + hh <= q.t || a.y - hh >= q.b) continue;
-      L = a.x + hw - q.l; R = q.r - a.x + hw; T = a.y + hh - q.t; B = q.b - a.y + hh; m = Math.min(L, R, T, B);
-      if (m === L) a.x -= L; else if (m === R) a.x += R; else if (m === T) a.y -= T; else a.y += B;
-    }
-    a.x = Math.max(this.x0 + a.w / 2 + 8, Math.min(this.x1 - a.w / 2 - 8, a.x));
-    a.y = Math.max(a.h / 2 + 20, Math.min(this.h - a.h / 2 - 10, a.y));
-  };
-  // Force-directed layout: edges pull like springs, entities push each other apart and out from under the content
-  Field.prototype.layout = function(ns, rels, seed){
-    var n = ns.length, w = this.w, h = this.h, rnd = seeded(seed), i, j, k, a, b, dx, dy, d, f, s, it;
-    var es = rels.filter(function(e){ return ns.indexOf(e.a) > -1 && ns.indexOf(e.b) > -1; });
-    var L = Math.max(80, Math.min(160, Math.sqrt((this.x1 - this.x0) * h / (n + 1)) * .55));
-    for (i = 0; i < n; i++) {
-      a = ns[i];
-      for (k = 0; k < 30; k++) {
-        a.x = this.x0 + 20 + rnd() * (this.x1 - this.x0 - 40); a.y = 24 + rnd() * (h - 44);
-        if (!this.blocked(a.x - a.w / 2, a.x + a.w / 2, a.y - a.h / 2, a.y + a.h / 2)) break;
-      }
-    }
-    for (it = 0; it < 280; it++) {
-      s = 26 * (1 - it / 280) + 1;
-      for (i = 0; i < n; i++) ns[i].fx = ns[i].fy = 0;
-      for (i = 0; i < n; i++) for (j = i + 1; j < n; j++) {
-        a = ns[i]; b = ns[j]; dx = a.x - b.x; dy = a.y - b.y; d = dx * dx + dy * dy || 1; f = L * L / d;
-        a.fx += dx * f; a.fy += dy * f; b.fx -= dx * f; b.fy -= dy * f;
-      }
-      for (k = 0; k < es.length; k++) {
-        a = es[k].a; b = es[k].b; dx = b.x - a.x; dy = b.y - a.y; f = Math.sqrt(dx * dx + dy * dy) / L;
-        a.fx += dx * f; a.fy += dy * f; b.fx -= dx * f; b.fy -= dy * f;
-      }
-      for (i = 0; i < n; i++) {
-        a = ns[i]; d = Math.sqrt(a.fx * a.fx + a.fy * a.fy) || 1;
-        a.x += a.fx / d * Math.min(d, s); a.y += a.fy / d * Math.min(d, s);
-      }
-      for (i = 0; i < n; i++) for (j = i + 1; j < n; j++) {
-        a = ns[i]; b = ns[j];
-        dx = (a.w + b.w) / 2 + 24 - Math.abs(a.x - b.x); dy = (a.h + b.h) / 2 + 40 - Math.abs(a.y - b.y);
-        if (dx <= 0 || dy <= 0) continue;
-        if (dx < dy) { f = (a.x < b.x ? -dx : dx) / 2; a.x += f; b.x -= f; }
-        else { f = (a.y < b.y ? -dy : dy) / 2; a.y += f; b.y -= f; }
-      }
-      for (i = 0; i < n; i++) this.place(ns[i]);
-    }
-    // Drop entities the content still covers or that crowd one kept before them
-    var kept = [];
-    ns.forEach(function(a){
-      if (this.blocked(a.x - a.w / 2 - 4, a.x + a.w / 2 + 4, a.y - a.h / 2 - 14, a.y + a.h / 2 + 4)) return;
-      for (var m = 0; m < kept.length; m++) {
-        b = kept[m];
-        if (Math.abs(a.x - b.x) < (a.w + b.w) / 2 + 10 && Math.abs(a.y - b.y) < (a.h + b.h) / 2 + 24) return;
-      }
-      kept.push(a);
-    }, this);
-    // Keep the largest connected part, so no entity floats on its own. A relation that has to pass
-    // under the content still links the graph; it is only drawn fainter
-    var links = es.filter(function(e){ return kept.indexOf(e.a) > -1 && kept.indexOf(e.b) > -1; });
-    var comp = [], seen = {}, stack, c, x;
-    kept.forEach(function(a){
-      if (seen[a.id]) return;
-      c = []; stack = [a]; seen[a.id] = true;
-      while (stack.length) {
-        x = stack.pop(); c.push(x);
-        links.forEach(function(e){
-          var o = e.a === x ? e.b : e.b === x ? e.a : null;
-          if (o && !seen[o.id]) { seen[o.id] = true; stack.push(o); }
-        });
-      }
-      if (c.length > comp.length) comp = c;
-    });
-    links = links.filter(function(e){ return comp.indexOf(e.a) > -1; });
-    var clear = 0, through = 0;
-    links.forEach(function(e){
-      var p1 = rim(e.a, e.b.x, e.b.y), p2 = rim(e.b, e.a.x, e.a.y);
-      e.under = this.crosses(p1[0], p1[1], p2[0], p2[1]);
-      if (!e.under) clear++;
-      comp.forEach(function(o){
-        if (o !== e.a && o !== e.b && hits({l:o.x - o.w / 2 - 3, r:o.x + o.w / 2 + 3, t:o.y - o.h / 2 - 3, b:o.y + o.h / 2 + 3}, p1[0], p1[1], p2[0], p2[1])) through++;
-      });
-    }, this);
-    return {nodes:comp, edges:links, score:comp.length * 3 + clear * 2 + links.length - through * 5, pos:comp.map(function(a){ return [a.x, a.y]; })};
-  };
-  // Is the edge long enough to hold its relation label between the two pills
-  Field.prototype.roomy = function(e){
-    var p1 = rim(e.a, e.b.x, e.b.y), p2 = rim(e.b, e.a.x, e.a.y), dx = p2[0] - p1[0], dy = p2[1] - p1[1], d = Math.sqrt(dx * dx + dy * dy);
-    return d > (Math.abs(dx) / d * (e.lw + 14) + Math.abs(dy) / d * 18) + 30;
-  };
-  Field.prototype.spawn = function(t, still){
-    var es = this.edges, w = this.w;
-    for (var tries = 0; tries < 30 && es.length; tries++) {
-      var e = es[Math.floor(Math.random() * es.length)], a = e.a, b = e.b, mx = (a.rx + b.rx) / 2, my = (a.ry + b.ry) / 2, k, busy = false;
-      // Light up triples only where the fade leaves the graph visible, with the relation label clear of the content
-      if (e.under) continue;
-      if (w >= 780 && (this.rtl ? Math.max(a.rx, b.rx) > w * .72 : Math.min(a.rx, b.rx) < w * .28)) continue;
-      if (this.blocked(mx - e.lw / 2 - 10, mx + e.lw / 2 + 10, my - 12, my + 12) || !this.roomy(e)) continue;
-      for (k = 0; k < this.lit.length; k++) if (this.lit[k].e === e) busy = true;
-      if (busy) continue;
-      this.lit.push({e:e, t0:t, life: still ? Infinity : 6500 + Math.random() * 3000, env:0});
-      return;
+    for (var i = 0; i < this.nodes.length; i++) {
+      var n = this.nodes[i], cl = n.cl, cs = Math.cos(cl.rot), sn = Math.sin(cl.rot);
+      var x = cl.x + n.ox * cs - n.oy * sn + Math.sin(t * n.ws + n.wp) * n.wa;
+      var y = cl.y + n.ox * sn + n.oy * cs + Math.cos(t * n.ws * .8 + n.wq) * n.wa * .8;
+      // entities ease aside around the pointer
+      var tx = 0, ty = 0;
+      if (p) { var dx = x - p.x, dy = y - p.y, d = Math.sqrt(dx * dx + dy * dy) || 1; if (d < 110) { tx = dx / d * (1 - d / 110) * 14; ty = dy / d * (1 - d / 110) * 14; } }
+      n.px += (tx - n.px) * .08; n.py += (ty - n.py) * .08;
+      n.x = x + n.px; n.y = y + n.py;
+      n.z = this.zone(n.x, n.y);
     }
   };
-  Field.prototype.draw = function(step){
+  Graph.prototype.ctrl = function(e){ return [(e.a.x + e.b.x) / 2 - (e.b.y - e.a.y) * e.bend, (e.a.y + e.b.y) / 2 + (e.b.x - e.a.x) * e.bend]; };
+  Graph.prototype.pt = function(e, q, from){
+    var m = this.ctrl(e), a = from === e.b ? e.b : e.a, b = from === e.b ? e.a : e.b, r;
+    q = Math.max(0, Math.min(1, q)); r = 1 - q;
+    return [r * r * a.x + 2 * r * q * m[0] + q * q * b.x, r * r * a.y + 2 * r * q * m[1] + q * q * b.y];
+  };
+  Graph.prototype.edgeLen = function(e){ return Math.max(20, Math.hypot(e.b.x - e.a.x, e.b.y - e.a.y) * 1.04); };
+  // A chain of up to three relations, each starting where the last one ended: Gibran → born in → Bsharri → located in → Lebanon
+  Graph.prototype.story = function(rand){
+    var rels = this.edges.filter(function(e){ return e.kind === 'rel'; });
+    var people = rels.filter(function(e){ return e.a.cl.g === 0; });
+    if (people.length && rand() < .7) rels = people;
+    if (!rels.length) return [];
+    var e = rels[Math.floor(rand() * rels.length)], path = [{ e: e, from: e.a, to: e.b }], cur = e.b;
+    for (var k = 0; k < 2; k++) {
+      var outs = cur.nb.filter(function(p){ return p.e.kind === 'rel' && p.e.a === cur; });
+      if (!outs.length) break;
+      var p = outs[Math.floor(rand() * outs.length)]; path.push({ e: p.e, from: cur, to: p.o }); cur = p.o;
+    }
+    return path;
+  };
+  Graph.prototype.go = function(path, big, colour){
+    if (path.length) { path[0].from.lit = Math.max(path[0].from.lit, big ? 1 : .6); this.beams.push({ path: path, i: 0, q: 0, v: big ? 1.4 : 1, big: big, col: colour }); }
+  };
+  // A small pulse wandering inside one cluster
+  Graph.prototype.spawnWalk = function(){
+    var n = this.nodes[Math.floor(Math.random() * this.nodes.length)], path = [], prev = null, first = n;
+    for (var k = 0; k < 4; k++) {
+      var opts = n.nb.filter(function(p){ return p.e.kind === 'in' && p.o !== prev; });
+      if (!opts.length) break;
+      var p = opts[Math.floor(Math.random() * opts.length)];
+      path.push({ e: p.e, from: n, to: p.o }); prev = n; n = p.o;
+    }
+    this.go(path, false, C[first.cl.key]);
+  };
+  Graph.prototype.step = function(still){
     if (!this.w) return;
-    var ctx = this.ctx, w = this.w, h = this.h, t = now(), ns = this.nodes, es = this.edges, lit = this.lit, p = this.pointer;
-    var i, k, n, e, l, a, b, age, v, dx, dy, d, ang, sz, best = null, bestD = 60, dim, hot, s, tx, ty;
-    // Hover changes ease in over ~250ms rather than switching; with reduced motion they snap
-    var dt = Math.min(64, t - (this.prev || t)), ease = reduce ? 1 : 1 - Math.exp(-dt / 220);
-    this.prev = t;
+    var i, b, seg;
+    if (!still) this.t++;
+    this.positions();
+    if (!still && !reduce) {
+      var bigs = this.beams.filter(function(x){ return x.big; }).length;
+      if (this.t % 110 === 30 && bigs < 3) this.go(this.story(Math.random), true, 'beam');
+      if (this.t % 45 === 0 && this.beams.length - bigs < 5) this.spawnWalk();
+      for (i = this.beams.length - 1; i >= 0; i--) {
+        b = this.beams[i]; seg = b.path[b.i];
+        b.q += b.v / this.edgeLen(seg.e); seg.e.lit = Math.max(seg.e.lit, b.big ? 1 : .6);
+        if (b.big) seg.e.lbl = Math.min(1, seg.e.lbl + .08);
+        if (b.q >= 1) {
+          seg.to.lit = Math.max(seg.to.lit, b.big ? 1 : .55);
+          b.i++; b.q = 0;
+          if (b.i >= b.path.length) this.beams.splice(i, 1);
+        }
+      }
+      this.nodes.forEach(function(n){ n.lit *= .989; });
+      this.edges.forEach(function(e){ e.lit *= .986; e.lbl *= .993; });
+    }
+    var p = this.pointer, best = null, bd = 30;
+    if (p) this.nodes.forEach(function(n){ var d = Math.hypot(n.x - p.x, n.y - p.y); if (d < bd) { bd = d; best = n; } });
+    this.nodes.forEach(function(n){ n.hv *= still ? 0 : .9; });
+    this.edges.forEach(function(e){ e.hv *= still ? 0 : .9; });
+    if (best) { best.hv = 1; best.nb.forEach(function(q){ q.o.hv = Math.max(q.o.hv, .75); q.e.hv = 1; }); }
+  };
+  Graph.prototype.draw = function(){
+    if (!this.w) return;
+    var ctx = this.ctx, w = this.w, h = this.h, self = this, i, e, n, b, m, z, on;
     ctx.clearRect(0, 0, w, h);
-    if (this.halo && this.halo.r > 0) {
-      var hg = ctx.createRadialGradient(this.halo.x, this.halo.y, 0, this.halo.x, this.halo.y, this.halo.r);
-      hg.addColorStop(0, soft); hg.addColorStop(1, 'transparent');
-      ctx.globalAlpha = .9; ctx.fillStyle = hg; ctx.fillRect(0, 0, w, h);
+    ctx.lineCap = 'round';
+    // links: relations dotted until a beam or the pointer lights them, links within a cluster solid and faint
+    for (i = 0; i < this.edges.length; i++) {
+      e = this.edges[i]; on = Math.max(e.lit, e.hv);
+      if (!e.shown && on < .02) continue;
+      m = this.ctrl(e); z = Math.min(e.a.z, e.b.z, this.zone(m[0], m[1]));
+      if (e.kind === 'rel') {
+        ctx.strokeStyle = on > .05 ? C.beam : C.muted; ctx.lineWidth = 1 + on * .7;
+        ctx.globalAlpha = (.12 + on * .5) * z;
+        if (on < .05) ctx.setLineDash([2, 5]);
+      } else {
+        ctx.strokeStyle = C[e.a.cl.key]; ctx.lineWidth = 1 + on * .6;
+        ctx.globalAlpha = (.18 + on * .4) * z;
+      }
+      ctx.beginPath(); ctx.moveTo(e.a.x, e.a.y); ctx.quadraticCurveTo(m[0], m[1], e.b.x, e.b.y); ctx.stroke();
+      ctx.setLineDash([]);
     }
-
-    // Focus: the entity under the pointer, or the closest one within reach
-    if (p) for (i = 0; i < ns.length; i++) {
-      n = ns[i];
-      dx = Math.max(Math.abs(p.x - n.x) - n.w / 2, 0); dy = Math.max(Math.abs(p.y - n.y) - n.h / 2, 0); d = Math.sqrt(dx * dx + dy * dy);
-      if (d < bestD) { bestD = d; best = n; }
+    // beams: a bright head and a fading tail
+    for (i = 0; i < this.beams.length; i++) {
+      b = this.beams[i]; var seg = b.path[b.i], len = this.edgeLen(seg.e), tail = (b.big ? 100 : 50) / len, col = b.col === 'beam' ? C.beam : b.col;
+      ctx.strokeStyle = col; ctx.lineWidth = b.big ? 2.4 : 1.7;
+      for (var k = 0; k < 10; k++) {
+        var qb = b.q - tail * k / 10, qa = b.q - tail * (k + 1) / 10;
+        if (qb <= 0) break;
+        var p0 = this.pt(seg.e, qa, seg.from), p1 = this.pt(seg.e, qb, seg.from);
+        ctx.globalAlpha = (1 - k / 10) * (b.big ? .85 : .6) * Math.max(.3, this.zone(p1[0], p1[1]));
+        ctx.beginPath(); ctx.moveTo(p0[0], p0[1]); ctx.lineTo(p1[0], p1[1]); ctx.stroke();
+      }
+      var P = this.pt(seg.e, b.q, seg.from), zz = Math.max(.3, this.zone(P[0], P[1]));
+      ctx.fillStyle = col;
+      ctx.globalAlpha = (b.big ? .22 : .15) * zz; ctx.beginPath(); ctx.arc(P[0], P[1], b.big ? 11 : 7, 0, TAU); ctx.fill();
+      ctx.globalAlpha = zz; ctx.beginPath(); ctx.arc(P[0], P[1], b.big ? 3.4 : 2.4, 0, TAU); ctx.fill();
     }
-    for (i = 0; i < ns.length; i++) ns[i].tf = 0;
-    for (k = 0; k < es.length; k++) {
-      e = es[k]; e.tf = 0; e.lit = 0;
-      if (best && (e.a === best || e.b === best)) { e.tf = 1; (e.a === best ? e.b : e.a).tf = .8; }
+    // entities, each with a soft halo so links pass behind them cleanly
+    ctx.textAlign = 'center'; ctx.textBaseline = 'middle'; ctx.lineJoin = 'round';
+    var fs = this.fs;
+    for (i = 0; i < this.nodes.length; i++) {
+      n = this.nodes[i]; var c = C[n.cl.key], L2 = Math.max(n.lit, n.hv);
+      ctx.fillStyle = c;
+      if (L2 > .05) { ctx.globalAlpha = .16 * L2 * n.z; ctx.beginPath(); ctx.arc(n.x, n.y, 14 + 6 * L2, 0, TAU); ctx.fill(); }
+      var size = (n.cl.main ? fs : fs - 1) + (n.ar ? 1.5 : 0);
+      ctx.font = (L2 > .3 ? '600 ' : '500 ') + size + 'px ' + (n.ar ? F_AR : F_LA);
+      ctx.direction = n.ar ? 'rtl' : 'ltr';
+      ctx.globalAlpha = Math.min(1, (.75 + .25 * L2) * n.z); ctx.strokeStyle = C.bg; ctx.lineWidth = 5;
+      ctx.strokeText(n.t, n.x, n.y);
+      ctx.globalAlpha = Math.min(1, (.62 + .38 * L2) * n.z); ctx.fillText(n.t, n.x, n.y + .5);
     }
-    if (best) best.tf = 1;
-    this.F = (this.F || 0) + ((best ? 1 : 0) - (this.F || 0)) * ease;
-    var F = this.F;
-    // New triples wait while someone is exploring the graph
-    if (step && !best && t - this.last > 2400 && lit.length < (w < 780 ? 2 : 4)) { this.spawn(t, false); this.last = t; }
-
-    for (i = 0; i < ns.length; i++) {
-      n = ns[i]; n.lit = 0; n.near = 0;
-      n.f = (n.f || 0) + (n.tf - (n.f || 0)) * ease;
-      n.g = (n.g || 0) + ((n === best ? 1 : 0) - (n.g || 0)) * ease;
-      n.x = n.rx + (reduce ? 0 : Math.sin(t * n.sp + n.ph) * 7);
-      n.y = n.ry + (reduce ? 0 : Math.cos(t * n.sp * 1.3 + n.ph) * 5);
-      // Magnetic: the focused entity leans towards the pointer and its neighbours draw in a little
-      tx = ty = 0;
-      if (n === best) { tx = (p.x - n.x) * .12; ty = (p.y - n.y) * .12; }
-      else if (best && n.tf) { tx = (best.rx - n.rx) * .06; ty = (best.ry - n.ry) * .06; }
-      n.mx = (n.mx || 0) + (tx - (n.mx || 0)) * ease; n.my = (n.my || 0) + (ty - (n.my || 0)) * ease;
-      n.x += n.mx; n.y += n.my;
-      if (p) { dx = n.x - p.x; dy = n.y - p.y; n.near = Math.max(0, 1 - Math.sqrt(dx * dx + dy * dy) / 170) * (1 - F); }
-    }
-    for (k = lit.length - 1; k >= 0; k--) {
-      l = lit[k]; age = t - l.t0;
-      if (age > l.life) { lit.splice(k, 1); continue; }
-      l.env = l.life === Infinity ? 1 : Math.max(0, Math.min(1, age / 900, (l.life - age) / 1300));
-      l.e.lit = Math.max(l.e.lit, l.env); l.e.a.lit = Math.max(l.e.a.lit, l.env); l.e.b.lit = Math.max(l.e.b.lit, l.env);
-    }
-
-    // Relations: a directed edge from the rim of the head to the rim of the tail. Everything outside
-    // the focus fades back; the focused entity's relations come forward with dots flowing head to tail
-    var order = es.slice().sort(function(x, y){ return (x.f || 0) - (y.f || 0); });
-    for (k = 0; k < order.length; k++) {
-      e = order[k]; a = e.a; b = e.b;
-      e.f = (e.f || 0) + (e.tf - (e.f || 0)) * ease;
-      // A gentle curve: the control point sits off the middle of the chord, alternating sides
-      e.cx = (a.x + b.x) / 2 - (b.y - a.y) * .14 * e.bend; e.cy = (a.y + b.y) / 2 + (b.x - a.x) * .14 * e.bend;
-      var p1 = rim(a, e.cx, e.cy), p2 = rim(b, e.cx, e.cy);
-      e.x1 = p1[0]; e.y1 = p1[1]; e.x2 = p2[0]; e.y2 = p2[1];
-      dim = 1 - .72 * F * (1 - e.f); hot = Math.max(e.lit, e.f);
-      v = Math.min(1, ((e.under ? .08 : .17) + Math.max(a.near, b.near) * (e.under ? .12 : .3)) * dim + e.lit * .6 * dim + e.f * (e.under ? .22 : .6));
-      ctx.strokeStyle = ctx.fillStyle = hot > .05 ? accent : muted;
-      ctx.globalAlpha = v; ctx.lineWidth = 1 + hot * .5;
-      ctx.beginPath(); ctx.moveTo(e.x1, e.y1); ctx.quadraticCurveTo(e.cx, e.cy, e.x2, e.y2); ctx.stroke();
-      // Dots glide from head to tail at a steady speed, fading in and out at the ends
-      if (e.f > .02) {
-        var len = Math.sqrt((e.x2 - e.x1) * (e.x2 - e.x1) + (e.y2 - e.y1) * (e.y2 - e.y1)) || 1, cnt = Math.max(1, Math.round(len / 80)), q;
-        for (i = 0; i < cnt; i++) {
-          q = reduce ? (i + .5) / cnt : (t * .04 / len + i / cnt) % 1;
-          ctx.globalAlpha = e.f * (e.under ? .4 : 1) * Math.sin(Math.PI * q);
-          var pt = qpt(e, q);
-          ctx.beginPath(); ctx.arc(pt[0], pt[1], 2.6, 0, 6.2832); ctx.fill();
+    // relation names, shown while a beam carries them or the pointer rests on one end
+    for (i = 0; i < this.edges.length; i++) {
+      e = this.edges[i];
+      if (e.kind !== 'rel') continue;
+      on = Math.max(e.lbl, e.hv);
+      if (on < .05) continue;
+      var ar = /[\u0600-\u06FF]/.test(e.label);
+      ctx.font = ar ? '500 ' + (fs - .5) + 'px ' + F_AR : 'italic 400 ' + (fs - 1.5) + 'px ' + F_REL;
+      // slide the name along its arc to a spot clear of every entity, keeping the last spot while it stays clear
+      var lw = ctx.measureText(e.label).width, M = null, qs = [e.lq || .5, .5, .4, .6, .3, .7], s;
+      for (s = 0; s < qs.length && !M; s++) {
+        var cand = this.pt(e, qs[s], e.a), hit = false;
+        for (var q = 0; q < this.nodes.length && !hit; q++) {
+          n = this.nodes[q];
+          if (n.z > .3 && Math.abs(n.x - cand[0]) < (n.tw + lw) / 2 + 4 && Math.abs(n.y - cand[1]) < 17) hit = true;
         }
-        ctx.globalAlpha = Math.max(v, e.f * (e.under ? .35 : .85));
-      }
-      ang = Math.atan2(e.y2 - e.cy, e.x2 - e.cx); sz = 6 + e.f * 2;
-      ctx.beginPath(); ctx.moveTo(e.x2, e.y2);
-      ctx.lineTo(e.x2 - sz * Math.cos(ang - .45), e.y2 - sz * Math.sin(ang - .45));
-      ctx.lineTo(e.x2 - sz * Math.cos(ang + .45), e.y2 - sz * Math.sin(ang + .45));
-      ctx.closePath(); ctx.fill();
-    }
-
-    // Entities: a pill per node, with its type above it once it is lit or in focus. The focused one
-    // grows a little, glows and pulses
-    ctx.textBaseline = 'middle';
-    order = ns.slice().sort(function(x, y){ return x.f - y.f; });
-    for (i = 0; i < order.length; i++) {
-      n = order[i]; dim = 1 - .72 * F * (1 - n.f); hot = Math.max(n.lit, n.f);
-      var tc = tcol[n.type] || accent, side = this.rtl ? 1 : -1;
-      s = 1 + n.g * .1 + (n.f - n.g) * .03;
-      ctx.save(); ctx.translate(n.x, n.y); ctx.scale(s, s);
-      if (n.g > .01 && !reduce) {
-        v = (t % 2600) / 2600;
-        rr(ctx, -n.w / 2 - 3 - v * 9, -n.h / 2 - 3 - v * 9, n.w + 6 + v * 18, n.h + 6 + v * 18, n.h / 2 + 3 + v * 9);
-        ctx.globalAlpha = n.g * (1 - v) * .45; ctx.strokeStyle = tc; ctx.lineWidth = 1; ctx.stroke();
-      }
-      rr(ctx, -n.w / 2, -n.h / 2, n.w, n.h, n.h / 2);
-      ctx.globalAlpha = 1; ctx.fillStyle = paper; ctx.fill();
-      ctx.globalAlpha = (.07 + hot * .1 + n.g * .06) * (hot ? 1 : dim); ctx.fillStyle = tc; ctx.fill();
-      if (n.g > .01) { ctx.shadowColor = tc; ctx.shadowBlur = 14 * n.g; }
-      ctx.strokeStyle = tc; ctx.lineWidth = 1 + hot * .4 + n.g * .4;
-      ctx.globalAlpha = Math.min(1, (.34 + n.near * .3) * dim + hot * .6); ctx.stroke();
-      ctx.shadowBlur = 0;
-      // The type's dot, at the start of the pill
-      ctx.beginPath(); ctx.arc(side * (n.w / 2 - 11), 0, 3.2, 0, 6.2832);
-      ctx.fillStyle = tc; ctx.globalAlpha = Math.min(1, .8 * dim + hot * .2); ctx.fill();
-      ctx.font = this.font; ctx.textAlign = 'center'; ctx.fillStyle = hot > .05 ? tc : muted;
-      ctx.globalAlpha = Math.min(1, (.5 + n.near * .35) * dim + hot * .5);
-      ctx.fillText(n.t, -side * 5, .5);
-      v = Math.max(n.lit * dim, n.f, n.near * .7);
-      if (v > .05) {
-        ctx.font = '600 9.5px "Schibsted Grotesk", "Helvetica Neue", sans-serif'; ctx.textAlign = 'left';
-        ctx.fillStyle = tc; ctx.globalAlpha = v * .9;
-        if (this.rtl) { ctx.textAlign = 'right'; ctx.fillText(n.type, n.w / 2 - 6, -n.h / 2 - 8); }
-        else ctx.fillText(n.type, -n.w / 2 + 6, -n.h / 2 - 8);
-      }
-      ctx.restore();
-    }
-
-    // Relation labels. At rest every relation with room carries a faint label; lit ones come forward,
-    // and every relation of a focused entity is labelled. A label goes to the midpoint first, then
-    // slides along its edge or steps beside it, and keeps its last spot so it does not jump around
-    ctx.textAlign = 'center'; ctx.font = this.rfont;
-    var shown = es.slice(), placed = [], SLOTS = [[.5, 0], [.4, 0], [.6, 0], [.32, 0], [.68, 0], [.5, 13], [.5, -13], [.4, 13], [.6, -13]];
-    for (k = 0; k < es.length; k++) {
-      e = es[k]; e.v = Math.max(e.lit * (1 - .72 * F), e.f); e.rest = .42 * (1 - F) * (1 - e.f);
-    }
-    shown.sort(function(x, y){ return (y.f * 2 + y.lit) - (x.f * 2 + x.lit); });
-    for (k = 0; k < shown.length; k++) {
-      e = shown[k]; v = Math.max(e.v, e.rest);
-      if (v < .03) continue;
-      var ux = e.x2 - e.x1, uy = e.y2 - e.y1, len = Math.sqrt(ux * ux + uy * uy) || 1, spot = false, mx, my, box, j, c, clash;
-      for (c = -1; c < SLOTS.length && !spot; c++) {
-        j = c < 0 ? e.slot : c;
-        if (j == null) continue;
-        var cp = qpt(e, SLOTS[j][0]);
-        mx = cp[0] - uy / len * SLOTS[j][1]; my = cp[1] + ux / len * SLOTS[j][1];
-        box = [mx - e.lw / 2 - 8, mx + e.lw / 2 + 8, my - 10, my + 10];
-        if (this.blocked(box[0], box[1], box[2], box[3])) continue;
-        clash = false;
-        for (i = 0; i < placed.length && !clash; i++) clash = box[0] < placed[i][1] && box[1] > placed[i][0] && box[2] < placed[i][3] && box[3] > placed[i][2];
-        for (i = 0; i < ns.length && !clash; i++) {
-          n = ns[i];
-          if (F > .05 && n.f < .3) continue;
-          clash = box[0] < n.x + n.w / 2 + 2 && box[1] > n.x - n.w / 2 - 2 && box[2] < n.y + n.h / 2 + 2 && box[3] > n.y - n.h / 2 - 16;
+        for (q = 0; q < this.clusters.length && !hit; q++) {
+          var cl = this.clusters[q];
+          if (Math.abs(cl.x - cand[0]) < lw / 2 + 50 && Math.abs(Math.max(12, cl.y - cl.R - 22) - cand[1]) < 17) hit = true;
         }
-        if (!clash) { spot = true; e.slot = j; }
+        if (!hit) { M = cand; e.lq = qs[s]; }
       }
-      if (!spot) continue;
-      placed.push(box);
-      rr(ctx, mx - e.lw / 2 - 6, my - 8.5, e.lw + 12, 17, 8.5);
-      ctx.globalAlpha = Math.min(1, v * 1.6); ctx.fillStyle = paper; ctx.fill();
-      if (e.v > .02) { ctx.globalAlpha = e.v * .45; ctx.strokeStyle = accent; ctx.lineWidth = 1; ctx.stroke(); }
-      ctx.globalAlpha = v * .95; ctx.fillStyle = e.v >= e.rest ? accent : muted; ctx.fillText(e.t, mx, my + .5);
+      if (!M) continue;
+      z = Math.max(.25, this.zone(M[0], M[1]));
+      ctx.direction = ar ? 'rtl' : 'ltr';
+      ctx.globalAlpha = Math.min(1, on) * z; ctx.strokeStyle = C.bg; ctx.lineWidth = 4;
+      ctx.strokeText(e.label, M[0], M[1]);
+      ctx.fillStyle = e.lbl >= e.hv ? C.beam : C.muted; ctx.fillText(e.label, M[0], M[1]);
     }
-    // A pulse runs from head to tail as a triple is found
-    for (k = 0; k < lit.length; k++) {
-      l = lit[k]; age = t - l.t0;
-      if (l.life === Infinity || age > 1800) continue;
-      v = age / 1800; e = l.e;
-      ctx.globalAlpha = l.env * (1 - v * .4) * (1 - .72 * F); ctx.fillStyle = accent;
-      var pp = qpt(e, v);
-      ctx.beginPath(); ctx.arc(pp[0], pp[1], 3, 0, 6.2832); ctx.fill();
-    }
-    ctx.globalAlpha = 1;
+    // cluster names, above each cluster
+    this.clusters.forEach(function(cl){
+      if (!self.nodes.some(function(n){ return n.cl === cl; })) return;
+      var tx = cl.x, ty = Math.max(12, cl.y - cl.R - 22);
+      if (self.covered(tx, ty, 0)) return;
+      var ar = /[\u0600-\u06FF]/.test(cl.title);
+      ctx.font = (cl.main ? '700 ' + (self.small ? 12 : 13) : 'italic 500 ' + (self.small ? 11.5 : 12.5)) + 'px ' + (ar ? F_AR : (cl.main ? F_LA : F_REL));
+      ctx.direction = ar ? 'rtl' : 'ltr';
+      ctx.globalAlpha = .8 * self.zone(tx, ty); ctx.strokeStyle = C.bg; ctx.lineWidth = 5;
+      ctx.strokeText(cl.title, tx, ty);
+      ctx.fillStyle = C[cl.key]; ctx.fillText(cl.title, tx, ty);
+    });
+    ctx.direction = 'ltr'; ctx.globalAlpha = 1; ctx.lineCap = 'butt';
   };
 
-  fields = Array.prototype.map.call(document.querySelectorAll('.hero-bg'), function(cv){ return new Field(cv); });
-  function loop(){
-    fields.forEach(function(f){ if (f.w && f.visible && !document.hidden) f.draw(true); });
+  fields = Array.prototype.map.call(document.querySelectorAll('.hero-bg'), function(cv){ return new Graph(cv); });
+  var last = 0, acc = 0;
+  function loop(now){
+    // fixed 60 steps per second, so the speed is the same on every screen
+    acc += last ? Math.min(100, now - last) : 16.7; last = now;
+    var steps = 0; while (acc >= 16.7) { acc -= 16.7; steps++; }
+    if (steps) fields.forEach(function(f){
+      if (!f.w || !f.visible || document.hidden) return;
+      for (var i = 0; i < Math.min(steps, 3); i++) f.step();
+      f.draw();
+    });
     requestAnimationFrame(loop);
   }
   var rt; window.addEventListener('resize', function(){ clearTimeout(rt); rt = setTimeout(function(){ fields.forEach(function(f){ f.refresh(); }); }, 150); });
   if (window.matchMedia) {
     var mq = window.matchMedia('(prefers-color-scheme: dark)');
-    var onScheme = function(){ readColors(); fields.forEach(function(f){ f.draw(false); }); };
+    var onScheme = function(){ readColors(); fields.forEach(function(f){ f.draw(); }); };
     if (mq.addEventListener) mq.addEventListener('change', onScheme); else if (mq.addListener) mq.addListener(onScheme);
   }
-  // Word widths depend on the web fonts, so measure again once they have loaded
+  // Name widths depend on the web fonts, so measure again once they have loaded
   if (document.fonts && document.fonts.ready) document.fonts.ready.then(function(){ fields.forEach(function(f){ f.refresh(); }); });
 
   // Portrait: show ./img/photo.png when it exists, otherwise keep the initials
@@ -1402,6 +1418,19 @@ footer{margin-top:clamp(2.75rem, 6vw, 4.25rem);padding:2.5rem 0 2.75rem;border-t
       }, function(){});
     });
   })();
+
+  // Reveal on scroll: sections, papers and cards rise in as they come into view
+  if ('IntersectionObserver' in window && !reduce) {
+    var rio = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){ if (e.isIntersecting) { e.target.classList.add('in'); rio.unobserve(e.target); } });
+    }, {rootMargin:'0px 0px -8% 0px'});
+    Array.prototype.forEach.call(document.querySelectorAll('.block .sec-head, .pubs > li, .teach-card, .duo > div, .foot > div, .contact-list'), function(el){
+      if (el.getBoundingClientRect().top < window.innerHeight * 0.9 && !el.closest('[hidden]')) return;
+      var sibs = el.parentNode ? Array.prototype.indexOf.call(el.parentNode.children, el) : 0;
+      el.style.transitionDelay = ((sibs % 4) * 70) + 'ms';
+      el.classList.add('reveal'); rio.observe(el);
+    });
+  }
 
   var start = langFromHash() || read('am-lang');
   if (!start && navigator.language) {
